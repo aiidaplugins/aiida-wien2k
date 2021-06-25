@@ -6,6 +6,7 @@ WIEN2k plug-in for AiiDA workflow management
 * errors and warnings (displaying warnings on the providence graph)
 * EOS +/- volumes (child calculations) based on the parent calculation VOL0
 * adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
+* how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about.
 
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
