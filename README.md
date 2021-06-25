@@ -3,7 +3,8 @@ WIEN2k plug-in for AiiDA workflow management
 
 ## Questions for AiiDA workshop
 * submission of parallel calculations
-* errors and warnings (displaying warnings on the providence graph)* EOS +/- volumes (child calculations) based on the parent calculation VOL0
+* errors and warnings (displaying warnings on the providence graph)
+* EOS +/- volumes (child calculations) based on the parent calculation VOL0
 * adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
 
 ## Questions for Jul 13th meeting
