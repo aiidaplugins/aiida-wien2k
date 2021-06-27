@@ -15,3 +15,4 @@ WIEN2k plug-in for AiiDA workflow management
 * how should we add the input crystal structure as a node to the providence graph?
 * how input crystal structures will be supplied to us? (for the paper)
 * do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine)
+* how results should be tresented? table E vs V for each initial structure?
