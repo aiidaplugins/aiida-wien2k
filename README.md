@@ -17,3 +17,23 @@ WIEN2k plug-in for AiiDA workflow management
 * how input crystal structures will be supplied to us? (for the paper)
 * do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine)
 * how results should be tresented? table E vs V for each initial structure?
+
+Si structure in AiiDA:
+```
+In [2]: struct.attributes
+Out[2]: 
+{'cell': [[3.86697465, 0.0, 0.0],
+  [1.933487325, 3.3488982826904, 0.0],
+  [1.933487325, 1.1162994275635, 3.1573715802592]],
+ 'pbc1': True,
+ 'pbc2': True,
+ 'pbc3': True,
+ 'kinds': [{'mass': 28.085,
+   'name': 'Si',
+   'symbols': ['Si'],
+   'weights': [1.0]}],
+ 'sites': [{'position': [5.800461975, 3.3488982826904, 2.3680286851944],
+   'kind_name': 'Si'},
+  {'position': [3.86697465, 2.232598855127, 1.5786857901296],
+   'kind_name': 'Si'}]}
+```
