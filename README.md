@@ -17,6 +17,7 @@ WIEN2k plug-in for AiiDA workflow management
 * how input crystal structures will be supplied to us? (for the paper) (see https://arxiv.org/pdf/2105.05063.pdf)
 * do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine)
 * how results should be tresented? table E vs V for each initial structure?
+* probably we need somethin similar to `PwBandsWorkChain.get_builder_from_protocol(code=code, structure=structure)`
 
 Si structure in AiiDA:
 ```
