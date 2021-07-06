@@ -38,3 +38,5 @@ Out[2]:
   {'position': [3.86697465, 2.232598855127, 1.5786857901296],
    'kind_name': 'Si'}]}
 ```
+
+"[...] all the crystal structures stored in the database are saved in nodes that are of the type StructureData."
