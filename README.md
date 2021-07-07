@@ -6,8 +6,8 @@ WIEN2k plug-in for AiiDA workflow management
 * errors and warnings (displaying warnings on the providence graph)
 * EOS +/- volumes (child calculations) based on the parent calculation VOL0
 * adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
-* how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
 * how to handle k-parallel calculations?
+- [x] how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
 
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
@@ -15,9 +15,10 @@ WIEN2k plug-in for AiiDA workflow management
 * what should we define as a "code" in code@host? (WIEN2k has many executables.)
 * how should we add the input crystal structure as a node to the providence graph?
 * how input crystal structures will be supplied to us? (for the paper) (see https://arxiv.org/pdf/2105.05063.pdf)
-* do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine) ase_structure = structure.get_ase()
 * how results should be tresented? table E vs V for each initial structure?
 * probably we need somethin similar to `PwBandsWorkChain.get_builder_from_protocol(code=code, structure=structure)`
+
+- [x] do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine) ase_structure = structure.get_ase()
 
 Si structure in AiiDA:
 ```
