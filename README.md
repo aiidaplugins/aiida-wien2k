@@ -8,6 +8,7 @@ WIEN2k plug-in for AiiDA workflow management
 * adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
 * how to handle k-parallel calculations?
 - [x] how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
+- [x] debuging AiiDA with VSCode https://marketplace.visualstudio.com/items?itemName=chrisjsewell.aiida-explore-vscode
 
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
