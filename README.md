@@ -41,3 +41,5 @@ Out[2]:
 ```
 
 "[...] all the crystal structures stored in the database are saved in nodes that are of the type StructureData."
+
+From a dicussion during tutorials: Could they create a plugin that subclasses StructureData? That way it could still be used by all calc plugins that use StructureData and they could add all functionalities from ASE that they want. maybe subclassing, maybe creating a separate object
