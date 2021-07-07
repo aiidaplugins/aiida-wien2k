@@ -15,7 +15,7 @@ WIEN2k plug-in for AiiDA workflow management
 * what should we define as a "code" in code@host? (WIEN2k has many executables.)
 * how should we add the input crystal structure as a node to the providence graph?
 * how input crystal structures will be supplied to us? (for the paper) (see https://arxiv.org/pdf/2105.05063.pdf)
-* do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine)
+* do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine) ase_structure = structure.get_ase()
 * how results should be tresented? table E vs V for each initial structure?
 * probably we need somethin similar to `PwBandsWorkChain.get_builder_from_protocol(code=code, structure=structure)`
 
