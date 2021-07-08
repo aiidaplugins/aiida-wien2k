@@ -33,6 +33,7 @@ Total results: 6
 
 - [x] do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine) ase_structure = structure.get_ase()
 - [x] how results should be presented? table E vs V for each initial structure?
+```
 In [6]: result.get_dict()
 Out[6]:
 {'eos': [[137.84870014835, -1240.4759003187, 'eV'],
@@ -40,6 +41,7 @@ Out[6]:
   [155.807721341, -1242.0231198534, 'eV'],
   [165.34440034884, -1242.1847659475, 'eV'],
   [175.26249665852, -1242.0265883524, 'eV']]}
+```
 
 Si structure in AiiDA:
 ```
