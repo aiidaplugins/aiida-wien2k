@@ -9,6 +9,7 @@ WIEN2k plug-in for AiiDA workflow management
 - [x] how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
 - [x] debuging AiiDA with VSCode https://marketplace.visualstudio.com/items?itemName=chrisjsewell.aiida-explore-vscode
 - [x] submission of parallel calculations (EOS example; see eos_workchain.py)
+```
 (base) aiida@jupyter-rubel75:~$ verdi process list
   PK  Created    Process label    Process State    Process status
 ----  ---------  ---------------  ---------------  ---------------------------------------------------------
@@ -19,6 +20,7 @@ WIEN2k plug-in for AiiDA workflow management
 2598  24s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
 2604  22s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
 Total results: 6
+```
 
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
