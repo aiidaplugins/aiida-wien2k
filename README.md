@@ -2,13 +2,23 @@
 WIEN2k plug-in for AiiDA workflow management
 
 ## Questions for AiiDA workshop
-* submission of parallel calculations
 * errors and warnings (displaying warnings on the providence graph)
 * EOS +/- volumes (child calculations) based on the parent calculation VOL0
 * adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
 * how to handle k-parallel calculations?
 - [x] how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
 - [x] debuging AiiDA with VSCode https://marketplace.visualstudio.com/items?itemName=chrisjsewell.aiida-explore-vscode
+- [x] submission of parallel calculations (EOS example; see eos_workchain.py)
+(base) aiida@jupyter-rubel75:~$ verdi process list
+  PK  Created    Process label    Process State    Process status
+----  ---------  ---------------  ---------------  ---------------------------------------------------------
+2574  30s ago    EquationOfState  ⏵ Waiting        Waiting for child processes: 2580, 2586, 2592, 2598, 2604
+2580  28s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
+2586  27s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
+2592  25s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
+2598  24s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
+2604  22s ago    PwCalculation    ⏵ Waiting        Monitoring scheduler: job state RUNNING
+Total results: 6
 
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
