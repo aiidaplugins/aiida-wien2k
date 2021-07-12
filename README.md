@@ -2,11 +2,10 @@
 WIEN2k plug-in for AiiDA workflow management
 
 ## Questions for AiiDA workshop
-* errors and warnings (displaying warnings on the providence graph)
-* EOS +/- volumes (child calculations) based on the parent calculation VOL0
-* adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
-* how to handle k-parallel calculations?
 - [x] how to manipulate DB? one DB per project? there is no comments for "nodes" in DB; it is hard to keep track of what 726 was about? maybe use process label?
+- [x] EOS +/- volumes (child calculations) based on the parent calculation VOL0: use copy
+- [x] adding command line parameters to a code (e.g., x nn, x sgroup, run_lapw -ee 0.0001)
+- [x] how to handle k-parallel calculations?: number of cores are passed to AiiDA
 - [x] debuging AiiDA with VSCode https://marketplace.visualstudio.com/items?itemName=chrisjsewell.aiida-explore-vscode
 - [x] submission of parallel calculations (EOS example; see eos_workchain.py)
 ```
@@ -25,12 +24,12 @@ Total results: 6
 ## Questions for Jul 13th meeting
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
 * looping over volumes: Should we call something from AIIDA or just write our own loop and store the data?
-* what should we define as a "code" in code@host? (WIEN2k has many executables.)
-* how should we add the input crystal structure as a node to the providence graph?
 * how input crystal structures will be supplied to us? (for the paper) (see https://arxiv.org/pdf/2105.05063.pdf)
-* 
-* probably we need somethin similar to `PwBandsWorkChain.get_builder_from_protocol(code=code, structure=structure)`
+* we should define `x` as a code and then `x sgroup` as a package (class)
 
+
+- [x] what should we define as a "code" in code@host? (WIEN2k has many executables.): each executable is a code
+- [x] how should we add the input crystal structure as a node to the providence graph? (as a file)
 - [x] do we need AIIDA <-> ASE <-> WIEN2k structure converter? (ASE <-> WIEN2k works fine) ase_structure = structure.get_ase()
 - [x] how results should be presented? table E vs V for each initial structure?
 ```
