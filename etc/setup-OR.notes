@@ -1,0 +1,29 @@
+conda create -n aiida -c conda-forge aiida-core aiida-core.services
+conda activate aiida
+pip install psycopg2-binary==2.8.6
+pip install psycopg2==2.8.6
+reentry scan
+cd /home/rubel/scratch/aiida
+initdb -D mylocal_db
+pg_ctl -D mylocal_db -l logfile start
+rabbitmq-server -detached
+
+(aiida) [rubel@gra-login3 aiida]$ verdi quicksetup
+Info: enter "?" for help
+Info: enter "!" to ignore the default and set no value
+Profile name [quicksetup]: oleg
+Email Address (for sharing data): rubelo@mcmaster.ca
+First name: Oleg
+Last name: Rubel
+Institution: McMaster
+...
+
+verdi daemon start 2
+
+(aiida) [rubel@gra-login3 aiida]$ verdi status
+ ✔ config dir:  /home/rubel/.aiida
+ ✔ profile:     On profile oleg
+ ✔ repository:  /home/rubel/.aiida/repository/oleg
+ ✔ postgres:    Connected as aiida_qs_rubel_460c5d44ef6f9a34ffc5c554d91656f8@None:5432
+ ✔ rabbitmq:    Connected as amqp://guest:guest@127.0.0.1:5672?heartbeat=600
+ ✔ daemon:      Daemon is running as PID 22409 since 2021-06-20 22:40:29

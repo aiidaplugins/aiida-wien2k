@@ -1,0 +1,12 @@
+---
+label: "localhost"
+hostname: "localhost"
+transport: local
+scheduler: "direct"
+work_dir: "/home/rubel/scratch/aiida/work"
+shebang: "#!/bin/bash"
+mpirun_command: "mpirun -np {tot_num_mpiprocs}"
+mpiprocs_per_machine: "2"
+prepend_text: " "
+append_text: " "
+description: "localhost"
