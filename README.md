@@ -25,7 +25,9 @@ Total results: 6
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
 * looping over volumes: Should we call something from AIIDA or just write our own loop and store the data?
 * how input crystal structures will be supplied to us? (for the paper) (see https://arxiv.org/pdf/2105.05063.pdf)
-* we should define `x` as a code and then `x sgroup` as a package (class)
+* should we define `x` as a code and then `x sgroup` as a package (class)?
+* the provenance graph shows input remote_data, but does not show what did we do with it
+* missing step `x sgroup` on the provenance graph
 
 
 - [x] what should we define as a "code" in code@host? (WIEN2k has many executables.): each executable is a code
