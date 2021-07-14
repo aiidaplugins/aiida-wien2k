@@ -32,14 +32,15 @@ class Wien2kXSgroup(CalcJob):
         # inputs/outputs
         spec.input('code', valid_type=Code, help='WIEN2k x sgroup')
         spec.input('parameters', valid_type=Dict, required=False, help='Dictionary of input arguments (if any)')
-        spec.input('structfile', valid_type=SinglefileData, required=False, help='Structure file case.struct')
+        spec.input('structfile_in', valid_type=SinglefileData, required=False, help='Structure file case.struct')
         spec.input('parent_folder', valid_type=RemoteData, required=False,\
                    help='parent_folder passed from a previous calulation')
         spec.inputs['metadata']['options']['resources'].default = {
                                             'num_machines': 1,
                                             'num_mpiprocs_per_machine': 1,
                                             }
-        #spec.output('structfile', valid_type=FolderData, help='Structure file after x sgroup')
+        spec.inputs['metadata']['options']['parser_name'].default = 'wien2k-sgroup-parser'
+        spec.output('structfile_out', valid_type=SinglefileData, help='Structure file after x sgroup')
 
         spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES',
                 message='Calculation did not produce all expected output files.')
@@ -72,9 +73,9 @@ class Wien2kXSgroup(CalcJob):
         # Prepare a `CalcInfo` to be returned to the engine
         calcinfo = datastructures.CalcInfo()
         calcinfo.codes_info = [codeinfo]
-        if 'structfile' in self.inputs:
+        if 'structfile_in' in self.inputs:
             calcinfo.local_copy_list = [
-                (self.inputs.structfile.uuid, self.inputs.structfile.filename, 'case/case.struct')
+                (self.inputs.structfile_in.uuid, self.inputs.structfile_in.filename, 'case/case.struct')
             ] # copy case.struct to the local folder as new.struct
         else:
             calcinfo.local_copy_list = []
