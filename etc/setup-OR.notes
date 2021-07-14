@@ -3,10 +3,6 @@ conda activate aiida
 pip install psycopg2-binary==2.8.6
 pip install psycopg2==2.8.6
 reentry scan
-cd /home/rubel/scratch/aiida
-initdb -D mylocal_db
-pg_ctl -D mylocal_db -l logfile start
-rabbitmq-server -detached
 
 (aiida) [rubel@gra-login3 aiida]$ verdi quicksetup
 Info: enter "?" for help
@@ -18,6 +14,10 @@ Last name: Rubel
 Institution: McMaster
 ...
 
+cd /home/rubel/scratch/aiida
+initdb -D mylocal_db
+pg_ctl -D mylocal_db -l logfile start
+rabbitmq-server -detached
 verdi daemon start 2
 
 (aiida) [rubel@gra-login3 aiida]$ verdi status
