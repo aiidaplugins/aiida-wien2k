@@ -29,3 +29,9 @@ verdi daemon start 2
  ✔ daemon:      Daemon is running as PID 22409 since 2021-06-20 22:40:29
 
 (aiida) [rubel@gra-login3 etc]$ verdi computer configure local localhost
+Info: enter "?" for help
+Info: enter "!" to ignore the default and set no value
+Use login shell when executing command [True]:
+Connection cooldown time (s) [0.0]:
+Info: Configuring computer localhost for user rubelo@mcmaster.ca.
+Success: localhost successfully configured for rubelo@mcmaster.ca
