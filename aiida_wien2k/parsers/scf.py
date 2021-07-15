@@ -5,17 +5,19 @@ from aiida.orm import SinglefileData, Dict
 import os, sys
 
 def _grep(key, pip):
-    #Aaarrrggghhhh
-    if(key==":ENE"): 
-        col1=39;col2=61
-    elif(key==":VOL"): 
-        col1=26;col2=40
-    else:
-        sys.exit(1) # error: grep option not implementer
     value = []
     for line in pip.splitlines():
-        if line[0:len(key)] == key:
-            value.append(float(line[col1:col2]) )
+        if(key==":ENE"): 
+            if line[0:len(key)] == key:
+                value.append( float(line[39:61]) )
+        elif(key==":VOL"):
+            if line[0:len(key)] == key:
+                value.append( float(line[26:40]) )
+        elif(key==":WAR"):
+            if line[0:len(key)] == key:
+                value.append( line )
+        else:
+            sys.exit(1) # error: grep option not implemented
     return value
 
 DiffCalculation = CalculationFactory('wien2k-run_lapw')
@@ -46,6 +48,9 @@ class Wien2kScfParser(Parser):
         res['EtotRyd'] = enelist[-1] # store last one
         vollist = _grep(key=":VOL", pip=file_content) # get all volumes in SCF run
         res['VolBohr3'] = vollist[-1] # store last one
+        warngs = _grep(key=":WAR", pip=file_content) # get all warnings
+        if warngs: # check if warnings list is not empty
+            res['Warning_last'] = warngs[-1] # store last one
         self.out('scf_grep', res)
 
         return ExitCode(0)

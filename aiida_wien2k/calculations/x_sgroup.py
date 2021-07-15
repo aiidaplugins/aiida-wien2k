@@ -80,6 +80,6 @@ class Wien2kXSgroup(CalcJob):
         else:
             calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.struct_sgroup')]
+        calcinfo.retrieve_list = [('case/case.struct_sgroup'), ('case/*.error*')]
 
         return calcinfo

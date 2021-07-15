@@ -75,6 +75,6 @@ class Wien2kRunLapw(CalcJob):
         calcinfo.codes_info = [codeinfo]
         calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.scf')]
+        calcinfo.retrieve_list = [('case/case.scf'), ('case/*.error*')]
 
         return calcinfo

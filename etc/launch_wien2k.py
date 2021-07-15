@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Launch a calculation using the 'diff-tutorial' plugin"""
-from pathlib import Path
 from aiida import orm, engine
 from aiida.common.exceptions import NotExistent
 import ase.io
@@ -52,7 +51,7 @@ code = orm.load_code(label='wien2k-init_lapw@localhost')
 # Set up inputs
 builder2 = code.get_builder()
 builder2.structfile = result1.get('structfile_out') # pass structure from x sgroup
-builder2.parameters = orm.Dict(dict={'-numk': '700'}) # total number of k-points
+builder2.parameters = orm.Dict(dict={'-red':'3', '-numk': '700'}) # Rmt reduction 3%, total number of k-points 700
 builder2.metadata.description = 'run init_lapw'
 
 # Run the calculation
