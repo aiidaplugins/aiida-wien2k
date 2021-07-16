@@ -12,6 +12,7 @@ WIEN2k plug-in for AiiDA workflow management
 ## TODOs:
 - [ ] register `aiida-wien2k` in AiiDA repository 
 - [ ] debugging AiiDA with VSCode https://marketplace.visualstudio.com/items?itemName=chrisjsewell.aiida-explore-vscode
+- [ ] use `fuzzywuzzy` for error handeling (https://github.com/seatgeek/fuzzywuzzy)
 - [ ] submission of parallel calculations (EOS example; see eos_workchain.py)
 
 ## Questions for Jul 13th meeting
