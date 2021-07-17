@@ -13,9 +13,6 @@
 - [ ] use `fuzzywuzzy` for error handeling (https://github.com/seatgeek/fuzzywuzzy)
 - [ ] submission of parallel calculations (EOS example; see eos_workchain.py)
 
-## Questions for Jul 13th meeting
-
-
 ## Intallation
 ### AiiDA installation steps
 ```
