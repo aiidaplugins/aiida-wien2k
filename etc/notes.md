@@ -88,5 +88,5 @@ reentry scan
 ## Test case
 ```
 cd aiida-wien2k/etc
-verdi run launch_scf_workchain.py
+verdi run launch_scf_workchain.py # SCF run Si (1 iteration only)
 ```
