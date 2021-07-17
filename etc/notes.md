@@ -2,6 +2,28 @@
 - [ ] Giovanni: One comment is that many other plugins avoid the explicit call to a calcfunction to convert an AiiDA StructureData to the internal code format, but just perform the conversion inside the `prepare_for_submission` of the first step.
 - [ ] Names convention check
 
+## Issues
+- [ ] stdout/stderr mixed up
+```
+In [1]: fdata = load_node(395)
+In [2]: fdata
+Out[2]: <FolderData: uuid: dead272c-7735-4d25-9226-a8f4a5332765 (pk: 395)>
+In [6]: fdata.list_object_names()
+Out[6]:
+['_scheduler-stderr.txt',
+ '_scheduler-stdout.txt',
+ 'case.scf',
+ 'dstart.error',
+ 'lapw0.error',
+ 'lapw1.error',
+ 'lapw2.error',
+ 'lcore.error',
+ 'mixer.error']
+In [11]: errfile = fdata.get_object_content('_scheduler-stderr.txt')
+In [12]: errfile
+Out[12]: ' LAPW0 END\n LAPW1 END\n LAPW2 END\n CORE  END\n MIXER END\n'
+```
+
 ## Notes
 * From a discussion during tutorials: Could they create a plugin that subclasses StructureData? That way it could still be used by all calc plugins that use StructureData and they could add all functionalities from ASE that they want. maybe subclassing, maybe creating a separate object
 * what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
