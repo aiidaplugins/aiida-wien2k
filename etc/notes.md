@@ -32,7 +32,7 @@ Set up new profile
 Info: enter "?" for help
 Info: enter "!" to ignore the default and set no value
 Profile name [quicksetup]: oleg
-Email Address (for sharing data): rubelo@mcmaster.ca
+Email Address (for sharing data): rubelo@....ca
 First name: Oleg
 Last name: Rubel
 Institution: McMaster
@@ -56,11 +56,24 @@ Check AiiDA status
  ✔ rabbitmq:    Connected as amqp://guest:guest@127.0.0.1:5672?heartbeat=600
  ✔ daemon:      Daemon is running as PID 22409 since 2021-06-20 22:40:29
 ```
-
-(aiida) [rubel@gra-login3 etc]$ verdi computer configure local localhost
+Set up computer `localhost`
+```
+cd aiida_wien2k/configs/computers/
+verdi computer setup --config localhost.yml # edit work_dir!
+```
+Set up computer
+```
+verdi computer configure local localhost
 Info: enter "?" for help
 Info: enter "!" to ignore the default and set no value
 Use login shell when executing command [True]:
 Connection cooldown time (s) [0.0]:
-Info: Configuring computer localhost for user rubelo@mcmaster.ca.
-Success: localhost successfully configured for rubelo@mcmaster.ca
+Info: Configuring computer localhost for user rubelo@....ca.
+Success: localhost successfully configured for rubelo@....ca
+```
+Set up codes (do for all codes `aiida_wien2k/configs/codes/*.yml`)
+```
+cd aiida_wien2k/configs/codes/
+verdi code setup --config run_lapw.yml # edit remote_abs_path, prepend_text!
+```
+
