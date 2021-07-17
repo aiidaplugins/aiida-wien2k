@@ -4,6 +4,7 @@
 
 ## Notes
 * From a discussion during tutorials: Could they create a plugin that subclasses StructureData? That way it could still be used by all calc plugins that use StructureData and they could add all functionalities from ASE that they want. maybe subclassing, maybe creating a separate object
+* what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
 
 
 ## TODOs:
@@ -13,7 +14,7 @@
 - [ ] submission of parallel calculations (EOS example; see eos_workchain.py)
 
 ## Questions for Jul 13th meeting
-* what to do with the APW specific parameters (RMT, r0 etc ) that are stored in the struct file?
+
 
 ## Intallation
 ### AiiDA installation steps
@@ -77,3 +78,15 @@ cd aiida_wien2k/configs/codes/
 verdi code setup --config run_lapw.yml # edit remote_abs_path, prepend_text!
 ```
 
+## Install aiida-wien2k plugin package
+```
+cd aiida-wien2k
+pip install .
+reentry scan
+```
+
+## Test case
+```
+cd aiida-wien2k/etc
+verdi run launch_scf_workchain.py
+```
