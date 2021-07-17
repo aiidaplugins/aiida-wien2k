@@ -3,7 +3,7 @@
 - [ ] Names convention check
 
 ## Issues
-- [ ] stdout/stderr mixed up. It is potentially a problem when parsing error or checking status of execution
+- [ ] In `run_lapw` stdout/stderr are mixed up. It is potentially a problem when parsing error or checking status of execution
   ```
   In [1]: fdata = load_node(395)
   In [2]: fdata
@@ -23,7 +23,7 @@
   In [12]: errfile
   Out[12]: ' LAPW0 END\n LAPW1 END\n LAPW2 END\n CORE  END\n MIXER END\n'
   ```
-  Another case
+- [ ] Another case with `init_lapw`
   ```
   (aiida) [rubel@gra-login3 d4e7-03d1-4e1f-9bc9-24ea4f4f9814]$ cat _scheduler-stderr.txt
   NN ENDS
