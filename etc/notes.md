@@ -5,23 +5,37 @@
 ## Issues
 - [ ] In `run_lapw` stdout/stderr are mixed up. It is potentially a problem when parsing error or checking status of execution
   ```
-  In [1]: fdata = load_node(395)
-  In [2]: fdata
-  Out[2]: <FolderData: uuid: dead272c-7735-4d25-9226-a8f4a5332765 (pk: 395)>
-  In [6]: fdata.list_object_names()
-  Out[6]:
-  ['_scheduler-stderr.txt',
-   '_scheduler-stdout.txt',
-   'case.scf',
-   'dstart.error',
-   'lapw0.error',
-   'lapw1.error',
-   'lapw2.error',
-   'lcore.error',
-   'mixer.error']
-  In [11]: errfile = fdata.get_object_content('_scheduler-stderr.txt')
-  In [12]: errfile
-  Out[12]: ' LAPW0 END\n LAPW1 END\n LAPW2 END\n CORE  END\n MIXER END\n'
+  (aiida) [rubel@gra-login3 ~]$ verdi node show 393
+  Property     Value
+  -----------  ------------------------------------
+  type         Wien2kRunLapw
+  state        Finished [0]
+  ...
+
+  Outputs          PK  Type
+  -------------  ----  ----------
+  remote_folder   394  RemoteData
+  ...
+  
+  (aiida) [rubel@gra-login3 ~]$ verdi data remote show 394
+  - Remote computer name:
+    localhost
+  - Remote folder full path:
+    /scratch/rubel/aiida/work/f3/c0/5838-3e64-459b-93ec-7b4463c7cd02
+  
+  (aiida) [rubel@gra-login3 ~]$ cd /scratch/rubel/aiida/work/f3/c0/5838-3e64-459b-93ec-7b4463c7cd02
+  (aiida) [rubel@gra-login3 5838-3e64-459b-93ec-7b4463c7cd02]$ ll
+  total 49
+  -rw-r----- 1 rubel rubel   806 Jul 15 10:22 _aiidasubmit.sh
+  drwxr-x--- 2 rubel rubel 41472 Jul 15 10:22 case
+  -rw-r----- 1 rubel rubel    55 Jul 15 10:22 _scheduler-stderr.txt
+  -rw-r----- 1 rubel rubel     0 Jul 15 10:22 _scheduler-stdout.txt
+  (aiida) [rubel@gra-login3 5838-3e64-459b-93ec-7b4463c7cd02]$ cat _scheduler-stderr.txt
+   LAPW0 END
+   LAPW1 END
+   LAPW2 END
+   CORE  END
+   MIXER END
   ```
 - [ ] Another case with `init_lapw`
   ```
