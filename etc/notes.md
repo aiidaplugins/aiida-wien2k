@@ -3,7 +3,7 @@
 - [ ] Names convention check
 
 ## Issues
-- [ ] stdout/stderr mixed up
+- [ ] stdout/stderr mixed up. It is potentially a problem when parsing error or checking status of execution
 ```
 In [1]: fdata = load_node(395)
 In [2]: fdata
