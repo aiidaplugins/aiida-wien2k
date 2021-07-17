@@ -59,7 +59,7 @@ Set up computer `localhost`
 cd aiida_wien2k/configs/computers/
 verdi computer setup --config localhost.yml # edit work_dir!
 ```
-Set up computer
+Configure computer
 ```
 verdi computer configure local localhost
 Info: enter "?" for help
