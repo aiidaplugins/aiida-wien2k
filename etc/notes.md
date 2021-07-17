@@ -124,14 +124,14 @@ cd aiida_wien2k/configs/codes/
 verdi code setup --config run_lapw.yml # edit remote_abs_path, prepend_text!
 ```
 
-## Install aiida-wien2k plugin package
+### Install aiida-wien2k plugin package
 ```
 cd aiida-wien2k
 pip install .
 reentry scan
 ```
 
-## Test case
+## Run test case
 ```
 cd aiida-wien2k/etc
 verdi run launch_scf_workchain.py # SCF run Si (1 iteration only)
