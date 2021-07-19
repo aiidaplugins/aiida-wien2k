@@ -141,3 +141,10 @@ verdi daemon restart --reset
 cd aiida-wien2k/etc
 verdi run launch_scf_workchain.py # SCF run Si (1 iteration only)
 ```
+
+## TU Wien
+To connect via VNC
+```
+ssh -Y -L 5901:psi11:5901 uname@.....at
+```
+Launch VNC connection to `localhost:5901`
