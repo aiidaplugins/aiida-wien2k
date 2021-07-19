@@ -73,6 +73,13 @@ reentry scan
 ```
 Here `pip` is used to downgread `psycopg2` otherwise AiiDA does not work (problems with `postgresql`)
 
+Launch database
+```
+cd /home/rubel/scratch/aiida
+initdb -D mylocal_db
+pg_ctl -D mylocal_db -l logfile start
+rabbitmq-server -detached
+```
 Set up new profile
 ```
 (aiida) [rubel@gra-login3 aiida]$ verdi quicksetup
@@ -85,12 +92,8 @@ Last name: Rubel
 Institution: McMaster
 ...
 ```
-Lunch database and AiiDA deamon
+Launch AiiDA deamon
 ```
-cd /home/rubel/scratch/aiida
-initdb -D mylocal_db
-pg_ctl -D mylocal_db -l logfile start
-rabbitmq-server -detached
 verdi daemon start 2
 ```
 Check AiiDA status
