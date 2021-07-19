@@ -65,7 +65,7 @@
 ## Intallation
 ### AiiDA installation steps
 ```
-conda create -n aiida -c conda-forge aiida-core aiida-core.services
+conda create -n aiida -c conda-forge aiida-core aiida-core.services ase
 conda activate aiida
 pip install psycopg2-binary==2.8.6
 pip install psycopg2==2.8.6
