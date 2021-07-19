@@ -3,25 +3,10 @@ label: "wien2k-run_lapw"
 description: "wien2k run_lapw"
 input_plugin: "wien2k-run_lapw"
 on_computer: true
-remote_abs_path: "/home/rubel/WIEN2k_21.1b/run_lapw"
+remote_abs_path: "/area51/WIEN2k_21/run_lapw"
 computer: "localhost"
 prepend_text: '
-export OMP_NUM_THREADS=1;
 export EDITOR="vim";
 export SCRATCH=./;
-export WIENROOT=/home/rubel/WIEN2k_21.1b;
-export WANNIER_ROOT=/home/rubel/project/rubel/wannier90-2.1.0;
-export W2WEB_CASE_BASEDIR=/home/rubel/WIEN2k;
-export STRUCTEDIT_PATH=$WIENROOT/SRC_structeditor/bin;
-export PDFREADER=acroread;
-export PATH=$WIENROOT:$WANNIER_ROOT:$STRUCTEDIT_PATH:$WIENROOT/SRC_IRelast/script-elastic:$PATH:.;
-export OCTAVE_EXEC_PATH=${PATH}::;
-export OCTAVE_PATH=${STRUCTEDIT_PATH}::;
-export PATH=$PATH:.;
-ulimit -s unlimited
-alias octave="octave -p $OCTAVE_PATH";
-module load xcrysden/1.6.2;
-module load fftw/3.3.8;
-module load gnuplot/5.2.8;
 mkdir -p case && cd case'
 append_text: " "
