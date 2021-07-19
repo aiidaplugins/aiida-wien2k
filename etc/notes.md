@@ -130,9 +130,11 @@ verdi code setup --config run_lapw.yml # edit remote_abs_path, prepend_text!
 ### Install aiida-wien2k plugin package
 ```
 cd aiida-wien2k
-pip install .
+pip install -e .
 reentry scan
+verdi daemon restart --reset
 ```
+(in case of troubles try `pip install -e . -vvv` and also locate `/path/to/anaconda3/envs/aiida/lib/python3.8/site-packages/aiida-wien2k.egg-link` file)
 
 ## Run test case
 ```
