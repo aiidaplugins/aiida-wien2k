@@ -129,6 +129,7 @@ verdi code setup --config run_lapw.yml # edit remote_abs_path, prepend_text!
 
 ### Install aiida-wien2k plugin package
 ```
+git clone https://github.com/rubel75/aiida-wien2k
 cd aiida-wien2k
 pip install -e .
 reentry scan
