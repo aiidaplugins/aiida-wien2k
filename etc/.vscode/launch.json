@@ -8,8 +8,8 @@
             "name": "Verdi",
             "type": "python",
             "request": "launch",
-            "program": "/home/rubel/miniconda3/envs/aiida/bin/verdi",
-            "args": ["run", "launch_scf_workchain.py"],
+            "program": "/eos/rubel/anaconda3/envs/aiida/bin/verdi",
+            "args": ["run", "launch_oxides_scf_workchain.py"],
             "console": "integratedTerminal"
         }
     ]

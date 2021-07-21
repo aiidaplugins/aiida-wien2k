@@ -84,6 +84,11 @@ class Wien2kScfWorkChain(WorkChain):
             code = self.inputs.code3,
         )
 
+        # check if all error files are empty
+        # node = result.get('retrieved')
+        # node.list_object_names()
+        # node.get_object_content('dstart.error')
+
         return ToContext(node3=result)
 
     def result(self):

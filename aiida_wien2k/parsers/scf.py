@@ -7,13 +7,29 @@ import os, sys
 def _grep(key, pip):
     value = []
     for line in pip.splitlines():
-        if(key==":ENE"): 
+        if(key==":ENE"): # total energy [Ry]
             if line[0:len(key)] == key:
-                value.append( float(line[39:61]) )
-        elif(key==":VOL"):
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":VOL"): # cell folume [Borh3]
             if line[0:len(key)] == key:
-                value.append( float(line[26:40]) )
-        elif(key==":WAR"):
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":FER"): # Fermi energy [Ry]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":ITE"): # Iteration number
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep=':',maxsplit=-1)[-1]
+                cut = cut.rsplit(sep='.',maxsplit=-1)[0]
+                value.append( int(cut) )
+        elif(key==":GAP"): # Band gap [eV]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[-1]
+                cut = cut.rsplit(sep=' eV ',maxsplit=-1)[0]
+                value.append( float(cut) )
+        elif(key==":WAR"): # warnings
             if line[0:len(key)] == key:
                 value.append( line )
         else:
@@ -45,12 +61,23 @@ class Wien2kScfParser(Parser):
         file_content = self.retrieved.get_object_content(output_filename)
         res = Dict()
         enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
-        res['EtotRyd'] = enelist[-1] # store last one
+        if enelist: # check if energy list is not empty
+            res['EtotRyd'] = enelist[-1] # store last one
         vollist = _grep(key=":VOL", pip=file_content) # get all volumes in SCF run
-        res['VolBohr3'] = vollist[-1] # store last one
-        warngs = _grep(key=":WAR", pip=file_content) # get all warnings
-        if warngs: # check if warnings list is not empty
-            res['Warning_last'] = warngs[-1] # store last one
+        if vollist:
+            res['VolBohr3'] = vollist[-1]
+        eflist = _grep(key=":FER", pip=file_content) # get all Fermi ene in SCF run
+        if eflist:
+            res['EfermiRyd'] = eflist[-1]
+        iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+        if iterlist:
+            res['Iter'] = iterlist[-1]
+        gaplist = _grep(key=":GAP", pip=file_content) # get all band gaps in SCF run
+        if gaplist:
+            res['GapEv'] = gaplist[-1]
+        warngslist = _grep(key=":WAR", pip=file_content) # get all warnings
+        if warngslist: # check if warnings list is not empty
+            res['Warning_last'] = warngslist[-1]
         self.out('scf_grep', res)
 
         return ExitCode(0)
