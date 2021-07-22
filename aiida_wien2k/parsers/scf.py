@@ -4,7 +4,8 @@ from aiida.plugins import CalculationFactory
 from aiida.orm import SinglefileData, Dict
 import os, sys
 
-def _grep(key, pip):
+def _grep_all_iter(key, pip):
+    """"Serach patterns in lines `pip` that start with `key`"""
     value = []
     for line in pip.splitlines():
         if(key==":ENE"): # total energy [Ry]
@@ -36,6 +37,42 @@ def _grep(key, pip):
             sys.exit(1) # error: grep option not implemented
     return value
 
+def _grep_last_iter(key, pip):
+    """"Serach patterns in lines `pip` that start with `key` only last iteration"""
+    value = []
+    for line in reversed(pip.splitlines()): # search backward
+        if(key==":ENE"): # total energy [Ry]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":VOL"): # cell folume [Borh3]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":FER"): # Fermi energy [Ry]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[1]
+                value.append( float(cut) )
+        elif(key==":ITE"): # Iteration number
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep=':',maxsplit=-1)[-1]
+                cut = cut.rsplit(sep='.',maxsplit=-1)[0]
+                value.append( int(cut) )
+        elif(key==":GAP"): # Band gap [eV]
+            if line[0:len(key)] == key:
+                cut = line.rsplit(sep='=',maxsplit=-1)[-1]
+                cut = cut.rsplit(sep=' eV ',maxsplit=-1)[0]
+                value.append( float(cut) )
+        elif(key==":WAR"): # warnings
+            if line[0:len(key)] == key:
+                value.append( line )
+        else:
+            sys.exit(1) # error: grep option not implemented
+        if(line[0:len(key)] == ":ITE"): # return the result as soon as :ITE found (last iteration because of backward serach)
+            print('key=', key, 'value=', value)
+            return value
+
+
 DiffCalculation = CalculationFactory('wien2k-run_lapw')
 
 class Wien2kScfParser(Parser):
@@ -60,24 +97,24 @@ class Wien2kScfParser(Parser):
         self.logger.info(f"Parsing '{output_filename}'")
         file_content = self.retrieved.get_object_content(output_filename)
         res = Dict()
-        enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
+        enelist = _grep_last_iter(key=":ENE", pip=file_content) # get all energies in SCF run
         if enelist: # check if energy list is not empty
-            res['EtotRyd'] = enelist[-1] # store last one
-        vollist = _grep(key=":VOL", pip=file_content) # get all volumes in SCF run
+            res['EtotRyd'] = enelist
+        vollist = _grep_last_iter(key=":VOL", pip=file_content) # get all volumes in SCF run
         if vollist:
-            res['VolBohr3'] = vollist[-1]
-        eflist = _grep(key=":FER", pip=file_content) # get all Fermi ene in SCF run
+            res['VolBohr3'] = vollist
+        eflist = _grep_last_iter(key=":FER", pip=file_content) # get all Fermi ene in SCF run
         if eflist:
-            res['EfermiRyd'] = eflist[-1]
-        iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+            res['EfermiRyd'] = eflist
+        iterlist = _grep_last_iter(key=":ITE", pip=file_content) # get all iteration in SCF run
         if iterlist:
-            res['Iter'] = iterlist[-1]
-        gaplist = _grep(key=":GAP", pip=file_content) # get all band gaps in SCF run
+            res['Iter'] = iterlist
+        gaplist = _grep_last_iter(key=":GAP", pip=file_content) # get all band gaps in SCF run
         if gaplist:
-            res['GapEv'] = gaplist[-1]
-        warngslist = _grep(key=":WAR", pip=file_content) # get all warnings
+            res['GapEv'] = gaplist
+        warngslist = _grep_last_iter(key=":WAR", pip=file_content) # get all warnings
         if warngslist: # check if warnings list is not empty
-            res['Warning_last'] = warngslist[-1]
+            res['Warning_last'] = warngslist
         self.out('scf_grep', res)
 
         return ExitCode(0)

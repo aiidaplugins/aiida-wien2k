@@ -5,8 +5,8 @@ from aiida_wien2k.workflows.scf_workchain import Wien2kScfWorkChain
 
 # Setting up crystal structure(s)
 
-elements = ['Si', 'Ge']
-configurations = ['X2O', 'XO2']
+elements = ['Si', 'Al', 'Fe', 'Eu']
+configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
     configuration = list(node.extras.values())[2] # X2O, XO2, etc.
