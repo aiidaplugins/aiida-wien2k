@@ -1,7 +1,8 @@
 from aiida.common import datastructures
 from aiida.engine import CalcJob
-from aiida.orm import SinglefileData, Dict, RemoteData, Code, Str, FolderData
+from aiida.orm import SinglefileData, Dict, RemoteData, Code, StructureData
 import os
+import ase.io
 
 def _cli_options(parameters):
     """Return command line options for parameters dictionary.
@@ -20,6 +21,15 @@ def _cli_options(parameters):
 
     return options
 
+def aiida_struct2wien2k(aiida_structure):
+    "prepare structure file for WIEN2k"
+    ase_structure = aiida_structure.get_ase() # AiiDA -> ASE struct
+    ase.io.write("case.struct",ase_structure) # ASE -> WIEN2k, write WIEN2k struct
+    path_to_rm_folder = os.getcwd() # get path to folder
+    path_to_rm_structfile = os.path.join(path_to_rm_folder, 'case.struct') # get path to struct file
+    wien2k_structfile = SinglefileData(file=path_to_rm_structfile) # get proper AiiDA type for a single file (otherwise you cannot return)
+    return wien2k_structfile # orm.SinglefileData type (stored automatically in AiiDA database)
+
 class Wien2kXSgroup(CalcJob):
     """AiiDA calculation plugin for WIEN2k calculation to execute: x sgroup [parameters]."""
     
@@ -32,6 +42,7 @@ class Wien2kXSgroup(CalcJob):
         # inputs/outputs
         spec.input('code', valid_type=Code, help='WIEN2k x sgroup')
         spec.input('parameters', valid_type=Dict, required=False, help='Dictionary of input arguments (if any)')
+        spec.input('aiida_structure', valid_type=StructureData, required=False, help='AiiDA structure object')
         spec.input('structfile_in', valid_type=SinglefileData, required=False, help='Structure file case.struct')
         spec.input('parent_folder', valid_type=RemoteData, required=False,\
                    help='parent_folder passed from a previous calulation')
@@ -61,7 +72,7 @@ class Wien2kXSgroup(CalcJob):
         codeinfo.stdout_name = 'x.log'
         
         remote_copy_list = []
-        if 'parent_folder' in self.inputs:
+        if('parent_folder' in self.inputs):
             path_from = os.path.join(self.inputs.parent_folder.get_remote_path(),'case')
             remote_copy_list = [(
                 self.inputs.parent_folder.computer.uuid,
@@ -70,15 +81,23 @@ class Wien2kXSgroup(CalcJob):
         else:
             folder.get_subfolder('case', create=True) # create case subfolder
 
+        # convert AiiDA structure -> WIEN2k
+        if('aiida_structure' in self.inputs):
+            wien2k_structfile = aiida_struct2wien2k(self.inputs.aiida_structure)
+            wien2k_structfile.store()
+
         # Prepare a `CalcInfo` to be returned to the engine
         calcinfo = datastructures.CalcInfo()
         calcinfo.codes_info = [codeinfo]
-        if 'structfile_in' in self.inputs:
+        calcinfo.local_copy_list = []
+        if('structfile_in' in self.inputs): # WIEN2k structure is given as input
             calcinfo.local_copy_list = [
                 (self.inputs.structfile_in.uuid, self.inputs.structfile_in.filename, 'case/case.struct')
             ] # copy case.struct to the local folder as new.struct
-        else:
-            calcinfo.local_copy_list = []
+        elif('aiida_structure' in self.inputs): # AiiDA structure is given as input
+            calcinfo.local_copy_list = [
+                (wien2k_structfile.uuid, wien2k_structfile.filename, 'case/case.struct')
+            ] # copy case.struct to the local folder as new.struct
         calcinfo.remote_copy_list = remote_copy_list
         calcinfo.retrieve_list = [('case/case.struct_sgroup'), ('case/*.error*')]
 
