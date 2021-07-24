@@ -1,8 +1,9 @@
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
-from aiida.orm import SinglefileData, Dict
-import os, sys
+from aiida.orm import Dict
+import sys
+from fuzzywuzzy import fuzz
 
 def _grep_all_iter(key, pip):
     """"Serach patterns in lines `pip` that start with `key`"""
@@ -114,7 +115,26 @@ class Wien2kScfParser(Parser):
             res['GapEv'] = gaplist
         warngslist = _grep_last_iter(key=":WAR", pip=file_content) # get all warnings
         if warngslist: # check if warnings list is not empty
-            res['Warning_last'] = warngslist
+            res['Warning_last'] = warngslist[-1] # get last message if there are multiple lines
+
+        # Assign results
         self.out('scf_grep', res)
 
-        return ExitCode(0)
+        # Return exit code
+        if warngslist: # check if warnings list is not empty
+            warn_qtlb = 'QTL-B value eq. in Band of energy ATOM= L='
+            warn_vccoul = 'VK-COUL not well converged: Increase GMAX or decrease NCON'
+            warn_int = 'RESULT OF INTEGRATION SHOULD BE'
+            msg = res['Warning_last']
+            print(msg)
+            # handle errors using fuzzy matching
+            if( fuzz.ratio(msg, warn_qtlb) > 50 ): # QRT-B warning
+                return self.exit_codes.WARNING_QTL_B
+            elif( fuzz.ratio(msg, warn_vccoul) > 50 ): # VK-COUL warning
+                return self.exit_codes.WARNING_VK_COUL
+            elif( fuzz.ratio(msg, warn_int) > 50 ): # RESULT OF INTEGRATION warning
+                return self.exit_codes.WARNING_INT
+            else: # unknown warning
+                return self.exit_codes.WARNING_OTHER
+        else:
+            return ExitCode(0)

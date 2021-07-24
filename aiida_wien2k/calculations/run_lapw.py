@@ -41,9 +41,17 @@ class Wien2kRunLapw(CalcJob):
         spec.inputs['metadata']['options']['parser_name'].default = 'wien2k-scf-parser'
 
         spec.output('scf_grep', valid_type=Dict, help='WIEN2k SCF output dictionary')
-
+        # exit codes
         spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES',
                 message='Calculation did not produce all expected output files.')
+        spec.exit_code(301, 'WARNING_QTL_B',
+                message='WARN: QTL-B in the last iteration.')
+        spec.exit_code(302, 'WARNING_VK_COUL',
+                message='WARN: VK-COUL is not well converged.')
+        spec.exit_code(303, 'WARNING_INT',
+                message='WARN: Integrated number of electrons is not consistent.')
+        spec.exit_code(399, 'WARNING_OTHER',
+                message='WARN: There is a warning in the last SCF iteration.')
         
     
     def prepare_for_submission(self, folder):

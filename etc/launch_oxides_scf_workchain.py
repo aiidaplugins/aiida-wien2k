@@ -19,8 +19,8 @@ for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
         code2 = orm.load_code(label='wien2k-init_lapw@localhost')
         code3 = orm.load_code(label='wien2k-run_lapw@localhost')
         inpdict1 = orm.Dict(dict={}) # x sgroup [param]
-        inpdict2 = orm.Dict(dict={'-red':'3', '-numk': '700'}) # init_lapw -b [param]
-        inpdict3 = orm.Dict(dict={'-i': '100'}) # run_lapw [param]
+        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'2'}) # init_lapw -b [param]
+        inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.0001', '-cc':'0.001'}) # run_lapw [param]
         result = submit(Wien2kScfWorkChain, aiida_structure=aiida_structure,\
                 code1=code1, code2=code2, code3=code3, inpdict1=inpdict1,\
                 inpdict2=inpdict2, inpdict3=inpdict3)

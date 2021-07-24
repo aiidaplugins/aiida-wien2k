@@ -1,6 +1,7 @@
 from aiida.common import datastructures
 from aiida.engine import CalcJob
 from aiida.orm import SinglefileData, Dict, RemoteData, Code
+import os
 
 def _cli_options(parameters):
     """Return command line options for parameters dictionary.
