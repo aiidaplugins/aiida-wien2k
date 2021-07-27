@@ -6,42 +6,6 @@ import sys
 from fuzzywuzzy import fuzz
 import os.path
 
-def _grep_last_iter(key, pip):
-    """"Serach patterns in lines `pip` that start with `key` only last iteration"""
-    value = []
-    for line in reversed(pip.splitlines()): # search backward
-        if(key==":ENE"): # total energy [Ry]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":VOL"): # cell folume [Borh3]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":FER"): # Fermi energy [Ry]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":ITE"): # Iteration number
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep=':',maxsplit=-1)[-1]
-                cut = cut.rsplit(sep='.',maxsplit=-1)[0]
-                value.append( int(cut) )
-        elif(key==":GAP"): # Band gap [eV]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[-1]
-                cut = cut.rsplit(sep=' eV ',maxsplit=-1)[0]
-                value.append( float(cut) )
-        elif(key==":WAR"): # warnings
-            if line[0:len(key)] == key:
-                value.append( line )
-        else:
-            sys.exit(1) # error: grep option not implemented
-        if(line[0:len(key)] == ":ITE"): # return the result as soon as :ITE found (last iteration because of backward serach)
-            print('key=', key, 'value=', value)
-            return value
-
-
 DiffCalculation = CalculationFactory('wien2k-init_lapw')
 
 class Wien2kInitLapwParser(Parser):
