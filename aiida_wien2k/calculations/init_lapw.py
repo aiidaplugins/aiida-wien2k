@@ -39,10 +39,15 @@ class Wien2kInitLapw(CalcJob):
                                             'num_machines': 1,
                                             'num_mpiprocs_per_machine': 1,
                                             }
-        #spec.output('casefolder', valid_type=RemoteData, help='Folder where WIEN2k calculation is performed')
-
-        spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES',
+        # parser
+        spec.inputs['metadata']['options']['parser_name'].default = 'wien2k-init_lapw-parser'                                              
+        # error codes
+        spec.exit_code(300, 'ERROR_INIT_LAPW_FAILED',
+                message='init_lapw failed. See init_lapw.log for more details')
+        spec.exit_code(301, 'ERROR_MISSING_OUTPUT_FILES',
                 message='Calculation did not produce all expected output files.')
+        spec.exit_code(302, 'WARNING_CORE_LEAKAGE',
+                message='Core electrons leaked from MT sphere. See init_lapw.log for more details.')
         
     
     def prepare_for_submission(self, folder):
@@ -79,6 +84,6 @@ class Wien2kInitLapw(CalcJob):
         else:
             calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.in*'), ('case/*.error*')]
+        calcinfo.retrieve_list = [('case/case.in*'), ('case/*.error*'), ('case/init_lapw.log')]
 
         return calcinfo

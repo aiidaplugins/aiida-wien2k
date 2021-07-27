@@ -110,6 +110,10 @@ class Wien2kScfParser(Parser):
         iterlist = _grep_last_iter(key=":ITE", pip=file_content) # get all iteration in SCF run
         if iterlist:
             res['Iter'] = iterlist
+        else:
+            self.logger.error('Unable to perform even 1 SCF iteration.\n'+\
+                    'Please check *.error files')
+            raise # Exception: unable to perform even 1 iteration
         gaplist = _grep_last_iter(key=":GAP", pip=file_content) # get all band gaps in SCF run
         if gaplist:
             res['GapEv'] = gaplist
@@ -119,6 +123,8 @@ class Wien2kScfParser(Parser):
 
         # Assign results
         self.out('scf_grep', res)
+
+        # check error files
 
         # Return exit code
         if warngslist: # check if warnings list is not empty

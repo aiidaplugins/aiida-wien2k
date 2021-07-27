@@ -1,6 +1,6 @@
 from aiida.common import datastructures
 from aiida.engine import CalcJob
-from aiida.orm import SinglefileData, Dict, RemoteData, Code
+from aiida.orm import Dict, RemoteData, Code
 import os
 
 def _cli_options(parameters):
@@ -42,13 +42,15 @@ class Wien2kRunLapw(CalcJob):
 
         spec.output('scf_grep', valid_type=Dict, help='WIEN2k SCF output dictionary')
         # exit codes
-        spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES',
+        spec.exit_code(300, 'ERROR_ITER_0',
+                message='Unable to perform even a single SCF iteration.')
+        spec.exit_code(301, 'ERROR_MISSING_OUTPUT_FILES',
                 message='Calculation did not produce all expected output files.')
-        spec.exit_code(301, 'WARNING_QTL_B',
+        spec.exit_code(302, 'WARNING_QTL_B',
                 message='WARN: QTL-B in the last iteration.')
-        spec.exit_code(302, 'WARNING_VK_COUL',
+        spec.exit_code(303, 'WARNING_VK_COUL',
                 message='WARN: VK-COUL is not well converged.')
-        spec.exit_code(303, 'WARNING_INT',
+        spec.exit_code(304, 'WARNING_INT',
                 message='WARN: Integrated number of electrons is not consistent.')
         spec.exit_code(399, 'WARNING_OTHER',
                 message='WARN: There is a warning in the last SCF iteration.')

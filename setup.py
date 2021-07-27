@@ -8,7 +8,8 @@ setup(
                             "wien2k-init_lapw = aiida_wien2k.calculations.init_lapw:Wien2kInitLapw",
                             "wien2k-run_lapw = aiida_wien2k.calculations.run_lapw:Wien2kRunLapw"],
         'aiida.parsers': ["wien2k-scf-parser = aiida_wien2k.parsers.scf:Wien2kScfParser",
-                            "wien2k-sgroup-parser = aiida_wien2k.parsers.sgroup:Wien2kSgroupParser"],
+                            "wien2k-sgroup-parser = aiida_wien2k.parsers.sgroup:Wien2kSgroupParser",
+                            "wien2k-init_lapw-parser = aiida_wien2k.parsers.init_lapw:Wien2kInitLapwParser"],
         'aiida.workflows': ["wien2k.scf_wf = aiida_wien2k.workflows.scf_workchain:Wien2kScfWorkChain"],
     }
 )
