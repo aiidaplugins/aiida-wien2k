@@ -1,10 +1,9 @@
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
-from aiida.orm import Dict
-import sys
 from fuzzywuzzy import fuzz
 import os.path
+from aiida_wien2k.parsers.scf import check_error_files
 
 DiffCalculation = CalculationFactory('wien2k-init_lapw')
 
@@ -33,14 +32,21 @@ class Wien2kInitLapwParser(Parser):
         last_line = file_content_list[-1]
         msgOK = 'init_lapw finished ok'
         if( fuzz.ratio(msgOK, last_line) < 50 ): # not OK
+            check_error_files(files=self.retrieved, logger=self.logger) # frite errors to logger
             self.logger.error(f"Found last line in init_lapw.log file '{last_line}',"+\
                     f" while expected to find '{msgOK}'\n" +\
                     "init_lapw failed")
             raise # init_lapw failed
         
         # check for core leakage
-        corefile = 'case/.lcore'
-        if os.path.isfile(corefile): # .lcore file found
+        corefile = '.lcore'
+        files_expected = [corefile]
+        if( set(files_expected) <= set(files_retrieved) ): # .lcore file found
             return self.exit_codes.WARNING_CORE_LEAKAGE
+
+        # check error files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved, logger=self.logger)
+        if( err_files_not_empty ):
+            raise # non-empty error file(s) found
 
         return ExitCode(0)

@@ -1,4 +1,4 @@
-from aiida.engine import run, submit
+from aiida.engine import submit
 from aiida import orm
 from ase.spacegroup import crystal
 from aiida_wien2k.workflows.scf_workchain import Wien2kScfWorkChain
@@ -6,8 +6,10 @@ from aiida_wien2k.workflows.scf_workchain import Wien2kScfWorkChain
 # Setting up crystal structure
 
 # ASE structure
+# ase_structure = crystal('Si', [(0, 0, 0)], spacegroup=227,\
+#         cellpar=[5.43, 5.43, 5.43, 90, 90, 90])
 ase_structure = crystal('Si', [(0, 0, 0)], spacegroup=227,\
-        cellpar=[5.43, 5.43, 5.43, 90, 90, 90])
+        cellpar=[5.43/2, 5.43/2, 5.43/2, 90, 90, 90])
 # ASE -> AiiDA structure
 aiida_structure = orm.StructureData(ase=ase_structure)
 

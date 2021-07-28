@@ -84,6 +84,6 @@ class Wien2kInitLapw(CalcJob):
         else:
             calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.in*'), ('case/*.error*'), ('case/init_lapw.log')]
+        calcinfo.retrieve_list = [('case/case.in*'), ('case/*.error*'), ('case/init_lapw.log'), ('case/.lcore')]
 
         return calcinfo

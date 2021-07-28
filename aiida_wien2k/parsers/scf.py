@@ -5,39 +5,6 @@ from aiida.orm import Dict
 import sys
 from fuzzywuzzy import fuzz
 
-def _grep_all_iter(key, pip):
-    """"Serach patterns in lines `pip` that start with `key`"""
-    value = []
-    for line in pip.splitlines():
-        if(key==":ENE"): # total energy [Ry]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":VOL"): # cell folume [Borh3]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":FER"): # Fermi energy [Ry]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[1]
-                value.append( float(cut) )
-        elif(key==":ITE"): # Iteration number
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep=':',maxsplit=-1)[-1]
-                cut = cut.rsplit(sep='.',maxsplit=-1)[0]
-                value.append( int(cut) )
-        elif(key==":GAP"): # Band gap [eV]
-            if line[0:len(key)] == key:
-                cut = line.rsplit(sep='=',maxsplit=-1)[-1]
-                cut = cut.rsplit(sep=' eV ',maxsplit=-1)[0]
-                value.append( float(cut) )
-        elif(key==":WAR"): # warnings
-            if line[0:len(key)] == key:
-                value.append( line )
-        else:
-            sys.exit(1) # error: grep option not implemented
-    return value
-
 def _grep_last_iter(key, pip):
     """"Serach patterns in lines `pip` that start with `key` only last iteration"""
     value = []
@@ -73,6 +40,29 @@ def _grep_last_iter(key, pip):
             print('key=', key, 'value=', value)
             return value
 
+def check_error_files(files, logger):
+    """
+    Check for *.error files among 'files' retrieved.
+    Return 'True' if any of then are not empty.
+    Print errors into the error logger.
+
+    Return:
+    not_empty (bool)
+    """
+    not_empty = False
+    errmsgs = ''
+    for fname in files.list_object_names(): # loop through all files retrieved
+        if( fname.endswith('error') ): # error file
+            err_file_content = files.get_object_content(fname)
+            if( err_file_content != '' ): # error file is empty
+                not_empty = True
+                errmsgs += f"File: {fname}\n" # assamble all error messages
+                errmsgs += err_file_content + "\n"
+    if( not_empty ): # non-empty error files found
+        logger.error(errmsgs) # write all error messages to a logger
+
+    return not_empty # False if all *.error files are empty
+    
 
 DiffCalculation = CalculationFactory('wien2k-run_lapw')
 
@@ -111,6 +101,7 @@ class Wien2kScfParser(Parser):
         if iterlist:
             res['Iter'] = iterlist
         else:
+            check_error_files(files=self.retrieved, logger=self.logger) # frite errors to logger
             self.logger.error('Unable to perform even 1 SCF iteration.\n'+\
                     'Please check *.error files')
             raise # Exception: unable to perform even 1 iteration
@@ -120,6 +111,11 @@ class Wien2kScfParser(Parser):
         warngslist = _grep_last_iter(key=":WAR", pip=file_content) # get all warnings
         if warngslist: # check if warnings list is not empty
             res['Warning_last'] = warngslist[-1] # get last message if there are multiple lines
+
+        # check error files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved, logger=self.logger)
+        if( err_files_not_empty ):
+            raise # non-empty error file(s) found
 
         # Assign results
         self.out('scf_grep', res)

@@ -23,11 +23,18 @@ class Wien2kScfWorkChain(WorkChain):
         spec.input("inpdict3", valid_type=Dict, required=True) # run_lapw [param]
         # calculation steps
         spec.outline(cls.x_sgroup,\
+                cls.inspect_x_sgroup,\
                 cls.init_lapw,\
+                cls.inspect_init_lapw,\
                 cls.run_lapw,\
-                cls.result)
+                cls.inspect_run_lapw,\
+                cls.result,\
+                cls.inspect_warn_all_steps)
         # output parameters
         spec.output("workchain_result", valid_type=Dict)
+        # exit codes
+        spec.exit_code(300, 'WARNING', 'There were warning messages during calculation steps')
+        spec.exit_code(400, 'ERROR', 'There was a terminal error in one of calculation steps')
 
     def x_sgroup(self):
         """Generate case.struct with symmetry."""
@@ -40,6 +47,14 @@ class Wien2kScfWorkChain(WorkChain):
         )
 
         return ToContext(node1=result)
+
+    def inspect_x_sgroup(self):
+        """Inspect results of x sgroup"""
+
+        if( self.ctx.node1.is_excepted ):
+            return self.exit_codes.ERROR # error during calc. steps
+        
+        return
     
     def init_lapw(self):
         """Initialize calculation with init_lapw."""
@@ -53,6 +68,14 @@ class Wien2kScfWorkChain(WorkChain):
 
         return ToContext(node2=result)
     
+    def inspect_init_lapw(self):
+        """Inspect results of init_lapw"""
+
+        if( self.ctx.node2.is_excepted ):
+            return self.exit_codes.ERROR # error during calc. steps
+        
+        return
+    
     def run_lapw(self):
         """Run SCF calculation."""
 
@@ -63,16 +86,29 @@ class Wien2kScfWorkChain(WorkChain):
             code = self.inputs.code3,
         )
 
-        # check if all error files are empty
-        # node = result.get('retrieved')
-        # node.list_object_names()
-        # node.get_object_content('dstart.error')
-
         return ToContext(node3=result)
+
+    def inspect_run_lapw(self):
+        """Inspect results of run_lapw"""
+
+        if( self.ctx.node3.is_excepted ):
+            return self.exit_codes.ERROR # error during calc. steps
+        
+        return
 
     def result(self):
         """Parse the result."""
 
         # Declaring the output
-        print(self.ctx)
         self.out("workchain_result", self.ctx.node3.outputs.scf_grep)
+    
+        return
+
+    def inspect_warn_all_steps(self):
+        """Check warnings in all calculations and set the exit code accordingly"""
+
+        for step in [self.ctx.node1, self.ctx.node2, self.ctx.node3]:
+            if( not step.is_finished_ok ):
+                return self.exit_codes.WARNING # warnings during calc. steps
+    
+        return
