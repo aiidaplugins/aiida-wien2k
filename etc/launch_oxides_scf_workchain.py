@@ -38,15 +38,26 @@ def wait_to_limit_nproc(nprocmax, timeinterval):
 
 # Setting up crystal structure(s)
 
-elements = [
-        'Si', 
-        'Al', 
-        'Fe', 
-        'Eu'
-]
+# elements = [
+#         'Si', 
+#         'Al', 
+#         'Fe', 
+#         'Eu'
+# ]
+elements_all = ['H', \
+        'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', \
+        'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', \
+        'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', \
+        'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', \
+        'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', \
+            'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', \
+        'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', \
+            'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+#elements = elements_all[0:36] # H ... Kr
+elements = elements_all[36: ] # Rb ... Og
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 #configurations = ['XO3']
-nprocmax = 12
+nprocmax = 8
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
     configuration = list(node.extras.values())[2] # X2O, XO2, etc.
