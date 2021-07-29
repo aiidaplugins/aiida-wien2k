@@ -10,7 +10,7 @@ def count_running_wchains():
     Count number of running workchains with a given entry point
 
     Return:
-    count (int) - number of workchains still running (status=waiting) 
+    count (int) - number of workchains still running (status=waiting,created) 
     """
     workchain_entry_point = 'wien2k.scf_wf'
     Wien2kScfWorkChain = WorkflowFactory(workchain_entry_point)
@@ -19,7 +19,8 @@ def count_running_wchains():
     query.all()
     count = 0
     for node in query.iterall():
-        if(node[0].process_state.value == 'waiting'):
+        if((node[0].process_state.value == 'waiting') or\
+                (node[0].process_state.value == 'created')):
             count = count + 1 # count all waiting processes
 
     return count # int
@@ -57,7 +58,7 @@ elements_all = ['H', \
 elements = elements_all[36: ] # Rb ... Og
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 #configurations = ['XO3']
-nprocmax = 8
+nprocmax = 6
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
     configuration = list(node.extras.values())[2] # X2O, XO2, etc.
