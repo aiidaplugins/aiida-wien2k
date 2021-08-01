@@ -143,6 +143,17 @@ cd aiida-wien2k/etc
 verdi run launch_scf_workchain.py # SCF run Si (1 iteration only)
 ```
 
+## In case of problems
+```
+verdi daemon stop
+rabbitmqctl shutdown
+pg_ctl -D mylocal_db -l logfile stop
+pg_ctl -D mylocal_db -l logfile start
+rabbitmq-server -detached
+verdi daemon start 2
+
+```
+
 ## TU Wien
 To connect via VNC
 ```
