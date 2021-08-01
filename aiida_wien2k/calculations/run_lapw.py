@@ -52,6 +52,8 @@ class Wien2kRunLapw(CalcJob):
                 message='WARN: VK-COUL is not well converged.')
         spec.exit_code(304, 'WARNING_INT',
                 message='WARN: Integrated number of electrons is not consistent.')
+        spec.exit_code(305, 'WARNING_CONVERG',
+                message='WARN: SCF is not converged.')
         spec.exit_code(399, 'WARNING_OTHER',
                 message='WARN: There is a warning in the last SCF iteration.')
         
@@ -85,6 +87,7 @@ class Wien2kRunLapw(CalcJob):
         calcinfo.codes_info = [codeinfo]
         calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.scf'), ('case/*.error*')]
+        calcinfo.retrieve_list = [('case/case.scf0'), ('case/case.scf1'), ('case/case.scf2'),\
+                ('case/case.scfm'), ('case/case.scfc'), ('case/*.error*'), ('case/run_lapw.log')]
 
         return calcinfo

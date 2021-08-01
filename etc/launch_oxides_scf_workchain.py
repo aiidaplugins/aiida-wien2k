@@ -43,7 +43,8 @@ def wait_to_limit_nproc(nprocmax, timeinterval):
 #         'Si', 
 #         'Al', 
 #         'Fe', 
-#         'Eu'
+#         'Eu',
+#         'Pa'
 # ]
 elements_all = ['H', \
         'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', \
@@ -55,10 +56,11 @@ elements_all = ['H', \
         'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', \
             'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
 #elements = elements_all[0:36] # H ... Kr
-elements = elements_all[36: ] # Rb ... Og
+#elements = elements_all[36: ] # Rb ... Og
+elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 #configurations = ['XO3']
-nprocmax = 6
+nprocmax = 4
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
     configuration = list(node.extras.values())[2] # X2O, XO2, etc.
@@ -71,8 +73,8 @@ for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
         code2 = orm.load_code(label='wien2k-init_lapw@localhost')
         code3 = orm.load_code(label='wien2k-run_lapw@localhost')
         inpdict1 = orm.Dict(dict={}) # x sgroup [param]
-        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'2n', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
-        inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.0001', '-cc':'0.001'}) # run_lapw [param]
+        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'2', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
+        inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.00001', '-cc':'0.0001'}) # run_lapw [param]
         result = submit(Wien2kScfWorkChain, aiida_structure=aiida_structure,\
                 code1=code1, code2=code2, code3=code3, inpdict1=inpdict1,\
                 inpdict2=inpdict2, inpdict3=inpdict3)
