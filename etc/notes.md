@@ -121,6 +121,10 @@ Connection cooldown time (s) [0.0]:
 Info: Configuring computer localhost for user rubelo@....ca.
 Success: localhost successfully configured for rubelo@....ca
 ```
+Test computer
+```
+verdi computer test localhost
+```
 Set up codes (do for all codes `aiida_wien2k/configs/codes/*.yml`)
 ```
 cd aiida_wien2k/configs/codes/
