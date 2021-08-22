@@ -2,7 +2,7 @@
 label: "localhost"
 hostname: "localhost"
 transport: local
-scheduler: "direct"
+scheduler: "slurm"
 work_dir: "/scratch/aiida"
 shebang: "#!/bin/bash"
 mpirun_command: "mpirun -np {tot_num_mpiprocs}"

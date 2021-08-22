@@ -4,6 +4,7 @@ from aiida_wien2k.workflows.scf_workchain import Wien2kScfWorkChain
 import time
 from aiida.plugins.factories import WorkflowFactory
 from aiida.orm import QueryBuilder
+from aiida.schedulers.datastructures import NodeNumberJobResource
 
 def count_running_wchains():
     """
@@ -60,7 +61,8 @@ elements_all = ['H', \
 elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 #configurations = ['XO3']
-nprocmax = 4
+nprocmax = 8
+res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
     configuration = list(node.extras.values())[2] # X2O, XO2, etc.
