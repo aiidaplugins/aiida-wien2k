@@ -154,8 +154,13 @@ rabbitmqctl shutdown
 pg_ctl -D mylocal_db -l logfile stop
 pg_ctl -D mylocal_db -l logfile start
 rabbitmq-server -detached
-verdi daemon start 2
+verdi daemon start 6
+```
 
+## Other useful comands
+CPU & memory usage
+```
+vmstat -w 2
 ```
 
 ## TU Wien
