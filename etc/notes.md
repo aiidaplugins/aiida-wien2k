@@ -158,7 +158,7 @@ verdi daemon start 6
 ```
 
 ## Other useful comands
-CPU & memory usage
+CPU, memory, disk usage
 ```
 vmstat -w 2
 ```
