@@ -156,6 +156,11 @@ pg_ctl -D mylocal_db -l logfile start
 rabbitmq-server -detached
 verdi daemon start 6
 ```
+RubbitMQ (log files, configs, etc)
+```
+rabbitmq-diagnostics status
+vim ~/anaconda3/envs/aiida/var/lib/rabbitmq/mnesia/rabbit@psi11/cluster_nodes.config
+```
 
 ## Other useful comands
 CPU, memory, disk usage
