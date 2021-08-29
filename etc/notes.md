@@ -78,6 +78,7 @@ Launch database
 cd /home/rubel/scratch/aiida
 initdb -D mylocal_db
 pg_ctl -D mylocal_db -l logfile start
+cp /eos/rubel/aiida-wien2k/etc/rabbitmq.conf /eos/rubel/anaconda3/envs/aiida/etc/rabbitmq # path is system-specific
 rabbitmq-server -detached
 ```
 Set up new profile
