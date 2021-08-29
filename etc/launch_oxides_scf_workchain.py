@@ -61,7 +61,7 @@ elements_all = ['H', \
 elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 #configurations = ['XO3']
-nprocmax = 8
+nprocmax = 9
 res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
