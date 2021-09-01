@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "program": "/eos/rubel/anaconda3/envs/aiida/bin/verdi",
-            "args": ["run", "launch_oxides_scf_workchain.py"],
+            "args": ["run", "launch_eos_workchain.py"],
             "console": "integratedTerminal"
         }
     ]

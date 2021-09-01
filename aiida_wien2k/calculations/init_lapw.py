@@ -39,6 +39,7 @@ class Wien2kInitLapw(CalcJob):
                                             'num_machines': 1,
                                             'num_mpiprocs_per_machine': 1,
                                             }
+        spec.output('structfile_out', valid_type=SinglefileData, help='WIEN2k structure file')
         # parser
         spec.inputs['metadata']['options']['parser_name'].default = 'wien2k-init_lapw-parser'                                              
         # error codes
@@ -84,6 +85,8 @@ class Wien2kInitLapw(CalcJob):
         else:
             calcinfo.local_copy_list = []
         calcinfo.remote_copy_list = remote_copy_list
-        calcinfo.retrieve_list = [('case/case.in*'), ('case/*.error*'), ('case/init_lapw.log'), ('case/.lcore')]
+        calcinfo.retrieve_list = [('case/case.in*'), ('case/case.struct'), 
+                ('case/*.error*'), ('case/init_lapw.log'), ('case/.lcore')
+        ]
 
         return calcinfo

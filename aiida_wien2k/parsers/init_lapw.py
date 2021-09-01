@@ -1,8 +1,9 @@
 from aiida.engine import ExitCode
+from aiida.orm import SinglefileData
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
 from fuzzywuzzy import fuzz
-import os.path
+
 from aiida_wien2k.parsers.scf import check_error_files
 
 DiffCalculation = CalculationFactory('wien2k-init_lapw')
@@ -37,6 +38,11 @@ class Wien2kInitLapwParser(Parser):
                     f" while expected to find '{msgOK}'\n" +\
                     "init_lapw failed")
             raise # init_lapw failed
+
+        # return structure file
+        with self.retrieved.open('case.struct', 'rb') as handle:
+            structfile = SinglefileData(file=handle)
+        self.out('structfile_out', structfile)
         
         # check for core leakage
         corefile = '.lcore'

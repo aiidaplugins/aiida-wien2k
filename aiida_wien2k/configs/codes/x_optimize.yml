@@ -1,0 +1,12 @@
+---
+label: "wien2k-x-optimize"
+description: "wien2k x optimize"
+input_plugin: "wien2k-x-optimize"
+on_computer: true
+remote_abs_path: "/area51/WIEN2k_21/x"
+computer: "localhost"
+prepend_text: '
+export EDITOR="vim";
+export SCRATCH=./;
+mkdir -p case && cd case'
+append_text: " "

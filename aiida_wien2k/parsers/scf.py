@@ -2,7 +2,6 @@ from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
 from aiida.orm import Dict
-import sys
 from fuzzywuzzy import fuzz
 
 def _grep(key, pip):

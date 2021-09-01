@@ -1,0 +1,15 @@
+---
+label: "wien2k-run_lapw_clmextrapol"
+description: "wien2k run_lapw with clmextrapol"
+input_plugin: "wien2k-run_lapw_clmextrapol"
+on_computer: true
+remote_abs_path: "/area51/WIEN2k_21/run_lapw"
+computer: "localhost"
+prepend_text: '
+export EDITOR="vim";
+export SCRATCH=./;
+mkdir -p case && cd case;
+mv ../case.struct .;
+rm *.broy* *.scf* :log *.day*;
+clmextrapol_lapw'
+append_text: " "
