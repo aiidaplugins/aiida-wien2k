@@ -10,6 +10,7 @@ export EDITOR="vim";
 export SCRATCH=./;
 mkdir -p case && cd case;
 mv ../case.struct .;
-rm *.broy* *.scf* :log *.day*;
-clmextrapol_lapw'
+rm *.broy* *.scf* :log *.day* *.error* *.log;
+clmextrapol_lapw;
+sed -i -e "1s/BY.../BY  0/" case.clmsum'
 append_text: " "

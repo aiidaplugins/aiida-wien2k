@@ -1,0 +1,287 @@
+{
+  "BM_fit_data": {
+    "Si-XO3": {
+      "E0": -14035.479895722281,
+      "min_volume": 41.766833913987575,
+      "bulk_modulus_ev_ang3": 1.2456352731529894,
+      "bulk_deriv": 4.207206872297568,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Al-X2O3": {
+      "E0": -38726.69378894737,
+      "min_volume": 98.49078798695372,
+      "bulk_modulus_ev_ang3": 1.1621553750587432,
+      "bulk_deriv": 4.087698886250589,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Si-X2O5": {
+      "E0": -52022.474548320046,
+      "min_volume": 122.01039251248238,
+      "bulk_modulus_ev_ang3": 1.0304344762255697,
+      "bulk_deriv": 4.715305465313466,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Eu-XO3": {
+      "E0": -301449.29735433724,
+      "min_volume": 68.52463162548658,
+      "bulk_modulus_ev_ang3": 0.39266697770001263,
+      "bulk_deriv": 2.143426685368848,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Pa-X2O5": {
+      "E0": -2992212.8178602112,
+      "min_volume": 159.63865867122135,
+      "bulk_modulus_ev_ang3": 1.484103677579897,
+      "bulk_deriv": 4.447508475528117,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Al-X2O5": {
+      "E0": -46892.413505443394,
+      "min_volume": 126.24656626474014,
+      "bulk_modulus_ev_ang3": 1.0699763318965996,
+      "bulk_deriv": 4.275830803035588,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Al-X2O": {
+      "E0": -15260.639990840726,
+      "min_volume": 46.11696635538364,
+      "bulk_modulus_ev_ang3": 0.3579207332151353,
+      "bulk_deriv": 5.60822124895439,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Fe-XO": {
+      "E0": -36681.26654921904,
+      "min_volume": 17.099627923511903,
+      "bulk_modulus_ev_ang3": 1.4993408729744477,
+      "bulk_deriv": 4.616068321834922,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Pa-XO3": {
+      "E0": -749076.6277684045,
+      "min_volume": 77.39428181355439,
+      "bulk_modulus_ev_ang3": 0.5836286386895556,
+      "bulk_deriv": 6.797041688477031,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Fe-X2O5": {
+      "E0": -158988.9718090651,
+      "min_volume": 115.8810404628182,
+      "bulk_modulus_ev_ang3": 1.3354022011219866,
+      "bulk_deriv": 4.560603409287845,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Eu-X2O": {
+      "E0": -592659.1546251763,
+      "min_volume": 49.28599452152048,
+      "bulk_modulus_ev_ang3": 0.5219551526603738,
+      "bulk_deriv": 4.929899922912983,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Fe-X2O": {
+      "E0": -71313.81422355634,
+      "min_volume": 29.402146043751465,
+      "bulk_modulus_ev_ang3": 1.2685168804818723,
+      "bulk_deriv": 4.151983665874348,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Al-XO2": {
+      "E0": -10704.690111097485,
+      "min_volume": 26.292063328771498,
+      "bulk_modulus_ev_ang3": 1.2966376002748488,
+      "bulk_deriv": 4.1076941650659435,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Eu-XO2": {
+      "E0": -299405.20623771846,
+      "min_volume": 35.51822949607963,
+      "bulk_modulus_ev_ang3": 0.5519091521753137,
+      "bulk_deriv": -0.3422258111768588,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Si-X2O": {
+      "E0": -17828.49280903253,
+      "min_volume": 42.651128882809786,
+      "bulk_modulus_ev_ang3": 0.5352216257142768,
+      "bulk_deriv": 4.443817903202041,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Eu-X2O3": {
+      "E0": -1193523.1402315889,
+      "min_volume": 141.07709174979976,
+      "bulk_modulus_ev_ang3": 0.37988899199224113,
+      "bulk_deriv": -0.8585283778301885,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Eu-XO": {
+      "E0": -297356.36786523403,
+      "min_volume": 28.241475390808002,
+      "bulk_modulus_ev_ang3": 0.8508008384954103,
+      "bulk_deriv": 4.81252919124675,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Fe-XO2": {
+      "E0": -38729.14367065327,
+      "min_volume": 24.188779815830227,
+      "bulk_modulus_ev_ang3": 1.7268846678241652,
+      "bulk_deriv": 4.551461591157764,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Fe-X2O3": {
+      "E0": -150822.4264175974,
+      "min_volume": 91.13108931298808,
+      "bulk_modulus_ev_ang3": 1.517488284678349,
+      "bulk_deriv": -0.05703536989133878,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Fe-XO3": {
+      "E0": -40773.75849610051,
+      "min_volume": 45.8929561162078,
+      "bulk_modulus_ev_ang3": 1.0731027986032604,
+      "bulk_deriv": 4.596240530622945,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Si-X2O3": {
+      "E0": -43854.01411038493,
+      "min_volume": 97.60223829700594,
+      "bulk_modulus_ev_ang3": 0.9443729781643222,
+      "bulk_deriv": 4.543605019390996,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Pa-XO": {
+      "E0": -744979.8524850516,
+      "min_volume": 30.054668124787376,
+      "bulk_modulus_ev_ang3": 1.1890713178508259,
+      "bulk_deriv": 4.755666925225745,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Si-XO": {
+      "E0": -9938.812509978126,
+      "min_volume": 24.59401637576019,
+      "bulk_modulus_ev_ang3": 0.7630400859785177,
+      "bulk_deriv": 4.1018977158543315,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Si-XO2": {
+      "E0": -11988.639457204157,
+      "min_volume": 24.059548449485746,
+      "bulk_modulus_ev_ang3": 1.6582818400427621,
+      "bulk_deriv": 4.39666898907491,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Pa-XO2": {
+      "E0": -747031.6034672032,
+      "min_volume": 40.586722757879635,
+      "bulk_modulus_ev_ang3": 1.2722393872224207,
+      "bulk_deriv": 4.4125830277406495,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Al-XO": {
+      "E0": -8655.794288025148,
+      "min_volume": 22.46152870431397,
+      "bulk_modulus_ev_ang3": 0.8342667842338805,
+      "bulk_deriv": 3.9928581891766406,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
+    "Al-XO3": {
+      "E0": -12748.76274253095,
+      "min_volume": 49.695642727737535,
+      "bulk_modulus_ev_ang3": 0.7599909671005175,
+      "bulk_deriv": 4.142365476971942,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Pa-X2O3": {
+      "E0": -2984022.917501948,
+      "min_volume": 157.85811079487758,
+      "bulk_modulus_ev_ang3": 1.1149497657417253,
+      "bulk_deriv": 0.531017375507276,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Eu-X2O5": {
+      "E0": -1201701.533457552,
+      "min_volume": 156.34492629786735,
+      "bulk_modulus_ev_ang3": 0.9144023550650192,
+      "bulk_deriv": 4.108937910080579,
+      "residuals": null,
+      "EOS_workchain_exit_code": 0,
+      "warnings": "warn: V0 is out of range"
+    },
+    "Pa-X2O": {
+      "E0": -1487905.6848105558,
+      "min_volume": 56.224032522785954,
+      "bulk_modulus_ev_ang3": 0.7417104342259614,
+      "bulk_deriv": 4.344241673584553,
+      "residuals": null,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    }
+  },
+  "DFT_engine": "WIEN2k v22.1",
+  "DFT_settings": "prec 3",
+  "EOS_volume_grid_percents": [
+    -8,
+    -6,
+    -4,
+    -2,
+    0,
+    2,
+    4,
+    6,
+    8
+  ]
+}
