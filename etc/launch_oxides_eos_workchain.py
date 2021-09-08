@@ -61,9 +61,8 @@ elements = [
 #elements = elements_all[36: ] # Rb ... Og
 # elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
-#configurations = ['XO3']
-chemformulas_compleated = ['O3Si', 'Al4O6', 'O10Pa4', 'O10Si4', 'Al2O', 'EuO3', 'FeO', 'Al4O10', 'O3Pa', 'Eu2O', 'Fe2O', 'Fe4O10', 'EuO', 'EuO2', 'AlO2', 'Eu4O6']
-nprocmax = 3
+chemformulas_compleated = []
+nprocmax = 4
 res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
 for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
     element = list(node.extras.values())[1] # chemical element X
@@ -82,7 +81,7 @@ for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
         code4 = orm.load_code(label='wien2k-x-optimize@localhost')
         code5 = orm.load_code(label='wien2k-run_lapw_clmextrapol@localhost')
         inpdict1 = orm.Dict(dict={}) # x sgroup [param]
-        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'3', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
+        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'1', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
         inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.00001', '-cc':'0.0001'}) # run_lapw [param]
         inparr4 = orm.ArrayData()
         inparr4.set_array('dvolumes', np.array([-8,-6,-4,-2,2,4,6,8])) # volme change in % (exclude 0)

@@ -1,6 +1,5 @@
 from aiida.orm import QueryBuilder
 from aiida.plugins.factories import WorkflowFactory
-from scipy.optimize import curve_fit
 import numpy
 import math
 import json
@@ -120,7 +119,10 @@ data['BM_fit_data'] = {}
 data['DFT_engine'] = 'WIEN2k v22.1'
 data['DFT_settings'] = '-prec 3 -fermi 0.002 Ry'
 data['EOS_volume_grid_percents'] = [-8, -6, -4, -2, 0, 2, 4, 6, 8]
+prec = '3' # set precision of interest
 for q in query.iterall():
+    if( q[0].inputs.inpdict2.attributes['-prec'] != prec ):
+        continue # skip if precision does not matc
     state = q[0].process_state.value
     structure_sup_aiida = q[0].inputs.aiida_structure
     chemformula = structure_sup_aiida.get_formula()
@@ -129,6 +131,8 @@ for q in query.iterall():
     print('Formula:', element+'-'+conf, ',', chemformula,\
             ', state:', state, ', ID: ', q[0].pk)
     if(state=='finished'):
+        if( q[0].exit_status >= 400):
+            continue # skip if the workchain had errors
         result_dict = q[0].outputs.workchain_result.get_dict()
         print('Raw results:', result_dict)
         etot_Ry_list = result_dict['EtotRyd']
