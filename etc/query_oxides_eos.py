@@ -117,9 +117,9 @@ query.all()
 data = {} # collect data for json file
 data['BM_fit_data'] = {}
 data['DFT_engine'] = 'WIEN2k v22.1'
-data['DFT_settings'] = '-prec 3 -fermi 0.002 Ry'
+data['DFT_settings'] = '-prec 3'
 data['EOS_volume_grid_percents'] = [-8, -6, -4, -2, 0, 2, 4, 6, 8]
-prec = '3' # set precision of interest
+prec = '2' # set precision of interest
 for q in query.iterall():
     if( q[0].inputs.inpdict2.attributes['-prec'] != prec ):
         continue # skip if precision does not matc

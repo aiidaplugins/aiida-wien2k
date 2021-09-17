@@ -81,8 +81,9 @@ for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
         code4 = orm.load_code(label='wien2k-x-optimize@localhost')
         code5 = orm.load_code(label='wien2k-run_lapw_clmextrapol@localhost')
         inpdict1 = orm.Dict(dict={}) # x sgroup [param]
-        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'1', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
-        inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.00001', '-cc':'0.0001'}) # run_lapw [param]
+        #inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'2', '-hdlo':True, '-fermit':'0.002'}) # init_lapw -b [param]
+        inpdict2 = orm.Dict(dict={'-red':'3', '-prec':'2', '-hdlo':True}) # init_lapw -b [param]
+        inpdict3 = orm.Dict(dict={'-i':'100', '-ec':'0.000001', '-cc':'0.0001'}) # run_lapw [param]
         inparr4 = orm.ArrayData()
         inparr4.set_array('dvolumes', np.array([-8,-6,-4,-2,2,4,6,8])) # volme change in % (exclude 0)
         result = submit(Wien2kEosWorkChain, aiida_structure=aiida_structure,\
