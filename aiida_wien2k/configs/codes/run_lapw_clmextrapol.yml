@@ -8,7 +8,7 @@ computer: "localhost"
 prepend_text: '
 export EDITOR="vim";
 [[ -z "${SLURM_JOB_NAME}" ]] && export SCRATCH="/scratch/aiida/${RANDOM}" || export SCRATCH="/scratch/aiida/${SLURM_JOB_NAME}";
-mkdir -p ${SCRATCH}
+mkdir -p ${SCRATCH};
 mkdir -p case && cd case;
 mv ../case.struct .;
 rm -f *.broy* *.scf* :log *.day* *.error* *.log;
