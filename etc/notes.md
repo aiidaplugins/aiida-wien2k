@@ -111,3 +111,7 @@ To connect via VNC
 ssh -Y -L 5901:psi11:5901 uname@.....at
 ```
 Launch VNC connection to `localhost:5901`
+
+## Other
+GET THE UNIQUE VALUES (DISTINCT ROWS) OF A DATAFRAME IN PYTHON PANDAS:
+https://www.datasciencemadesimple.com/get-unique-values-rows-dataframe-python-pandas/
