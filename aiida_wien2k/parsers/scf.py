@@ -49,6 +49,35 @@ def _grep(key, pip):
 
     return None # return none if no match found
 
+def _grep_all_instances(key, pip):
+    """"Serach patterns in lines `pip` that start with `key` and return all instances as a list"""
+    value = [] # set up as a list
+    for line in pip.splitlines(): # search backward
+        if(key==":CHA"): # search for Rmt's
+            if line[0:len(key)] == key:
+                # :CHA001: TOTAL VALENCE CHARGE INSIDE SPHERE   1 =   6.7577    (RMT=  1.5800 )
+                cut = line.rsplit(sep='RMT=',maxsplit=-1)
+                if( len(cut)>1 ): # line contains 'RMT='
+                    cut = cut[1] # get '1.5800 )'
+                    cut = cut.rsplit(sep=')',maxsplit=-1)[0] # get '1.5800'
+                    value.append(float(cut))
+        elif(key==":POS"): # serach for atom labels
+            if line[0:len(key)] == key:
+                # :POS001: ATOM    1 X,Y,Z = 0.00000 0.00000 0.00000  MULT= 1  ZZ= 14.000  Si1
+                cut = line[73:75] # get exact positions (fixed format)
+                value.append(cut.strip()) # remove trailing spaces before appending
+        elif(key==":CINT"): # search for the number of core electrons
+            if line[0:len(key)] == key:
+                # :CINT001 Core Integral Atom   1    3.99550337
+                cut = line.rsplit(sep='Core Integral Atom',maxsplit=-1)[1] # get '1    3.99550337'
+                cut = cut.split()[1] # get '3.99550337'
+                value.append(int(round(float(cut))))
+
+    return value
+
+
+    return None # return none if no match found
+
 def check_error_files(files, logger):
     """
     Check for *.error files among 'files' retrieved.
@@ -115,21 +144,31 @@ class Wien2kScfParser(Parser):
         else:
             raise # Cell volume not found
         
-        # :FER
+        # :FER, :GAP, :CHA, :POS
         output_fname = 'case.scf2'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
-        eflist = _grep(key=":FER", pip=file_content) # get all Fermi ene in SCF run
+        eflist = _grep(key=":FER", pip=file_content) # get Fermi ene in SCF run
         if eflist:
             res['EfermiRyd'] = eflist
         else:
             raise # Efermi not found
-        gaplist = _grep(key=":GAP", pip=file_content) # get all band gaps in SCF run
+        gaplist = _grep(key=":GAP", pip=file_content) # get band gap
         if gaplist:
             res['GapEv'] = gaplist
+        rmtlist = _grep_all_instances(key=":CHA", pip=file_content) # get RMTs
+        if rmtlist:
+            res['Rmt'] = rmtlist
+        else:
+            raise # Rmt's not found
+        atomlablelist = _grep_all_instances(key=":POS", pip=file_content) # get RMTs
+        if atomlablelist:
+            res['atom_labels'] = atomlablelist
+        else:
+            raise # atom labels not found
         
 
-        # :ENE
+        # :ENE,:CINT
         output_fname = 'case.scfm'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
@@ -138,6 +177,12 @@ class Wien2kScfParser(Parser):
             res['EtotRyd'] = enelist
         else:
             raise # Etot not found
+        # get number of core electrons
+        numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
+        if numcoreellist:
+            res['num_core_el'] = numcoreellist
+        else:
+            raise # number of core electrons not found
 
         # :WAR
         res['Warning_last'] = [] # allocate list

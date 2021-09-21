@@ -7,7 +7,7 @@ remote_abs_path: "/area51/WIEN2k_21/run_lapw"
 computer: "localhost"
 prepend_text: '
 export EDITOR="vim";
-[[ -z "${SLURM_JOB_NAME}" ]] && export SCRATCH="/scratch/aiida/${RANDOM}" || export SCRATCH="/scratch/aiida/${SLURM_JOB_NAME}";
+[[ -z "${SLURM_JOB_NAME}" ]] && export SCRATCH="/scratch/aiida/scratch-${RANDOM}" || export SCRATCH="/scratch/aiida/sctratch-${SLURM_JOB_NAME}";
 mkdir -p ${SCRATCH};
 mkdir -p case && cd case'
 append_text: " "

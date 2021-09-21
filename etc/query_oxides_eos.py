@@ -30,7 +30,13 @@ def BMEOSfitpoly(volumes, energies):
             break
 
     if V0 == 0:
-        raise ValueError('Error: No minimum could be found')
+        E0 = None
+        V0 = None
+        B0 = None
+        B01 = None
+        errX = [None, None, None, None]
+        return [E0, V0, B0, B01], ssr, errX
+        
 
     # Get also the E0 and return it
     E0 = deriv0(x)
@@ -117,8 +123,8 @@ query.all()
 data = {} # collect data for json file
 data['BM_fit_data'] = {}
 data['DFT_engine'] = 'WIEN2k v22.1'
-data['DFT_settings'] = '-prec 3'
-data['EOS_volume_grid_percents'] = [-8, -6, -4, -2, 0, 2, 4, 6, 8]
+data['DFT_settings'] = '-prec 2'
+data['EOS_volume_grid_percents'] = [-6, -4, -2, 0, 2, 4, 6]
 prec = '2' # set precision of interest
 for q in query.iterall():
     if( q[0].inputs.inpdict2.attributes['-prec'] != prec ):
@@ -147,16 +153,22 @@ for q in query.iterall():
                 energies=etot_eV)
         nat, vol_sup = nat_vol(structure_sup_aiida) # AiiDA input structure number of atoms and volume
         v0 = params[1]
-        if(v0 > vol_Ang3.min() and v0 < vol_Ang3.max()):
-            eos_fit_warning = ''
+        if( v0 != None ):
+            if(v0 > vol_Ang3.min() and v0 < vol_Ang3.max()):
+                eos_fit_warning = ''
+            else:
+                eos_fit_warning = 'warn: V0 is out of range'
         else:
-            eos_fit_warning = 'warn: V0 is out of range'
+            eos_fit_warning = 'Error: EOS fit not found'
         # print('EOS fit output (E0_eV, V0_Ang3, B0_eV/Ang3, B0pr):', params,\
         #         'V_sup vs v0 (%) = ', 100*math.log(vol_sup/v0), eos_fit_warning, '\n')
         fmtstr = 'EOS fit output (E0_eV, V0_Ang3, B0_eV/Ang3, B0pr):'+\
                 '[{:.15e}, {:e}, {:e}, {:+e}, {:e}] V_sup vs v0 (%) = {:+e} {}\n'
-        print(fmtstr.format(params[0], params[1],\
-                params[2], params[3], residuals, 100*math.log(vol_sup/v0), eos_fit_warning))
+        if( v0 != None ):
+            print(fmtstr.format(params[0], params[1],\
+                    params[2], params[3], residuals, 100*math.log(vol_sup/v0), eos_fit_warning))
+        else:
+            print(eos_fit_warning+'\n')
         # add data for later export to json file
         warnings = ''
         if (eos_fit_warning != ''):
