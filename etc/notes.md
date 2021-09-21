@@ -108,6 +108,58 @@ Show details of a profile `oleg`
 ```
 verdi profile show oleg
 ```
+New setup on `psi12`
+```
+initdb -D mylocal_db_psi12
+pg_ctl -D mylocal_db_psi12 -l logfile start
+rabbitmq-server -detached
+verdi quicksetup
+  Info: enter "?" for help
+  Info: enter "!" to ignore the default and set no value
+  Profile name [quicksetup]: psi12
+  Email Address (for sharing data) [rubelo@mcmaster.ca]:
+  First name [Oleg]:
+  Last name [Rubel]:
+  Institution [McMaster]:
+  Success: created new profile `psi12`.
+  Info: migrating the database.
+  ...
+  Success: database migration completed.
+verdi -p psi12 daemon start 2
+verdi profile list
+  Info: configuration folder: /eos/rubel/.aiida
+  * oleg
+    psi12
+verdi profile show psi12
+  Info: Profile: psi12
+  ----------------------  -----------------------------------------------
+  aiidadb_backend         django
+  aiidadb_engine          postgresql_psycopg2
+  aiidadb_host
+  aiidadb_name            psi12_rubel_2fa9a0278303c4aa880978e55540c74d
+  aiidadb_pass            F37toZ9A4yGou5F2
+  aiidadb_port            5432
+  aiidadb_repository_uri  file:///eos/rubel/.aiida/repository/psi12
+  aiidadb_user            aiida_qs_rubel_2fa9a0278303c4aa880978e55540c74d
+  broker_host             127.0.0.1
+  broker_password         guest
+  broker_port             5672
+  broker_protocol         amqp
+  broker_username         guest
+  broker_virtual_host
+  default_user_email      rubelo@mcmaster.ca
+  options                 {}
+  profile_uuid            e23f410a63224206ad86388666b48caa
+  ----------------------  -----------------------------------------------
+verdi -p psi12 status
+ ✔ config dir:  /eos/rubel/.aiida
+ ✔ profile:     On profile psi12
+ ✔ repository:  /eos/rubel/.aiida/repository/psi12
+ ✔ postgres:    Connected as aiida_qs_rubel_2fa9a0278303c4aa880978e55540c74d@None:5432
+ ✔ rabbitmq:    Connected as amqp://guest:guest@127.0.0.1:5672?heartbeat=600
+ ✔ daemon:      Daemon is running as PID 8297 since 2021-09-22 01:09:37
+verdi -p psi12 process list -a
+```
 Execute comand for a specific profile
 ```
 verdi -p <profile> process list
