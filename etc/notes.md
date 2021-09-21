@@ -11,7 +11,7 @@ Here `pip` is used to downgread `psycopg2` otherwise AiiDA does not work (proble
 
 Launch database
 ```
-cd /home/rubel/scratch/aiida
+cd /eos/rubel
 initdb -D mylocal_db
 pg_ctl -D mylocal_db -l logfile start
 cp /eos/rubel/aiida-wien2k/etc/rabbitmq.conf /eos/rubel/anaconda3/envs/aiida/etc/rabbitmq # path is system-specific
