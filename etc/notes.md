@@ -99,10 +99,34 @@ rabbitmq-diagnostics status
 vim ~/anaconda3/envs/aiida/var/lib/rabbitmq/mnesia/rabbit@psi11/cluster_nodes.config
 ```
 
+## Setting up another AiiDA profile
+List all profiles (or projects)
+```
+verdi profile list
+```
+Show details of a profile `oleg`
+```
+verdi profile show oleg
+```
+Execute comand for a specific profile
+```
+verdi -p <profile> process list
+```
+
+Migrate database
+```
+verdi -p <profile_name> database migrate
+```
+
+
 ## Other useful comands
 CPU, memory, disk usage
 ```
 vmstat -w 2
+```
+Verdi tab completion
+```
+eval "$(_VERDI_COMPLETE=source verdi)"
 ```
 
 ## TU Wien
