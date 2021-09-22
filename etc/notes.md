@@ -180,6 +180,10 @@ Verdi tab completion
 ```
 eval "$(_VERDI_COMPLETE=source verdi)"
 ```
+Verdi import structures
+```
+verdi archive import /eos/rubel/commonwf-oxides-scripts/1-preliminary/commonwf-oxides_set1_structures.aiida
+```
 
 ## TU Wien
 To connect via VNC
