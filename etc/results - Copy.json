@@ -2977,6 +2977,19 @@
       "EOS_workchain_exit_code": 0,
       "warnings": "warn: V0 is out of range"
     },
+    "Tc-XO2": {
+      "E0": -120741.38338756865,
+      "err_E0": 3.163047930332344e-05,
+      "min_volume": 28.779468294287874,
+      "err_min_volume": 0.0007090206525611049,
+      "bulk_modulus_ev_ang3": 1.8187451127706489,
+      "err_bulk_modulus_ev_ang3": 0.0012099849423577362,
+      "bulk_deriv": 4.737256982817068,
+      "err_bulk_deriv": 0.05117149258094348,
+      "residuals": 8.460270017583727e-09,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
     "Xe-X2O5": {
       "E0": -831358.1995083177,
       "err_E0": 6.978663637149216e-05,
@@ -3887,6 +3900,19 @@
       "EOS_workchain_exit_code": 0,
       "warnings": "warn: V0 is out of range"
     },
+    "Tc-XO": {
+      "E0": -118691.74868919876,
+      "err_E0": 4.855344906320169e-05,
+      "min_volume": 21.250630897293487,
+      "err_min_volume": 0.0013014660117536148,
+      "bulk_modulus_ev_ang3": 1.5143808770154785,
+      "err_bulk_modulus_ev_ang3": 0.0025315059968998386,
+      "bulk_deriv": 4.8424625733348,
+      "err_bulk_deriv": 0.12762214496633736,
+      "residuals": 1.9868904234166983e-08,
+      "EOS_workchain_exit_code": 300,
+      "warnings": ""
+    },
     "Eu-X2O5": {
       "E0": -1201701.5068320383,
       "err_E0": 0.00011188013906205327,
@@ -4160,6 +4186,19 @@
       "EOS_workchain_exit_code": 0,
       "warnings": ""
     },
+    "Tc-X2O5": {
+      "E0": -487042.11491777975,
+      "err_E0": 1.7964540937133427e-05,
+      "min_volume": 124.7983984738875,
+      "err_min_volume": 0.00044342331065084427,
+      "bulk_modulus_ev_ang3": 1.6513125177747587,
+      "err_bulk_modulus_ev_ang3": 0.00015865805839511697,
+      "bulk_deriv": 4.6712525795250235,
+      "err_bulk_deriv": 0.007376992026620133,
+      "residuals": 2.7285615176658085e-09,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
     "Xe-X2O": {
       "E0": -407505.03171778703,
       "err_E0": 1.6833735814350656e-05,
@@ -4184,6 +4223,19 @@
       "err_bulk_deriv": 0.0068974228236579485,
       "residuals": 2.168272479216695e-11,
       "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
+    "Tc-X2O": {
+      "E0": -235335.97641665515,
+      "err_E0": 3.866699430768196e-05,
+      "min_volume": 38.44497990914408,
+      "err_min_volume": 0.0012039806604778448,
+      "bulk_modulus_ev_ang3": 1.3235059441559995,
+      "err_bulk_modulus_ev_ang3": 0.0010888640333104904,
+      "bulk_deriv": 4.505397586224418,
+      "err_bulk_deriv": 0.06454943499828643,
+      "residuals": 1.2748436815958759e-08,
+      "EOS_workchain_exit_code": 300,
       "warnings": ""
     },
     "Ba-X2O5": {
@@ -4602,6 +4654,19 @@
       "EOS_workchain_exit_code": 0,
       "warnings": ""
     },
+    "Tc-X2O3": {
+      "E0": -478868.4005646939,
+      "err_E0": 3.365797451243701e-05,
+      "min_volume": 109.42641529007082,
+      "err_min_volume": 0.0008616981826472533,
+      "bulk_modulus_ev_ang3": 1.5810826178267599,
+      "err_bulk_modulus_ev_ang3": 0.0003430088383655339,
+      "bulk_deriv": 4.711172699026582,
+      "err_bulk_deriv": 0.01641758591721299,
+      "residuals": 9.5273198137643e-09,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
     "Gd-X2O": {
       "E0": -615955.0549886025,
       "err_E0": 0.0015922161718879555,
@@ -4875,6 +4940,19 @@
       "EOS_workchain_exit_code": 300,
       "warnings": ""
     },
+    "Tc-XO3": {
+      "E0": -122789.48435168054,
+      "err_E0": 3.570130779772732e-05,
+      "min_volume": 53.248574595214244,
+      "err_min_volume": 0.0010071578651639995,
+      "bulk_modulus_ev_ang3": 1.3414817501985035,
+      "err_bulk_modulus_ev_ang3": 0.0008317738806330855,
+      "bulk_deriv": 4.737372480720217,
+      "err_bulk_deriv": 0.04099518839573571,
+      "residuals": 1.0196050427480102e-08,
+      "EOS_workchain_exit_code": 0,
+      "warnings": ""
+    },
     "Nb-X2O3": {
       "E0": -428136.02138011175,
       "err_E0": 1.8746895977321923e-05,
@@ -4913,84 +4991,6 @@
       "residuals": 9.296423470209955e-07,
       "EOS_workchain_exit_code": 0,
       "warnings": "Error: EOS fit not found"
-    },
-    "Tc-XO": {
-      "E0": -118691.75397457159,
-      "err_E0": 3.6366645197274086e-06,
-      "min_volume": 21.206014238167377,
-      "err_min_volume": 0.00010211621471127825,
-      "bulk_modulus_ev_ang3": 1.5017005581209253,
-      "err_bulk_modulus_ev_ang3": 0.00017709152366593555,
-      "bulk_deriv": 4.878427051929974,
-      "err_bulk_deriv": 0.009828886070018398,
-      "residuals": 1.1478855699696802e-10,
-      "EOS_workchain_exit_code": 300,
-      "warnings": ""
-    },
-    "Tc-X2O5": {
-      "E0": -487042.11471327697,
-      "err_E0": 4.8581096238215484e-05,
-      "min_volume": 124.6421980444773,
-      "err_min_volume": 0.0012344592596304218,
-      "bulk_modulus_ev_ang3": 1.641849274433082,
-      "err_bulk_modulus_ev_ang3": 0.00041176610700281393,
-      "bulk_deriv": 4.6423496936413535,
-      "err_bulk_deriv": 0.02030056783220354,
-      "residuals": 2.0316033907452395e-08,
-      "EOS_workchain_exit_code": 0,
-      "warnings": ""
-    },
-    "Tc-X2O3": {
-      "E0": -478868.4034306048,
-      "err_E0": 4.7853475392489206e-05,
-      "min_volume": 109.23231510474619,
-      "err_min_volume": 0.0012766770084253513,
-      "bulk_modulus_ev_ang3": 1.5685989146092658,
-      "err_bulk_modulus_ev_ang3": 0.00046013961373403975,
-      "bulk_deriv": 4.637939350444873,
-      "err_bulk_deriv": 0.0239167213598694,
-      "residuals": 1.9759034846118604e-08,
-      "EOS_workchain_exit_code": 0,
-      "warnings": ""
-    },
-    "Tc-XO2": {
-      "E0": -120741.3861317819,
-      "err_E0": 4.848993239077983e-06,
-      "min_volume": 28.731720299104023,
-      "err_min_volume": 0.00011297762296421156,
-      "bulk_modulus_ev_ang3": 1.8032505850121665,
-      "err_bulk_modulus_ev_ang3": 0.0001759589596350479,
-      "bulk_deriv": 4.619486733553063,
-      "err_bulk_deriv": 0.008028612763513208,
-      "residuals": 2.0350404774890067e-10,
-      "EOS_workchain_exit_code": 0,
-      "warnings": ""
-    },
-    "Tc-XO3": {
-      "E0": -122789.46266844163,
-      "err_E0": 2.440633924998477e-05,
-      "min_volume": 53.132006299549566,
-      "err_min_volume": 0.0007279569315699937,
-      "bulk_modulus_ev_ang3": 1.3369060043013037,
-      "err_bulk_modulus_ev_ang3": 0.0005254937905813879,
-      "bulk_deriv": 4.715946773229383,
-      "err_bulk_deriv": 0.028806538050280904,
-      "residuals": 4.952714269039691e-09,
-      "EOS_workchain_exit_code": 300,
-      "warnings": ""
-    },
-    "Tc-X2O": {
-      "E0": -235335.9837729952,
-      "err_E0": 3.666750483388387e-05,
-      "min_volume": 38.40404660834117,
-      "err_min_volume": 0.0011667073800560315,
-      "bulk_modulus_ev_ang3": 1.3196375558187865,
-      "err_bulk_modulus_ev_ang3": 0.000998419189609779,
-      "bulk_deriv": 4.447018443976688,
-      "err_bulk_deriv": 0.06197777464224176,
-      "residuals": 1.163135417222629e-08,
-      "EOS_workchain_exit_code": 0,
-      "warnings": ""
     },
     "Bi-X2O5": {
       "E0": -2369516.1278544418,
