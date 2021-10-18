@@ -122,6 +122,7 @@ query.append(Wien2kEOS, tag='calculation')
 query.all()
 data = {} # collect data for json file
 data['BM_fit_data'] = {}
+data['eos_data'] = {}
 data['DFT_engine'] = 'WIEN2k v22.1'
 data['DFT_settings'] = '-prec 2'
 data['EOS_volume_grid_percents'] = [-6, -4, -2, 0, 2, 4, 6]
@@ -186,6 +187,12 @@ for q in query.iterall():
             'EOS_workchain_exit_code': q[0].exit_status,
             'warnings': warnings
         }
+        # prepare energy vs volume data for json file
+        vol_vs_ene = []
+        for i in range(len(vol_Ang3)):
+            vol_vs_enei = [vol_Ang3[i],etot_eV[i]]
+            vol_vs_ene.append(vol_vs_enei)
+        data['eos_data'][element+'-'+conf] = vol_vs_ene
     else:
         print('\n')
 # write json file with results

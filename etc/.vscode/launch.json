@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "/eos/rubel/anaconda3/envs/aiida/bin/verdi",
             //"args": ["run", "launch_eos_workchain.py"],
-            "args": ["run", "launch_oxides_eos_workchain.py"],
+            "args": ["run", "query_oxides_eos.py"],
             "console": "integratedTerminal"
         }
     ]

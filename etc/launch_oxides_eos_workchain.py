@@ -64,23 +64,25 @@ def wait_to_limit_nproc(nprocmax, timeinterval):
 
 # Setting up crystal structure(s)
 
-elements = [
-        'H'
-]
-# elements_all = ['H', \
-#         'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', \
-#         'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', \
-#         'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', \
-#         'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', \
-#         'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', \
-#             'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', \
-#         'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', \
-#             'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+# elements = [
+#         'H'
+# ]
+elements_all = ['H', \
+        'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', \
+        'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', \
+        'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', \
+        'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', \
+        'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', \
+            'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', \
+        'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', \
+            'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
 #elements = elements_all[0:36] # H ... Kr
 #elements = elements_all[36:65] # Rb ... Tb
 #elements = elements_all[65: ] # Dy ... Og
-# elements = elements_all
-scale_volumes = {'H-XO3': 20} # contains volume of selected structures to rescale
+elements = elements_all
+#scale_volumes = {'He-XO3': 42.77299041, 'He-XO': 28.54049228, 'Ne-X2O3': 161.5964849, 'He-X2O5': 110.8088676, 'He-X2O3': 91.22775639, 'Ne-X2O5': 143.9679995, 'Gd-XO2': 37.23331397, 'Nd-XO2': 38.94555397, 'Tb-X2O5': 154.9348108, 'Nd-X2O': 50.0960146, 'Tb-X2O': 50.50548669, 'Eu-XO3': 71.07111758, 'Sm-XO3': 71.80563636, 'Pm-X2O3': 154.7322081, 'Pm-X2O': 49.6640078, 'Pr-XO': 29.99621399, 'Pm-XO': 28.80993678, 'Pm-XO2': 38.37471477, 'Eu-X2O3': 147.4019252, 'Nd-X2O5': 159.3762741, 'Sm-XO': 28.4880339, 'Sm-X2O3': 152.8097167, 'Pr-X2O5': 161.1204479, 'Gd-XO3': 70.77112722, 'Eu-X2O': 49.3887618, 'Eu-XO': 28.24666747, 'Eu-XO2': 37.58826953, 'Nd-XO': 29.28951628, 'Eu-X2O5': 156.6731204, 'Sm-X2O5': 157.1628505, 'Pr-X2O': 51.61132539, 'Gd-X2O5': 156.3960821, 'Pm-XO3': 72.24091935, 'Pr-XO2': 39.75249698, 'Sm-XO2': 37.92396942, 'Pr-XO3': 79.02169136, 'Xe-XO3': 67.16414295, 'Tb-XO3': 71.89121008, 'Gd-X2O': 50.28952401, 'Pm-X2O5': 157.2625813, 'Pr-X2O3': 159.2588219, 'Sm-X2O': 48.96650724, 'Cs-XO3': 76.11954884, 'Nd-X2O3': 149.7452753, 'Tb-XO2': 36.98525509, 'Nd-XO3': 72.87941815, 'Yb-X2O': 57.51786508, 'Dy-XO2': 36.85791507, 'Ho-XO3': 72.33736322, 'Tm-XO3': 74.24792094, 'Yb-XO3': 75.63041749, 'Ho-XO2': 36.81176218, 'Dy-X2O': 50.91219591, 'Dy-XO3': 71.67423273, 'Er-XO3': 73.3182266, 'W-X2O5': 125.5300485, 'Ho-X2O': 51.75274502} # contains volume of selected structures to rescale
+#scale_volumes = {'He-X2O': 75.71646, 'Ba-XO3': 90.184}
+scale_volumes = {'Dy-X2O3': 148.30, 'Dy-X2O5': 154.85, 'Gd-X2O3': 150.77, 'He-XO2': 24.73, 'Ho-X2O3': 146.83, 'Ho-X2O5': 154.94, 'Tb-X2O3': 151.05, 'Yb-X2O3': 147.85, 'Yb-X2O5': 158.45}
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 chemformulas_compleated = []
 nprocmax = 8
@@ -97,10 +99,11 @@ for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
             continue # skip iteration
         if scale_volumes:
             # loop through formula-volumes dict to find relevant structure (if present)
-            for key,vol_target in scale_volumes.items(): 
-                if( key == formula ):
-                    aiida_structure = rescale(aiida_structure,vol_target)
-                    continue # exit loop of formula-volumes
+            if formula in scale_volumes:
+                vol_target = scale_volumes[formula]
+                aiida_structure = rescale(aiida_structure,vol_target)
+            else:    
+                continue # skip structures that do not need to be scaled
         # run EOS workchain
         code1 = orm.load_code(label='wien2k-x-sgroup@localhost')
         code2 = orm.load_code(label='wien2k-init_lapw@localhost')

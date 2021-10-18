@@ -58,7 +58,8 @@ class Wien2kEosWorkChain(WorkChain):
         # output parameters
         spec.output("workchain_result", valid_type=Dict)
         # exit codes
-        spec.exit_code(300, 'WARNING', 'There were warning messages during calculation steps')
+        spec.exit_code(300, 'WARNING_GENERAL', 'There were warning messages during calculation steps')
+        spec.exit_code(305, 'WARNING_CONVERG', 'There was a convergence problem during calculation steps')
         spec.exit_code(400, 'ERROR', 'There was a terminal error in one of calculation steps')
 
     def x_sgroup(self):
@@ -176,12 +177,18 @@ class Wien2kEosWorkChain(WorkChain):
         # check all steps, including V(0) calculation
         for step in [self.ctx.node1, self.ctx.node2, self.ctx.node3, self.ctx.node4]:
             if( not step.is_finished_ok ):
-                return self.exit_codes.WARNING # warnings during calc. steps
+                if( step.exit_status == 305 ): # band convergence warning (almost an error)
+                    return self.exit_codes.WARNING_CONVERG
+                else: # mild warnings
+                    return self.exit_codes.WARNING_GENERAL # warnings during calc. steps
         # check steps V(i)
         structfile_uuid_list = self.ctx.node4.outputs.structfile_out_uuid_list.get_list()
         for structfile_uuid in structfile_uuid_list:
             step = self.ctx[structfile_uuid] # result at V(i)
             if( not step.is_finished_ok ):
-                return self.exit_codes.WARNING # warnings during calc. steps
+                if( step.exit_status == 305 ): # band convergence warning (almost an error)
+                    return self.exit_codes.WARNING_CONVERG
+                else: # mild warnings
+                    return self.exit_codes.WARNING_GENERAL # warnings during calc. steps
     
         return

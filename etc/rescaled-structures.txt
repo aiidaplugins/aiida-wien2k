@@ -1,0 +1,80 @@
+(aiida) rubel@psi11:~/aiida-wien2k/etc> grep -e 'He-XO3' -e 'He-XO' -e 'Ne-X2O3' -e 'He-X2O5' -e 'He-X2O3' -e 'Ne-X2O5' -e 'Gd-XO2' -e 'Nd-XO2' -e 'Tb-X2O5' -e 'Nd-X2O' -e 'Tb-X2O' -e 'Eu-XO3' -e 'Sm-XO3' -e 'Pm-X2O3' -e 'Pm-X2O' -e 'Pr-XO' -e 'Pm-XO' -e 'Pm-XO2' -e 'Eu-X2O3' -e 'Nd-X2O5' -e 'Sm-XO' -e 'Sm-X2O3' -e 'Pr-X2O5' -e 'Gd-XO3' -e 'Eu-X2O' -e 'Eu-XO' -e 'Eu-XO2' -e 'Nd-XO' -e 'Eu-X2O5' -e 'Sm-X2O5' -e 'Pr-X2O' -e 'Gd-X2O5' -e 'Pm-XO3' -e 'Pr-XO2' -e 'Sm-XO2' -e 'Pr-XO3' -e 'Xe-XO3' -e 'Tb-XO3' -e 'Gd-X2O' -e 'Pm-X2O5' -e 'Pr-X2O3' -e 'Sm-X2O' -e 'Cs-XO3' -e 'Nd-X2O3' -e 'Tb-XO2' -e 'Nd-XO3' -e 'Yb-X2O' -e 'Dy-XO2' -e 'Ho-XO3' -e 'Tm-XO3' -e 'Yb-XO3' -e 'Ho-XO2' -e 'Dy-X2O' -e 'Dy-XO3' -e 'Er-XO3' -e 'W-X2O5' -e 'Ho-X2O' results-prec-2-tetra-psi11.dat
+Formula: He-XO3 , HeO3 , state: finished , ID:  46779
+Formula: He-XO , HeO , state: finished , ID:  47642
+Formula: Ne-X2O3 , Ne4O6 , state: finished , ID:  47867
+Formula: He-X2O5 , He4O10 , state: finished , ID:  48466
+Formula: He-X2O3 , He4O6 , state: finished , ID:  52985
+Formula: Ne-X2O5 , Ne4O10 , state: finished , ID:  54402
+Formula: He-XO2 , HeO2 , state: finished , ID:  54761
+Formula: Gd-XO2 , GdO2 , state: finished , ID:  56371
+Formula: Nd-XO2 , NdO2 , state: finished , ID:  56815
+Formula: Tb-X2O5 , O10Tb4 , state: finished , ID:  56554
+Formula: Nd-X2O , Nd2O , state: finished , ID:  57403
+Formula: Tb-X2O , OTb2 , state: finished , ID:  57967
+Formula: Eu-XO3 , EuO3 , state: finished , ID:  58371
+Formula: Sm-XO3 , O3Sm , state: finished , ID:  59235
+Formula: Pm-X2O3 , O6Pm4 , state: finished , ID:  59091
+Formula: Pm-X2O , OPm2 , state: finished , ID:  59742
+Formula: Pr-XO , OPr , state: finished , ID:  59847
+Formula: Pm-XO , OPm , state: finished , ID:  60339
+Formula: Pm-XO2 , O2Pm , state: finished , ID:  60837
+Formula: Eu-X2O3 , Eu4O6 , state: finished , ID:  60272
+Formula: Nd-X2O5 , Nd4O10 , state: finished , ID:  60737
+Formula: Sm-XO , OSm , state: finished , ID:  61213
+Formula: Sm-X2O3 , O6Sm4 , state: finished , ID:  59661
+Formula: Pr-X2O5 , O10Pr4 , state: finished , ID:  60459
+Formula: Gd-XO3 , GdO3 , state: finished , ID:  60495
+Formula: Eu-X2O , Eu2O , state: finished , ID:  60668
+Formula: Eu-XO , EuO , state: finished , ID:  61903
+Formula: Eu-XO2 , EuO2 , state: finished , ID:  61522
+Formula: Tb-X2O3 , O6Tb4 , state: finished , ID:  61249
+Formula: Nd-XO , NdO , state: finished , ID:  62200
+Formula: Eu-X2O5 , Eu4O10 , state: finished , ID:  62388
+Formula: Sm-X2O5 , O10Sm4 , state: finished , ID:  62105
+Formula: Pr-X2O , OPr2 , state: finished , ID:  62668
+Formula: Gd-X2O5 , Gd4O10 , state: finished , ID:  62503
+Formula: Pm-XO3 , O3Pm , state: finished , ID:  62289
+Formula: Gd-X2O3 , Gd4O6 , state: finished , ID:  61706
+Formula: Pr-XO2 , O2Pr , state: finished , ID:  62787
+Formula: Sm-XO2 , O2Sm , state: finished , ID:  63641
+Formula: Pr-XO3 , O3Pr , state: finished , ID:  65175
+Formula: Xe-XO3 , O3Xe , state: finished , ID:  65091
+Formula: Tb-XO3 , O3Tb , state: finished , ID:  65368
+Formula: Gd-X2O , Gd2O , state: finished , ID:  65555
+Formula: Pm-X2O5 , O10Pm4 , state: finished , ID:  65589
+Formula: Pr-X2O3 , O6Pr4 , state: finished , ID:  66075
+Formula: Sm-X2O , OSm2 , state: finished , ID:  66101
+Formula: Cs-XO3 , CsO3 , state: finished , ID:  66027
+Formula: Nd-X2O3 , Nd4O6 , state: finished , ID:  65827
+Formula: Tb-XO2 , O2Tb , state: finished , ID:  66655
+Formula: Nd-XO3 , NdO3 , state: finished , ID:  66328
+(aiida) rubel@psi11:~/aiida-wien2k/etc> grep -e 'He-XO3' -e 'He-XO' -e 'Ne-X2O3' -e 'He-X2O5' -e 'He-X2O3' -e 'Ne-X2O5' -e 'Gd-XO2' -e 'Nd-XO2' -e 'Tb-X2O5' -e 'Nd-X2O' -e 'Tb-X2O' -e 'Eu-XO3' -e 'Sm-XO3' -e 'Pm-X2O3' -e 'Pm-X2O' -e 'Pr-XO' -e 'Pm-XO' -e 'Pm-XO2' -e 'Eu-X2O3' -e 'Nd-X2O5' -e 'Sm-XO' -e 'Sm-X2O3' -e 'Pr-X2O5' -e 'Gd-XO3' -e 'Eu-X2O' -e 'Eu-XO' -e 'Eu-XO2' -e 'Nd-XO' -e 'Eu-X2O5' -e 'Sm-X2O5' -e 'Pr-X2O' -e 'Gd-X2O5' -e 'Pm-XO3' -e 'Pr-XO2' -e 'Sm-XO2' -e 'Pr-XO3' -e 'Xe-XO3' -e 'Tb-XO3' -e 'Gd-X2O' -e 'Pm-X2O5' -e 'Pr-X2O3' -e 'Sm-X2O' -e 'Cs-XO3' -e 'Nd-X2O3' -e 'Tb-XO2' -e 'Nd-XO3' -e 'Yb-X2O' -e 'Dy-XO2' -e 'Ho-XO3' -e 'Tm-XO3' -e 'Yb-XO3' -e 'Ho-XO2' -e 'Dy-X2O' -e 'Dy-XO3' -e 'Er-XO3' -e 'W-X2O5' -e 'Ho-X2O' results-prec-2-tetra-psi12.dat
+Formula: Yb-X2O , OYb2 , state: finished , ID:  1641
+Formula: Dy-XO2 , DyO2 , state: finished , ID:  1683
+Formula: Ho-X2O5 , Ho4O10 , state: finished , ID:  1625
+Formula: Ho-XO3 , HoO3 , state: finished , ID:  1951
+Formula: Dy-X2O5 , Dy4O10 , state: finished , ID:  2863
+Formula: Tm-XO3 , O3Tm , state: finished , ID:  3689
+Formula: Dy-X2O3 , Dy4O6 , state: finished , ID:  3719
+Formula: Ho-X2O3 , Ho4O6 , state: finished , ID:  4569
+Formula: Yb-XO3 , O3Yb , state: finished , ID:  4710
+Formula: Ho-XO2 , HoO2 , state: finished , ID:  5407
+Formula: Dy-X2O , Dy2O , state: finished , ID:  7521
+Formula: Dy-XO3 , DyO3 , state: finished , ID:  7144
+Formula: Er-XO3 , ErO3 , state: finished , ID:  9564
+Formula: W-X2O5 , O10W4 , state: finished , ID:  10012
+Formula: Yb-X2O5 , O10Yb4 , state: finished , ID:  10923
+Formula: Ho-X2O , Ho2O , state: finished , ID:  11489
+Formula: Yb-X2O3 , O6Yb4 , state: finished , ID:  12853
+
+# psi11
+for pk in 46779 47642 47867 48466 52985 54402 54761 56371 56815 56554 57403 57967 58371 59235 59091 59742 59847 60339 60837 60272 60737 61213 59661 60459 60495 60668 61903 61522 61249 62200 62388 62105 62668 62503 62289 61706 62787 63641 65175 65091 65368 65555 65589 66075 66101 66027 65827 66655 66328
+do
+    yes | verdi node delete $pk
+done
+
+# psi12
+for pk in 1641 1683 1625 1951 2863 3689 3719 4569 4710 5407 7521 7144 9564 10012 10923 11489 12853
+do
+    yes | verdi -p psi12 node delete $pk
+done
