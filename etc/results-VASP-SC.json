@@ -1,0 +1,23 @@
+{
+  "BM_fit_data": {
+    "Os-XO3": {
+      "E0": 0.0,
+      "min_volume": 53.2120,
+      "bulk_modulus_ev_ang3": 1.4568,
+      "bulk_deriv": 4.7860
+    },
+    "Ar-X2O": {
+      "E0": 0.0,
+      "min_volume": 107.8446,
+      "bulk_modulus_ev_ang3": 0.012483018250208,
+      "bulk_deriv": 8.1061
+    },
+    "Os-XO2": {
+      "E0": 0.0,
+      "min_volume": 28.8437,
+      "bulk_modulus_ev_ang3": 1.982802618863080,
+      "bulk_deriv": 4.7269
+    }
+  },
+  "DFT_engine": "VASP PAW-GW"
+}
