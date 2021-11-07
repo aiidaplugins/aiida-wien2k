@@ -22,7 +22,7 @@ print('nodes_all =', nodes_all)
 
 # set up a list of nodes to keep
 nodes_to_keep = []
-for node in Group.get(label='commonwf-oxides/set1/structures').nodes: # Giovanni structures
+for node in Group.get(label='commonwf-oxides/set2/structures').nodes: # Giovanni structures
     nodes_to_keep.append(node.id)
 
 # append pk of codes to the list of nodes to keep

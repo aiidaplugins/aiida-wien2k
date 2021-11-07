@@ -21,7 +21,7 @@ def _cli_options(parameters):
     return options
 
 class Wien2kRunLapw(CalcJob):
-    """AiiDA calculation plugin to initialize WIEN2k calculation using init_lapw."""
+    """AiiDA calculation plugin to run WIEN2k calculation using run_lapw."""
     
     @classmethod
     def define(cls, spec):

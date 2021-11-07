@@ -87,7 +87,7 @@ configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 chemformulas_compleated = []
 nprocmax = 8
 res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
-for node in Group.get(label='commonwf-oxides/set1/structures').nodes:
+for node in Group.get(label='commonwf-oxides/set2/structures').nodes:
     aiida_structure = node # get structure of SiO2
     element = aiida_structure.extras['element'] # chemical element X
     configuration = aiida_structure.extras['configuration'] # X2O, XO2, etc.
