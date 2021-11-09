@@ -214,3 +214,17 @@ builder = inputgen.get_builder(structure=load_node(72328),engines= {
 })
 submit(builder)
 ```
+
+Submit a command to all compute nodes:
+```
+for host in psi11 psi12 psi13 psi14 psi15 psi16 psi17 psi18
+do
+	echo "host = $host"
+    ssh $host 'ps -o pid,user,%cpu,%mem,command ax | sort -nrk 3,3 | head -n 10'
+done
+```
+
+Grep all finished jobs
+```
+verdi process list -a | grep -e "Wien2kRun123Lapw" | grep -e "Finished"
+```
