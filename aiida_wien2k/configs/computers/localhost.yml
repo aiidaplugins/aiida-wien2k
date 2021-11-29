@@ -3,7 +3,7 @@ label: "localhost"
 hostname: "localhost"
 transport: local
 scheduler: "slurm"
-work_dir: "/scratch/aiida"
+work_dir: "/eos/rubel/aiida_workdir"
 shebang: "#!/bin/bash"
 mpirun_command: "mpirun -np {tot_num_mpiprocs}"
 mpiprocs_per_machine: "1"

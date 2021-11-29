@@ -7,7 +7,10 @@ remote_abs_path: "/area51/WIEN2k_21/run123_lapw"
 computer: "localhost"
 prepend_text: '
 export EDITOR="vim";
-[[ -z "${SLURM_JOB_NAME}" ]] && export SCRATCH="/scratch/aiida/scratch-${RANDOM}" || export SCRATCH="/scratch/aiida/sctratch-${SLURM_JOB_NAME}";
-mkdir -p ${SCRATCH};
-mkdir -p case && cd case'
-append_text: " "
+[[ -z "${SLURM_JOB_NAME}" ]] && export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${RANDOM}/case" || export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${SLURM_JOB_NAME}/case";
+mkdir -p ${WORKDIR};
+cd case && cp -p * ${WORKDIR};
+AIIDADIR=${PWD};
+ln -s ${WORKDIR} case;
+cd ${WORKDIR}'
+append_text: " cp -p *.struct *.scf0 *.scf1 *.scf2 *.scfc *.scfm *.error* *.dayfile ${AIIDADIR}"

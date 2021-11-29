@@ -1,10 +1,11 @@
 from aiida.engine import submit
-from aiida import orm
-from aiida_wien2k.workflows.scf123_workchain import Wien2kScf123WorkChain
 import time
 from aiida.plugins.factories import WorkflowFactory
 from aiida.orm import QueryBuilder
 from aiida.schedulers.datastructures import NodeNumberJobResource
+from aiida_common_workflows.workflows.relax.generator import ElectronicType, RelaxType
+from aiida.engine import submit
+from aiida_common_workflows.workflows.eos import EquationOfStateWorkChain
 
 def count_running_wchains():
     """
@@ -13,16 +14,17 @@ def count_running_wchains():
     Return:
     count (int) - number of workchains still running (status=waiting,created) 
     """
-    workchain_entry_point = 'wien2k.scf123_wf'
-    Wien2kScfWorkChain = WorkflowFactory(workchain_entry_point)
+    workchain_entry_point = 'common_workflows.eos'
+    WorkChain = WorkflowFactory(workchain_entry_point)
     query = QueryBuilder()
-    query.append(Wien2kScfWorkChain) # serach workflows that match workchain_entry_point
+    query.append(WorkChain) # serach workflows that match workchain_entry_point
     query.all()
     count = 0
     for node in query.iterall():
         if((node[0].process_state.value == 'waiting') or\
                 (node[0].process_state.value == 'created')):
             count = count + 1 # count all waiting processes
+    print(f'Total of {count} {workchain_entry_point} workchains are waiting or created')
 
     return count # int
 
@@ -54,7 +56,12 @@ elements_all = ['H', \
 elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
 chemformulas_compleated = []
-nprocmax = 70
+engines= {
+    'relax': {
+        'code': 'wien2k-run123_lapw@localhost'
+    }
+}
+nprocmax = 15
 res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
 counter = 0
 for node in Group.get(label='commonwf-oxides/set2/structures').nodes:
@@ -67,20 +74,18 @@ for node in Group.get(label='commonwf-oxides/set2/structures').nodes:
         chemformula = aiida_structure.get_formula()
         if (chemformula in chemformulas_compleated):
             continue # skip iteration
-        # run SCF123 workchain
-        code = orm.load_code(label='wien2k-run123_lapw@localhost')
-        inpdict = orm.Dict(dict={\
-                '-i': '100',\
-                '-red': '3',\
-                '-ec': '0.000001',\
-                '-cc': '0.00003',\
-                '-hdlo': False,\
-                '-fermit': '0.0045',\
-                '-nokshift': True,\
-                '-deltak': '0.021'
-        }) # run123_lapw [param]
-        result = submit(Wien2kScf123WorkChain, aiida_structure=aiida_structure,\
-                code=code, inpdict=inpdict)
+        # run common workflow EOS workchain
+        inputs = {
+            'structure': aiida_structure,
+            'generator_inputs': {
+                'engines': engines,
+                'protocol': 'moderate',
+                'relax_type': RelaxType.NONE,
+                'electronic_type': ElectronicType.METAL,
+            },
+            'sub_process_class': 'common_workflows.relax.wien2k',
+        }
+        result = submit(EquationOfStateWorkChain,**inputs)
         print('result=', result)
         counter = counter+1
         print('counter=', counter)

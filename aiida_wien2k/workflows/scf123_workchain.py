@@ -59,6 +59,9 @@ class Wien2kScf123WorkChain(WorkChain):
 
         for step in [self.ctx.node]:
             if( not step.is_finished_ok ):
-                return self.exit_codes.WARNING # warnings during calc. steps
+                if( step.exit_status == 305):
+                    return self.exit_codes.WARNING # warnings during calc. steps
+                elif( step.exit_status >= 400 ):
+                    return self.exit_codes.ERROR # error during calc. steps
     
         return

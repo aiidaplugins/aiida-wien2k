@@ -78,9 +78,9 @@ def _grep_all_instances(key, pip):
 
     return None # return none if no match found
 
-def check_error_files(files, logger):
+def check_error_files(files, errending, logger):
     """
-    Check for *.error files among 'files' retrieved.
+    Check for *.errending files among 'files' retrieved.
     Return 'True' if any of then are not empty.
     Print errors into the error logger.
 
@@ -90,7 +90,7 @@ def check_error_files(files, logger):
     not_empty = False
     errmsgs = ''
     for fname in files.list_object_names(): # loop through all files retrieved
-        if( fname.endswith('error') ): # error file
+        if( fname.endswith(errending) ): # error file
             err_file_content = files.get_object_content(fname)
             if( err_file_content != '' ): # error file is empty
                 not_empty = True
@@ -112,21 +112,22 @@ class Wien2kScf123Parser(Parser):
         :returns: non-zero exit code, if parsing fails
         """
 
-        # check error files and write to logger if any of them are not empty
-        err_files_not_empty = check_error_files(files=self.retrieved, logger=self.logger)
+        # PREC 3k
+        # ~~~~~~~~
+
+        self.logger.info(f"Parsing prec 3k files:")
+
+        # check error_prec3k files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved,\
+                errending='.error_prec3k', logger=self.logger)
         if( err_files_not_empty ):
-            raise # non-empty error file(s) found
+            raise # non-empty error_prec3k file(s) found
 
         # all file to be processed
-        output_fnames = [
-                'case.scf0', 'case.scf1', 'case.scf2', 'case.scfm',\
-                'case.scfc', 'case.dayfile',\
-                'prec1.scf0', 'prec1.scf1', 'prec1.scf2', 'prec1.scfm',\
-                'prec1.scfc', 'prec1.dayfile',\
-                'prec2.scf0', 'prec2.scf1', 'prec2.scf2', 'prec2.scfm',\
-                'prec2.scfc', 'prec2.dayfile',\
-                'prec3.scf0', 'prec3.scf1', 'prec3.scf2', 'prec3.scfm',\
-                'prec3.scfc', 'prec3.dayfile']
+        output_fnames = [\
+                'prec3k.scf0', 'prec3k.scf1', 'prec3k.scf2', 'prec3k.scfm',\
+                'prec3k.scfc', 'prec3k.dayfile'\
+        ]
 
         #Check that folder content is as expected
         files_retrieved = self.retrieved.list_object_names()
@@ -138,23 +139,27 @@ class Wien2kScf123Parser(Parser):
         # get output data
         res = Dict()
 
-        # :ITE, :VOL
-        # prec 3k (not done for prec 1, 2, 3)
-        output_fname = 'case.scf0'
+        # :VOL
+        output_fname = 'prec3k.scf0'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
-        iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
-        if iterlist:
-            res['Iter'] = iterlist
         vollist = _grep(key=":VOL", pip=file_content) # get all volumes in SCF run
         if vollist:
             res['VolBohr3'] = vollist
         else:
             raise # Cell volume not found
+
+        # :ITE
+        res['Iter'] = []
+        output_fname = 'prec3k.scf0'
+        self.logger.info(f"Parsing '{output_fname}'")
+        file_content = self.retrieved.get_object_content(output_fname)
+        iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+        if iterlist:
+            res['Iter'].append(iterlist)
         
         # :FER, :GAP, :CHA, :POS
-        # prec 3k (not done for prec 1, 2, 3)
-        output_fname = 'case.scf2'
+        output_fname = 'prec3k.scf2'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
         eflist = _grep(key=":FER", pip=file_content) # get Fermi ene in SCF run
@@ -178,8 +183,7 @@ class Wien2kScf123Parser(Parser):
         
 
         # :ENE,:CINT
-        # prec 3k
-        output_fname = 'case.scfm'
+        output_fname = 'prec3k.scfm'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
         enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
@@ -193,127 +197,221 @@ class Wien2kScf123Parser(Parser):
             res['num_core_el'] = numcoreellist
         else:
             raise # number of core electrons not found
-        # prec 1
-        output_fname = 'prec1.scfm'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
-        if enelist: # check if energy list is not empty
-            res['EtotRyd_prec1'] = enelist
-        else:
-            raise # prec1: Etot not found
-        # get number of core electrons
-        numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
-        if numcoreellist:
-            res['num_core_el_prec1'] = numcoreellist
-        else:
-            raise # prec1: number of core electrons not found
-        # prec 2
-        output_fname = 'prec2.scfm'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
-        if enelist: # check if energy list is not empty
-            res['EtotRyd_prec2'] = enelist
-        else:
-            raise # prec2: Etot not found
-        # get number of core electrons
-        numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
-        if numcoreellist:
-            res['num_core_el_prec2'] = numcoreellist
-        else:
-            raise # prec2: number of core electrons not found
-        # prec 3
-        output_fname = 'prec3.scfm'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
-        if enelist: # check if energy list is not empty
-            res['EtotRyd_prec3'] = enelist
-        else:
-            raise # prec3: Etot not found
-        # get number of core electrons
-        numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
-        if numcoreellist:
-            res['num_core_el_prec3'] = numcoreellist
-        else:
-            raise # prec3: number of core electrons not found
 
         # :WAR
-        # prec 3k
         res['Warning_last'] = [] # allocate list
-        for output_fname in ['case.scf0', 'case.scf1', 'case.scf2',\
-                'case.scfm', 'case.scfc']:
+        for output_fname in ['prec3k.scf0', 'prec3k.scf1', 'prec3k.scf2',\
+                'prec3k.scfm', 'prec3k.scfc']:
             self.logger.info(f"Parsing '{output_fname}'")
             file_content = self.retrieved.get_object_content(output_fname)
             warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
             if warngmsg: # check if warnings list is not empty
                 res['Warning_last'].append(warngmsg) # get last message if there are multiple lines
-        # prec 1
-        res['Warning_last_prec1'] = [] # allocate list
-        for output_fname in ['prec1.scf0', 'prec1.scf1', 'prec1.scf2',\
-                'prec1.scfm', 'prec1.scfc']:
-            self.logger.info(f"Parsing '{output_fname}'")
-            file_content = self.retrieved.get_object_content(output_fname)
-            warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
-            if warngmsg: # check if warnings list is not empty
-                res['Warning_last_prec1'].append(warngmsg) # get last message if there are multiple lines
-        # prec 2
-        res['Warning_last_prec2'] = [] # allocate list
-        for output_fname in ['prec2.scf0', 'prec2.scf1', 'prec2.scf2',\
-                'prec2.scfm', 'prec2.scfc']:
-            self.logger.info(f"Parsing '{output_fname}'")
-            file_content = self.retrieved.get_object_content(output_fname)
-            warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
-            if warngmsg: # check if warnings list is not empty
-                res['Warning_last_prec2'].append(warngmsg) # get last message if there are multiple lines
-        # prec 3
-        res['Warning_last_prec3'] = [] # allocate list
-        for output_fname in ['prec3.scf0', 'prec3.scf1', 'prec3.scf2',\
-                'prec3.scfm', 'prec3.scfc']:
-            self.logger.info(f"Parsing '{output_fname}'")
-            file_content = self.retrieved.get_object_content(output_fname)
-            warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
-            if warngmsg: # check if warnings list is not empty
-                res['Warning_last_prec3'].append(warngmsg) # get last message if there are multiple lines
-        
+        # Convergence check will be done at the end
+
+        # PREC 3
+        # ~~~~~~
+
+        self.logger.info(f"Parsing prec 3 files:")
+
+        # check error_prec3 files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved,\
+                errending='.error_prec3', logger=self.logger)
+        if( not err_files_not_empty ): # no error files
+
+            # all file to be processed
+            output_fnames = [\
+                    'prec3.scf0', 'prec3.scf1', 'prec3.scf2', 'prec3.scfm',\
+                    'prec3.scfc', 'prec3.dayfile'\
+            ]
+
+            #Check that folder content is as expected
+            files_retrieved = self.retrieved.list_object_names()
+            # Note: set(A) <= set(B) checks whether A is a subset of B
+            if set(output_fnames) <= set(files_retrieved): # all expected output files are in place
+
+                # :ENE, :CINT
+                output_fname = 'prec3.scfm'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
+                if enelist: # check if energy list is not empty
+                    res['EtotRyd_prec3'] = enelist
+                else:
+                    raise # prec3: Etot not found
+                # get number of core electrons
+                numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
+                if numcoreellist:
+                    res['num_core_el_prec3'] = numcoreellist
+                else:
+                    raise # prec3: number of core electrons not found
+
+                # :ITE
+                output_fname = 'prec3.scf0'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+                if iterlist:
+                    res['Iter'].append(iterlist)
+
+                # :WAR
+                res['Warning_last_prec3'] = [] # allocate list
+                for output_fname in ['prec3.scf0', 'prec3.scf1', 'prec3.scf2',\
+                        'prec3.scfm', 'prec3.scfc']:
+                    self.logger.info(f"Parsing '{output_fname}'")
+                    file_content = self.retrieved.get_object_content(output_fname)
+                    warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
+                    if warngmsg: # check if warnings list is not empty
+                        res['Warning_last_prec3'].append(warngmsg) # get last message if there are multiple lines
+                
+                # Check if calculation is converged
+                output_fname = 'prec3.dayfile'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
+                if not converged: # if line not found
+                    res['Warning_last_prec3'].append('Warning: SCF prec3 not converged')
+
+
+        # PREC 2
+        # ~~~~~~
+
+        self.logger.info(f"Parsing prec 2 files:")
+
+        # check error_prec2 files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved,\
+                errending='.error_prec2', logger=self.logger)
+        if( not err_files_not_empty ): # no error files
+
+            # all file to be processed
+            output_fnames = [\
+                    'prec2.scf0', 'prec2.scf1', 'prec2.scf2', 'prec2.scfm',\
+                    'prec2.scfc', 'prec2.dayfile'\
+            ]
+
+            #Check that folder content is as expected
+            files_retrieved = self.retrieved.list_object_names()
+            # Note: set(A) <= set(B) checks whether A is a subset of B
+            if set(output_fnames) <= set(files_retrieved): # all expected output files are in place
+
+                # :ENE, :CINT
+                output_fname = 'prec2.scfm'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
+                if enelist: # check if energy list is not empty
+                    res['EtotRyd_prec2'] = enelist
+                else:
+                    raise # prec2: Etot not found
+                # get number of core electrons
+                numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
+                if numcoreellist:
+                    res['num_core_el_prec2'] = numcoreellist
+                else:
+                    raise # prec2: number of core electrons not found
+
+                # :ITE
+                output_fname = 'prec2.scf0'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+                if iterlist:
+                    res['Iter'].append(iterlist)
+
+                # :WAR
+                res['Warning_last_prec2'] = [] # allocate list
+                for output_fname in ['prec2.scf0', 'prec2.scf1', 'prec2.scf2',\
+                        'prec2.scfm', 'prec2.scfc']:
+                    self.logger.info(f"Parsing '{output_fname}'")
+                    file_content = self.retrieved.get_object_content(output_fname)
+                    warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
+                    if warngmsg: # check if warnings list is not empty
+                        res['Warning_last_prec2'].append(warngmsg) # get last message if there are multiple lines
+                
+                # Check if calculation is converged
+                output_fname = 'prec2.dayfile'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
+                if not converged: # if line not found
+                    res['Warning_last_prec2'].append('Warning: SCF prec2 not converged')
+
+
+        # PREC 1
+        # ~~~~~~
+
+        self.logger.info(f"Parsing prec 1 files:")
+
+        # check error_prec1 files and write to logger if any of them are not empty
+        err_files_not_empty = check_error_files(files=self.retrieved,\
+                errending='.error_prec1', logger=self.logger)
+        if( not err_files_not_empty ): # no error files
+
+            # all file to be processed
+            output_fnames = [\
+                    'prec1.scf0', 'prec1.scf1', 'prec1.scf2', 'prec1.scfm',\
+                    'prec1.scfc', 'prec1.dayfile'\
+            ]
+
+            #Check that folder content is as expected
+            files_retrieved = self.retrieved.list_object_names()
+            # Note: set(A) <= set(B) checks whether A is a subset of B
+            if set(output_fnames) <= set(files_retrieved): # all expected output files are in place
+
+                # :ENE, :CINT
+                output_fname = 'prec1.scfm'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                enelist = _grep(key=":ENE", pip=file_content) # get all energies in SCF run
+                if enelist: # check if energy list is not empty
+                    res['EtotRyd_prec1'] = enelist
+                else:
+                    raise # prec1: Etot not found
+                # get number of core electrons
+                numcoreellist = _grep_all_instances(key=":CINT", pip=file_content)
+                if numcoreellist:
+                    res['num_core_el_prec1'] = numcoreellist
+                else:
+                    raise # prec1: number of core electrons not found
+
+                # :ITE
+                output_fname = 'prec1.scf0'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
+                if iterlist:
+                    res['Iter'].append(iterlist)
+
+                # :WAR
+                res['Warning_last_prec1'] = [] # allocate list
+                for output_fname in ['prec1.scf0', 'prec1.scf1', 'prec1.scf2',\
+                        'prec1.scfm', 'prec1.scfc']:
+                    self.logger.info(f"Parsing '{output_fname}'")
+                    file_content = self.retrieved.get_object_content(output_fname)
+                    warngmsg = _grep(key=":WAR", pip=file_content) # get all warnings
+                    if warngmsg: # check if warnings list is not empty
+                        res['Warning_last_prec1'].append(warngmsg) # get last message if there are multiple lines
+                
+                # Check if calculation is converged
+                output_fname = 'prec1.dayfile'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
+                if not converged: # if line not found
+                    res['Warning_last_prec1'].append('Warning: SCF prec1 not converged')
 
         # Assign results
         self.out('scf_grep', res)
         
         # Check if calculation is converged
         # prec 3k
-        output_fname = 'case.dayfile'
+        output_fname = 'prec3k.dayfile'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
         converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
         if not converged: # if line not found
             res['Warning_last'].append('Warning: SCF not converged')
-            return self.exit_codes.WARNING_CONVERG
-        # prec 1
-        output_fname = 'prec1.dayfile'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
-        if not converged: # if line not found
-            res['Warning_last_prec1'].append('Warning: SCF prec1 not converged')
-            return self.exit_codes.WARNING_CONVERG1
-        # prec 2
-        output_fname = 'prec2.dayfile'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
-        if not converged: # if line not found
-            res['Warning_last_prec2'].append('Warning: SCF prec2 not converged')
-            return self.exit_codes.WARNING_CONVERG2
-        # prec 3
-        output_fname = 'prec3.dayfile'
-        self.logger.info(f"Parsing '{output_fname}'")
-        file_content = self.retrieved.get_object_content(output_fname)
-        converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
-        if not converged: # if line not found
-            res['Warning_last_prec3'].append('Warning: SCF prec3 not converged')
-            return self.exit_codes.WARNING_CONVERG3
+            return self.exit_codes.WARNING_CONVERG        
 
         # Check warnings (if any) and assign the exit code accordingly
         # prec 3k
@@ -331,50 +429,5 @@ class Wien2kScf123Parser(Parser):
                     return self.exit_codes.WARNING_INT
             # in case of no known warnings
             return self.exit_codes.WARNING_OTHER
-        # prec 1
-        if res['Warning_last_prec1']: # check if warnings list is not empty
-            warn_qtlb = 'QTL-B value eq. in Band of energy ATOM= L='
-            warn_vccoul = 'VK-COUL not well converged: Increase GMAX or decrease NCON'
-            warn_int = 'RESULT OF INTEGRATION SHOULD BE'
-            for msg in res['Warning_last_prec1']:
-                # handle warnings using fuzzy matching
-                if( fuzz.ratio(msg, warn_qtlb) > 50 ): # QRT-B warning
-                    return self.exit_codes.WARNING_QTL_B1
-                elif( fuzz.ratio(msg, warn_vccoul) > 50 ): # VK-COUL warning
-                    return self.exit_codes.WARNING_VK_COUL1
-                elif( fuzz.ratio(msg, warn_int) > 50 ): # RESULT OF INTEGRATION warning
-                    return self.exit_codes.WARNING_INT1
-            # in case of no known warnings
-            return self.exit_codes.WARNING_OTHER1
-        # prec 2
-        if res['Warning_last_prec2']: # check if warnings list is not empty
-            warn_qtlb = 'QTL-B value eq. in Band of energy ATOM= L='
-            warn_vccoul = 'VK-COUL not well converged: Increase GMAX or decrease NCON'
-            warn_int = 'RESULT OF INTEGRATION SHOULD BE'
-            for msg in res['Warning_last_prec2']:
-                # handle warnings using fuzzy matching
-                if( fuzz.ratio(msg, warn_qtlb) > 50 ): # QRT-B warning
-                    return self.exit_codes.WARNING_QTL_B2
-                elif( fuzz.ratio(msg, warn_vccoul) > 50 ): # VK-COUL warning
-                    return self.exit_codes.WARNING_VK_COUL2
-                elif( fuzz.ratio(msg, warn_int) > 50 ): # RESULT OF INTEGRATION warning
-                    return self.exit_codes.WARNING_INT2
-            # in case of no known warnings
-            return self.exit_codes.WARNING_OTHER2
-        # prec 3
-        if res['Warning_last_prec3']: # check if warnings list is not empty
-            warn_qtlb = 'QTL-B value eq. in Band of energy ATOM= L='
-            warn_vccoul = 'VK-COUL not well converged: Increase GMAX or decrease NCON'
-            warn_int = 'RESULT OF INTEGRATION SHOULD BE'
-            for msg in res['Warning_last_prec3']:
-                # handle warnings using fuzzy matching
-                if( fuzz.ratio(msg, warn_qtlb) > 50 ): # QRT-B warning
-                    return self.exit_codes.WARNING_QTL_B3
-                elif( fuzz.ratio(msg, warn_vccoul) > 50 ): # VK-COUL warning
-                    return self.exit_codes.WARNING_VK_COUL3
-                elif( fuzz.ratio(msg, warn_int) > 50 ): # RESULT OF INTEGRATION warning
-                    return self.exit_codes.WARNING_INT3
-            # in case of no known warnings
-            return self.exit_codes.WARNING_OTHER3
 
         return ExitCode(0) # finished OK

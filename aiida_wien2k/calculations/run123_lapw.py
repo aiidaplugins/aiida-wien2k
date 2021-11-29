@@ -1,8 +1,60 @@
 from aiida.common import datastructures
 from aiida.engine import CalcJob
 from aiida.orm import Dict, SinglefileData, StructureData, Code
-import ase.io
-import os
+import io
+import numpy as np
+from ase.units import Bohr
+
+def cellconst(metT):
+    """ metT=np.dot(cell,cell.T) """
+    aa = np.sqrt(metT[0, 0])
+    bb = np.sqrt(metT[1, 1])
+    cc = np.sqrt(metT[2, 2])
+    gamma = np.arccos(metT[0, 1] / (aa * bb)) / np.pi * 180.0
+    beta = np.arccos(metT[0, 2] / (aa * cc)) / np.pi * 180.0
+    alpha = np.arccos(metT[1, 2] / (bb * cc)) / np.pi * 180.0
+    return np.array([aa, bb, cc, alpha, beta, gamma])
+
+def write_struct(f, atoms2=None, rmt=None, lattice='P', zza=None):
+    """ Adapted from ASE.
+        It writes ASE structure into a WIEN2k struct file as a StringIO
+        file-like object."""
+    atoms = atoms2.copy()
+    atoms.wrap()
+    f.write('ASE generated\n')
+    nat = len(atoms)
+    if rmt is None:
+        rmt = [2.0] * nat
+        f.write(lattice +
+                '   LATTICE,NONEQUIV.ATOMS:%3i\nMODE OF CALC=RELA\n' % nat)
+    cell = atoms.get_cell()
+    metT = np.dot(cell, np.transpose(cell))
+    cell2 = cellconst(metT)
+    cell2[0:3] = cell2[0:3] / Bohr
+    f.write(('%10.6f' * 6) % tuple(cell2) + '\n')
+    if zza is None:
+        zza = atoms.get_atomic_numbers()
+    for ii in range(nat):
+        f.write('ATOM %3i: ' % (ii + 1))
+        pos = atoms.get_scaled_positions()[ii]
+        f.write('X=%10.8f Y=%10.8f Z=%10.8f\n' % tuple(pos))
+        f.write('          MULT= 1          ISPLIT= 1\n')
+        zz = zza[ii]
+        if zz > 71:
+            ro = 0.000005
+        elif zz > 36:
+            ro = 0.00001
+        elif zz > 18:
+            ro = 0.00005
+        else:
+            ro = 0.0001
+        f.write('%-10s NPT=%5i  R0=%9.8f RMT=%10.4f   Z:%10.5f\n' %
+                (atoms.get_chemical_symbols()[ii], 781, ro, rmt[ii], zz))
+        f.write('LOCAL ROT MATRIX:    %9.7f %9.7f %9.7f\n' % (1.0, 0.0, 0.0))
+        f.write('                     %9.7f %9.7f %9.7f\n' % (0.0, 1.0, 0.0))
+        f.write('                     %9.7f %9.7f %9.7f\n' % (0.0, 0.0, 1.0))
+    f.write('   0\n')
+    return f # file-like object
 
 def _cli_options(parameters):
     """Return command line options for parameters dictionary.
@@ -24,11 +76,18 @@ def _cli_options(parameters):
 def aiida_struct2wien2k(aiida_structure):
     """prepare structure file for WIEN2k"""
     ase_structure = aiida_structure.get_ase() # AiiDA -> ASE struct
-    ase.io.write("case.struct",ase_structure) # ASE -> WIEN2k, write WIEN2k struct
-    path_to_rm_folder = os.getcwd() # get path to folder
-    path_to_rm_structfile = os.path.join(path_to_rm_folder, 'case.struct') # get path to struct file
-    wien2k_structfile = SinglefileData(file=path_to_rm_structfile) # get proper AiiDA type for a single file (otherwise you cannot return)
-    return wien2k_structfile # orm.SinglefileData type (stored automatically in AiiDA database)
+    # create a file like object for the WIEN2k struct file to avoid writing it to disk
+    wien2k_structfile_flo = io.StringIO() 
+    # ASE -> WIEN2k, write WIEN2k struct
+    wien2k_structfile_flo = write_struct(f=wien2k_structfile_flo, atoms2=ase_structure)
+    # get proper AiiDA type for a single file (otherwise you cannot return)
+    # Here we use bytes file-like object as an input to avoid creating an intermediate file
+    # (It happened that the other process can overide such file)
+    wien2k_structfile = SinglefileData(\
+                file=io.BytesIO(bytes(wien2k_structfile_flo.getvalue(),'utf-8')),\
+                filename='case.struct')
+
+    return wien2k_structfile # orm.SinglefileData type
 
 class Wien2kRun123Lapw(CalcJob):
     """AiiDA calculation plugin to run WIEN2k calculation using run123_lapw."""
@@ -129,13 +188,7 @@ class Wien2kRun123Lapw(CalcJob):
                 (aiida2wien_structfile.uuid, aiida2wien_structfile.filename, 'case/case.struct')
             ] # copy case.struct to the local folder as new.struct
         calcinfo.remote_copy_list = [] # none
-        calcinfo.retrieve_list = [('case/case.scf0'), ('case/case.scf1'), ('case/case.scf2'),\
-                ('case/case.scfm'), ('case/case.scfc'), ('case/*.error*'), ('case/case.dayfile'),\
-                ('case/prec1.scf0'), ('case/prec1.scf1'), ('case/prec1.scf2'),\
-                ('case/prec1.scfm'), ('case/prec1.scfc'), ('case/prec1.dayfile'),\
-                ('case/prec2.scf0'), ('case/prec2.scf1'), ('case/prec2.scf2'),\
-                ('case/prec2.scfm'), ('case/prec2.scfc'), ('case/prec2.dayfile'),\
-                ('case/prec3.scf0'), ('case/prec3.scf1'), ('case/prec3.scf2'),\
-                ('case/prec3.scfm'), ('case/prec3.scfc'), ('case/prec3.dayfile')]
+        calcinfo.retrieve_list = [('case/*.scf0'), ('case/*.scf1'), ('case/*.scf2'),\
+                ('case/*.scfm'), ('case/*.scfc'), ('case/*.error*'), ('case/*.dayfile')]
 
         return calcinfo

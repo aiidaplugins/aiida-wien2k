@@ -2,16 +2,10 @@ from aiida_common_workflows.workflows.relax.generator import ElectronicType, Rel
 from aiida.engine import submit
 from aiida_common_workflows.workflows.eos import EquationOfStateWorkChain
 
-structure = load_node(255)
+structure = load_node(73739)
 engines= {
-    'x-sgroup': {
-        'code': 'wien2k-x-sgroup@localhost'
-    },
-    'init_lapw': {
-        'code': 'wien2k-init_lapw@localhost'
-    },
     'relax': {
-        'code': 'wien2k-run_lapw@localhost'
+        'code': 'wien2k-run123_lapw@localhost'
     }
 }
 inputs = {

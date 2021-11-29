@@ -4,13 +4,14 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Verdi",
             "type": "python",
             "request": "launch",
             "program": "/eos/rubel/anaconda3/envs/aiida/bin/verdi",
             //"args": ["run", "launch_eos_workchain.py"],
-            "args": ["run", "query_oxides_eos.py"],
+            "args": ["run", "get_results.py"],
             "console": "integratedTerminal"
         }
     ]
