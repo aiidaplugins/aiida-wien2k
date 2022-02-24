@@ -22,6 +22,7 @@ class Wien2kScf123WorkChain(WorkChain):
                 cls.inspect_warn_all_steps)
         # output parameters
         spec.output("workchain_result", valid_type=Dict)
+        spec.output('aiida_structure_out', valid_type=StructureData, required=True, help='AiiDA output structure')
         # exit codes
         spec.exit_code(300, 'WARNING', 'There were warning messages during calculation steps')
         spec.exit_code(400, 'ERROR', 'There was a terminal error in one of calculation steps')
@@ -51,6 +52,7 @@ class Wien2kScf123WorkChain(WorkChain):
 
         # Declaring the output
         self.out("workchain_result", self.ctx.node.outputs.scf_grep)
+        self.out("aiida_structure_out", self.ctx.node.outputs.aiida_structure_out)
     
         return
 

@@ -13,4 +13,4 @@ cd case && cp -p * ${WORKDIR};
 AIIDADIR=${PWD};
 ln -s ${WORKDIR} case;
 cd ${WORKDIR}'
-append_text: " cp -p *.struct *.scf0 *.scf1 *.scf2 *.scfc *.scfm *.error* *.dayfile ${AIIDADIR}"
+append_text: " cp -p *.struct *.scf0 *.scf1 *.scf2 *.scfc *.scfm *.error* *.dayfile *.klist *3k.in0 ${AIIDADIR}"

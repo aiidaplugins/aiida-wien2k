@@ -110,6 +110,7 @@ class Wien2kRun123Lapw(CalcJob):
         spec.inputs['metadata']['options']['parser_name'].default = 'wien2k-scf123-parser'
 
         spec.output('scf_grep', valid_type=Dict, help='WIEN2k SCF output dictionary')
+        spec.output('aiida_structure_out', valid_type=StructureData, required=True, help='AiiDA output structure')
         # exit codes
         spec.exit_code(400, 'ERROR_ITER_0',
                 message='Unable to perform even a single SCF iteration.')
@@ -189,6 +190,7 @@ class Wien2kRun123Lapw(CalcJob):
             ] # copy case.struct to the local folder as new.struct
         calcinfo.remote_copy_list = [] # none
         calcinfo.retrieve_list = [('case/*.scf0'), ('case/*.scf1'), ('case/*.scf2'),\
-                ('case/*.scfm'), ('case/*.scfc'), ('case/*.error*'), ('case/*.dayfile')]
+                ('case/*.scfm'), ('case/*.scfc'), ('case/*.error*'), ('case/*.dayfile'),\
+                ('case/*.klist'), ('case/*.in0'), ('case/case.struct')]
 
         return calcinfo

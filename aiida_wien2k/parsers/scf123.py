@@ -1,8 +1,12 @@
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
-from aiida.orm import Dict
+from aiida.orm import Dict, StructureData
 from fuzzywuzzy import fuzz
+from ase import Atoms
+from ase.units import Bohr, Ry
+import io
+import numpy as np
 
 def _grep(key, pip):
     """"Serach patterns in lines `pip` that start with `key` only last iteration"""
@@ -38,9 +42,21 @@ def _grep(key, pip):
             if line[0:len(key)] == key:
                 value = line
                 return value
-        elif(key==":WAR"): # warnings
-            if line[0:len(key)] == key:
-                value = [line]
+        elif(key=="k mesh"):
+            if '(' in line: # the line contains bracket (nkx nky nkz)
+                cut = line.rsplit(sep='(',maxsplit=-1)[1] # get 'nkx nky nkz)'
+                cut = cut.rsplit(sep=')',maxsplit=-1)[0] # get 'nkx nky nkz'
+                value = cut.strip() # trim white spaces
+                return value
+        elif(key=="FFT mesh"):
+            if 'IFFT-parameters' in line: # the line contains FFT (nkx nky nkz)
+                cut = line.rsplit()[0:3] # get 'nkx nky nkz'
+                value = cut[0] + ' ' + cut[1] + ' ' + cut[2] # join values
+                return value
+        elif(key=="-TS"): # the entropy contrubution to the free energy (Ry)
+            if '-(T*S)' in line: # the line contains '  -(T*S)            =  -0.00441718'
+                cut = line.rsplit() # split by spaces
+                value = cut[2] # get '-0.00441718'
                 return value
         else: # generic grep option not implemented
             if line[0:len(key)] == key:
@@ -100,7 +116,124 @@ def check_error_files(files, errending, logger):
         logger.error(errmsgs) # write all error messages to a logger
 
     return not_empty # False if all *.error files are empty
-    
+
+def read_struct(fd, ase=True):
+    """Copied from ASE.
+    WIEN2k -> ASE structure converter.
+    fd: WIEN2k file-like object"""
+    pip = fd.readlines()
+    lattice = pip[1][0:3]
+    nat = int(pip[1][27:30])
+    cell = np.zeros(6)
+    for i in range(6):
+        cell[i] = float(pip[3][0 + i * 10:10 + i * 10])
+    cell[0:3] = cell[0:3] * Bohr
+    if lattice == 'P  ':
+        lattice = 'P'
+    elif lattice == 'H  ':
+        lattice = 'P'
+        cell[3:6] = [90.0, 90.0, 120.0]
+    elif lattice == 'R  ':
+        lattice = 'R'
+    elif lattice == 'F  ':
+        lattice = 'F'
+    elif lattice == 'B  ':
+        lattice = 'I'
+    elif lattice == 'CXY':
+        lattice = 'C'
+    elif lattice == 'CXZ':
+        lattice = 'B'
+    elif lattice == 'CYZ':
+        lattice = 'A'
+    else:
+        raise RuntimeError('TEST needed')
+    pos = np.array([])
+    atomtype = []
+    rmt = []
+    neq = np.zeros(nat)
+    iline = 4
+    indif = 0
+    for iat in range(nat):
+        indifini = indif
+        if len(pos) == 0:
+            pos = np.array([[float(pip[iline][12:22]),
+                             float(pip[iline][25:35]),
+                             float(pip[iline][38:48])]])
+        else:
+            pos = np.append(pos, np.array([[float(pip[iline][12:22]),
+                                            float(pip[iline][25:35]),
+                                            float(pip[iline][38:48])]]),
+                            axis=0)
+        indif += 1
+        iline += 1
+        neq[iat] = int(pip[iline][15:17])
+        iline += 1
+        for ieq in range(1, int(neq[iat])):
+            pos = np.append(pos, np.array([[float(pip[iline][12:22]),
+                                            float(pip[iline][25:35]),
+                                            float(pip[iline][38:48])]]),
+                            axis=0)
+            indif += 1
+            iline += 1
+        for i in range(indif - indifini):
+            atomtype.append(pip[iline][0:2].replace(' ', ''))
+            rmt.append(float(pip[iline][43:48]))
+        iline += 4
+    if ase:
+        cell2 = coorsys(cell)
+        atoms = Atoms(atomtype, pos, pbc=True)
+        atoms.set_cell(cell2, scale_atoms=True)
+        cell2 = np.dot(c2p(lattice), cell2)
+        if lattice == 'R':
+            atoms.set_cell(cell2, scale_atoms=True)
+        else:
+            atoms.set_cell(cell2)
+        return atoms
+    else:
+        return cell, lattice, pos, atomtype, rmt
+
+
+def coorsys(latconst):
+    """Copied from ASE.
+    Converts [a, b, c, alpha, beta, gamma] -> [ax, ay, az; bx, by, bz; cx, cy, cz]"""
+    a = latconst[0]
+    b = latconst[1]
+    c = latconst[2]
+    cal = np.cos(latconst[3] * np.pi / 180.0)
+    cbe = np.cos(latconst[4] * np.pi / 180.0)
+    cga = np.cos(latconst[5] * np.pi / 180.0)
+    sga = np.sin(latconst[5] * np.pi / 180.0)
+    return np.array([[a, b * cga, c * cbe],
+                     [0, b * sga, c * (cal - cbe * cga) / sga],
+                     [0, 0, c * np.sqrt(1 - cal**2 - cbe**2 - cga**2 +
+                                        2 * cal * cbe * cga) / sga]
+                     ]).transpose()
+
+
+def c2p(lattice):
+    """Copied from ASE.
+    Conventional -> primitive lattice transform.
+    Note: apply as eg. cell2 = np.dot(c2p('F'), cell)"""
+    if lattice == 'P':
+        cell = np.eye(3)
+    elif lattice == 'F':
+        cell = np.array([[0.0, 0.5, 0.5], [0.5, 0.0, 0.5], [0.5, 0.5, 0.0]])
+    elif lattice == 'I':
+        cell = np.array([[-0.5, 0.5, 0.5], [0.5, -0.5, 0.5], [0.5, 0.5, -0.5]])
+    elif lattice == 'C':
+        cell = np.array([[0.5, 0.5, 0.0], [0.5, -0.5, 0.0], [0.0, 0.0, -1.0]])
+    elif lattice == 'B':
+        cell = np.array([[0.5, 0.0, 0.5], [0.0, 1.0, 0.0], [0.5, 0.0, -0.5]])
+    elif lattice == 'A':
+        cell = np.array([[-1.0, 0.0, 0.0], [0.0, -0.5, 0.5], [0.0, 0.5, 0.5]])
+    elif lattice == 'R':
+        cell = np.array([[2.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0],
+                         [-1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0],
+                         [-1.0 / 3.0, -2.0 / 3.0, 1.0 / 3.0]])
+    else:
+        raise ValueError('lattice is ' + lattice + '!')
+    return cell
+
 
 DiffCalculation = CalculationFactory('wien2k-run123_lapw')
 
@@ -126,7 +259,8 @@ class Wien2kScf123Parser(Parser):
         # all file to be processed
         output_fnames = [\
                 'prec3k.scf0', 'prec3k.scf1', 'prec3k.scf2', 'prec3k.scfm',\
-                'prec3k.scfc', 'prec3k.dayfile'\
+                'prec3k.scfc', 'prec3k.dayfile', 'prec3k.klist', 'prec3k.in0',\
+                'case.struct'\
         ]
 
         #Check that folder content is as expected
@@ -136,6 +270,16 @@ class Wien2kScf123Parser(Parser):
             self.logger.error(f"Found files '{files_retrieved}', expected to find '{output_fnames}'")
             return self.exit_codes.ERROR_MISSING_OUTPUT_FILES
         
+        # get output AiiDA structure
+        output_fname = 'case.struct'
+        # generate a file-like object
+        wien2k_structfile_flo = io.StringIO( self.retrieved.get_object_content(output_fname) )
+        # need *.struct file name for ASE to recognize WIEN2k
+        wien2k_structfile_flo.filename = output_fname 
+        ase_struct_out = read_struct(wien2k_structfile_flo) # WIEN2k struct -> ASE
+        aiida_structure_out = StructureData(ase=ase_struct_out) # ASE struct -> AiiDA
+        aiida_structure_out.store() # save structure in the AiiDA database
+
         # get output data
         res = Dict()
 
@@ -158,7 +302,7 @@ class Wien2kScf123Parser(Parser):
         if iterlist:
             res['Iter'].append(iterlist)
         
-        # :FER, :GAP, :CHA, :POS
+        # :FER, :GAP, :CHA, :POS, -TS
         output_fname = 'prec3k.scf2'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
@@ -180,8 +324,10 @@ class Wien2kScf123Parser(Parser):
             res['atom_labels'] = atomlablelist
         else:
             raise # atom labels not found
+        tslist = _grep(key="-TS", pip=file_content) # get Fermi ene in SCF run
+        if tslist:
+            res['mTSRyd'] = tslist
         
-
         # :ENE,:CINT
         output_fname = 'prec3k.scfm'
         self.logger.info(f"Parsing '{output_fname}'")
@@ -197,6 +343,26 @@ class Wien2kScf123Parser(Parser):
             res['num_core_el'] = numcoreellist
         else:
             raise # number of core electrons not found
+
+        # k mesh
+        output_fname = 'prec3k.klist'
+        self.logger.info(f"Parsing '{output_fname}'")
+        file_content = self.retrieved.get_object_content(output_fname)
+        kmesh3k = _grep(key="k mesh", pip=file_content) # get k mesh
+        if kmesh3k: # check if the k mesh is not empty
+            res['kmesh3k'] = kmesh3k
+        else:
+            raise # k mesh not found
+
+        # FFT mesh
+        output_fname = 'prec3k.in0'
+        self.logger.info(f"Parsing '{output_fname}'")
+        file_content = self.retrieved.get_object_content(output_fname)
+        fftmesh3k = _grep(key="FFT mesh", pip=file_content) # get k mesh
+        if fftmesh3k: # check if the k mesh is not empty
+            res['fftmesh3k'] = fftmesh3k
+        else:
+            raise # FFT mesh not found
 
         # :WAR
         res['Warning_last'] = [] # allocate list
@@ -222,7 +388,7 @@ class Wien2kScf123Parser(Parser):
             # all file to be processed
             output_fnames = [\
                     'prec3.scf0', 'prec3.scf1', 'prec3.scf2', 'prec3.scfm',\
-                    'prec3.scfc', 'prec3.dayfile'\
+                    'prec3.scfc', 'prec3.dayfile', 'prec3.klist'\
             ]
 
             #Check that folder content is as expected
@@ -253,6 +419,14 @@ class Wien2kScf123Parser(Parser):
                 iterlist = _grep(key=":ITE", pip=file_content) # get all iteration in SCF run
                 if iterlist:
                     res['Iter'].append(iterlist)
+
+                # k mesh
+                output_fname = 'prec3.klist'
+                self.logger.info(f"Parsing '{output_fname}'")
+                file_content = self.retrieved.get_object_content(output_fname)
+                kmesh3 = _grep(key="k mesh", pip=file_content) # get k mesh
+                if kmesh3: # check if the k mesh is not empty
+                    res['kmesh3'] = kmesh3
 
                 # :WAR
                 res['Warning_last_prec3'] = [] # allocate list
@@ -402,6 +576,7 @@ class Wien2kScf123Parser(Parser):
 
         # Assign results
         self.out('scf_grep', res)
+        self.out('aiida_structure_out', aiida_structure_out)
         
         # Check if calculation is converged
         # prec 3k

@@ -53,8 +53,10 @@ elements_all = ['H', \
 #elements = elements_all[0:36] # H ... Kr
 #elements = elements_all[36:65] # Rb ... Tb
 #elements = elements_all[65: ] # Dy ... Og
+#elements = ['Rb',] # custom
 elements = elements_all
 configurations = ['X2O', 'XO', 'X2O3', 'X2O5', 'XO2', 'XO3']
+#configurations = ['XO3',] # custom
 chemformulas_compleated = []
 engines= {
     'relax': {
@@ -64,11 +66,12 @@ engines= {
 nprocmax = 15
 res = NodeNumberJobResource(num_machines=1, num_mpiprocs_per_machine=1, num_cores_per_mpiproc=1) # set resources
 counter = 0
-for node in Group.get(label='commonwf-oxides/set2/structures').nodes:
+for node in Group.get(label='commonwf-oxides/set2-bis/structures').nodes:
     aiida_structure = node # get structure of SiO2
     element = aiida_structure.extras['element'] # chemical element X
     configuration = aiida_structure.extras['configuration'] # X2O, XO2, etc.
     formula = element + '-' + configuration # H-XO3
+    print(formula)
     if ( (element in elements) and (configuration in configurations) ):
         print(node.extras) # info about chem. composition
         chemformula = aiida_structure.get_formula()
