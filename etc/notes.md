@@ -170,6 +170,17 @@ Migrate database
 verdi -p <profile_name> database migrate
 ```
 
+## Common workflow
+
+Test SCF run (Si, default)
+```
+aiida-common-workflows launch relax -r none -p moderate wien2k
+```
+
+Test EOS run (Si, default)
+```
+aiida-common-workflows launch relax -r none -p moderate wien2k
+```
 
 ## Other useful comands
 CPU, memory, disk usage
