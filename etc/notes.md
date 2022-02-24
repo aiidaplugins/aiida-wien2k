@@ -86,7 +86,7 @@ aiida-common-workflows launch relax -r none -p moderate wien2k
 
 Test EOS run (Si, default)
 ```
-aiida-common-workflows launch relax -r none -p moderate wien2k
+aiida-common-workflows launch eos -r none -p moderate wien2k
 ```
 
 ## In case of problems
