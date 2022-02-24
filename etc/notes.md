@@ -78,10 +78,15 @@ verdi daemon restart --reset
 ```
 (in case of troubles try `pip install -e . -vvv` and also locate `/path/to/anaconda3/envs/aiida/lib/python3.8/site-packages/aiida-wien2k.egg-link` file)
 
-## Run test case
+## Run test case via common workflow
+Test SCF run (Si, default)
 ```
-cd aiida-wien2k/etc
-verdi run launch_scf_workchain.py # SCF run Si (1 iteration only)
+aiida-common-workflows launch relax -r none -p moderate wien2k
+```
+
+Test EOS run (Si, default)
+```
+aiida-common-workflows launch relax -r none -p moderate wien2k
 ```
 
 ## In case of problems
@@ -168,18 +173,6 @@ verdi -p <profile> process list
 Migrate database
 ```
 verdi -p <profile_name> database migrate
-```
-
-## Common workflow
-
-Test SCF run (Si, default)
-```
-aiida-common-workflows launch relax -r none -p moderate wien2k
-```
-
-Test EOS run (Si, default)
-```
-aiida-common-workflows launch relax -r none -p moderate wien2k
 ```
 
 ## Other useful comands
