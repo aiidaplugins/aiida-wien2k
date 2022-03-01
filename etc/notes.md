@@ -200,23 +200,9 @@ Launch VNC connection to `localhost:5901`
 GET THE UNIQUE VALUES (DISTINCT ROWS) OF A DATAFRAME IN PYTHON PANDAS:
 https://www.datasciencemadesimple.com/get-unique-values-rows-dataframe-python-pandas/
 
-Launch AiiDA common workflow
+Clean scratch
 ```
-from aiida_common_workflows.workflows.relax.wien2k import Wien2kCommonRelaxWorkChain
-inputgen = Wien2kCommonRelaxWorkChain.get_input_generator()
-from aiida.engine import submit
-builder = inputgen.get_builder(structure=load_node(72328),engines= {
-        'x-sgroup': {
-            'code': 'wien2k-x-sgroup@localhost'
-        },
-        'init_lapw': {
-            'code': 'wien2k-init_lapw@localhost'
-        },
-        'relax': {
-            'code': 'wien2k-run_lapw@localhost'
-        }
-})
-submit(builder)
+for i in {11..18}; do  ssh psi$i rm -rf /psi${i}/scratch/aiida/*; done
 ```
 
 Submit a command to all compute nodes:
