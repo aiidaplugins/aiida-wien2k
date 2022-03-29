@@ -3,7 +3,7 @@ from aiida.tools import delete_nodes
 from aiida.plugins.factories import CalculationFactory
 
 # first clean all WIEN2k x sgroup calculations and related output
-Wien2kXSgroup = CalculationFactory("wien2k-x-sgroup")
+Wien2kXSgroup = CalculationFactory("wien2k-run123_lapw")
 query = QueryBuilder()
 query.append(Wien2kXSgroup, project=['id'])
 query.all()
@@ -22,7 +22,7 @@ print('nodes_all =', nodes_all)
 
 # set up a list of nodes to keep
 nodes_to_keep = []
-for node in Group.get(label='commonwf-oxides/set2/structures').nodes: # Giovanni structures
+for node in Group.get(label='acwf-verification/unaries-set2/structures/wien2k').nodes: # Giovanni structures
     nodes_to_keep.append(node.id)
 
 # append pk of codes to the list of nodes to keep
