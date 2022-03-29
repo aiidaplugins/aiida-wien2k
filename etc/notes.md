@@ -218,3 +218,13 @@ Grep all finished jobs
 ```
 verdi process list -a | grep -e "Wien2kRun123Lapw" | grep -e "Finished"
 ```
+
+Resubmit selected structures in common workflow
+```
+#b=Group.get(label='acwf-verification/oxides-verification-PBE-v1/workflows/wien2k')
+b=Group.get(label='acwf-verification/unaries-set2/workflows/wien2k')
+uuids = ["4a62c077-99cc-4b6e-bbe2-2d6675b9259d", "98189c15-75cd-4d47-9c2d-91e8ea06b039", "f0d10ae0-7bb5-4204-84a7-231f61c7a6c2", "21a413da-7673-4146-b9d4-ed2fa790ea9c", "71397979-41ab-4320-8ddc-8db54ebcead2", "5d86fa03-4b68-4ba3-b915-8f3775516d0d", "41e79d05-7bf7-4ad0-865c-6b8b2ba49200", "e7531100-4903-4ee0-a50a-b176289d1544"]
+for uuid in uuids:
+  print(uuid)
+  b.remove_nodes([load_node(uuid=uuid)])
+```
