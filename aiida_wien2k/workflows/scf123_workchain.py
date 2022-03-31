@@ -15,6 +15,7 @@ class Wien2kScf123WorkChain(WorkChain):
         spec.input("aiida_structure", valid_type=StructureData, required=True)
         spec.input("code", valid_type=Code, required=True) # run123_lapw
         spec.input("inpdict", valid_type=Dict, required=True) # run123_lapw [param]
+        spec.input('options', valid_type=Dict, required=True) # parallel options for slurm scheduler
         # calculation steps
         spec.outline(cls.run123_lapw,\
                 cls.inspect_run123_lapw,\
@@ -35,6 +36,7 @@ class Wien2kScf123WorkChain(WorkChain):
             aiida_structure = self.inputs.aiida_structure,
             parameters = self.inputs.inpdict,
             code = self.inputs.code,
+            metadata = {'options': self.inputs.options.get_dict()},
         )
 
         return ToContext(node=result)
