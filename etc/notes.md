@@ -228,3 +228,20 @@ for uuid in uuids:
   print(uuid)
   b.remove_nodes([load_node(uuid=uuid)])
 ```
+
+Protocol for calculations [-p]
+```
+moderate:
+  description: 'A standard list of inputs for Wienk.'
+  parameters:
+    red: '3'
+    max-scf-iterations: '100'
+    scf-ene-tol-Ry: '0.000001'
+    scf-charge-tol: '0.000001'
+    fermi-temp-Ry: '0.0045'
+    nokshift: True
+    noprec: '2'
+    numk: '-1 0.0529177'
+    numk2: '-1 0.0317506'
+    parallel: True
+```
