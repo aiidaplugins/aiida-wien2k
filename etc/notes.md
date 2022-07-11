@@ -245,3 +245,8 @@ moderate:
     numk2: '-1 0.0317506'
     parallel: True
 ```
+
+Copy a group:
+```
+verdi group copy acwf-verification/unaries-set2/structures/wien2k acwf-verification/unaries-set2-MPI/structures/wien2k
+```
