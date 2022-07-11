@@ -250,3 +250,21 @@ Copy a group:
 ```
 verdi group copy acwf-verification/unaries-set2/structures/wien2k acwf-verification/unaries-set2-MPI/structures/wien2k
 ```
+
+Clean elements of a group:
+```
+elements = ['K', 'Rb', 'Cs', 'Fr', 'He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn', 'Hg']
+b=Group.get(label='acwf-verification/unaries-set2-MPI/structures/wien2k')
+for node in b.nodes:
+    aiida_structure = node # get structure of SiO2
+    element = aiida_structure.extras['element'] # chemical element X
+    configuration = aiida_structure.extras['configuration'] # X2O, XO2, etc.
+    formula = element + '-' + configuration # H-XO3
+    if element in elements:
+        print(node)
+        print(formula)
+    else:
+        print(f'not neeeded {node}')
+        print(f'not neeeded {formula}')
+        b.remove_nodes(nodes=node)
+```
