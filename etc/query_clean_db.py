@@ -25,6 +25,12 @@ nodes_to_keep = []
 for node in Group.get(label='acwf-verification/unaries-set2/structures/wien2k').nodes: # Giovanni structures
     nodes_to_keep.append(node.id)
 
+for node in Group.get(label='acwf-verification/unaries-set2-MPI/structures/wien2k').nodes: # Giovanni structures
+    nodes_to_keep.append(node.id)
+
+for node in Group.get(label='acwf-verification/unaries-set2-nonMPI/structures/wien2k').nodes: # Giovanni structures
+    nodes_to_keep.append(node.id)
+
 # append pk of codes to the list of nodes to keep
 query = QueryBuilder()
 query.append(Code) # all codes

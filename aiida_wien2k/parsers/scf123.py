@@ -583,7 +583,7 @@ class Wien2kScf123Parser(Parser):
         output_fname = 'prec3k.dayfile'
         self.logger.info(f"Parsing '{output_fname}'")
         file_content = self.retrieved.get_object_content(output_fname)
-        converged = _grep(key="ec cc and fc_conv 1 1 1", pip=file_content) # check if the line present in log file
+        converged = _grep(key="ec cc fc and str_conv 1 1 1 1", pip=file_content) # check if the line present in log file
         if not converged: # if line not found
             res['Warning_last'].append('Warning: SCF not converged')
             return self.exit_codes.WARNING_CONVERG        
