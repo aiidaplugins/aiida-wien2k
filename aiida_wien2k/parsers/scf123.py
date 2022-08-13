@@ -46,6 +46,7 @@ def _grep(key, pip):
             if '(' in line: # the line contains bracket (nkx nky nkz)
                 cut = line.rsplit(sep='(',maxsplit=-1)[1] # get 'nkx nky nkz)'
                 cut = cut.rsplit(sep=')',maxsplit=-1)[0] # get 'nkx nky nkz'
+                cut[:3] + ' ' + cut[3:6] + ' ' + cut[6:] # convert 182182182 -> 182 182 182
                 value = cut.strip() # trim white spaces
                 return value
         elif(key=="FFT mesh"):
