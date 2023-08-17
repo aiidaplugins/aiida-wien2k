@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 import os
 import sys
@@ -7,10 +8,10 @@ import numpy as np
 import pylab as pl
 import tqdm
 
+
 def get_plugin_name():
     file_name = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        os.pardir, os.pardir, 'plugin_name.txt'
+        os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir, "plugin_name.txt"
     )
     try:
         with open(file_name) as fhandle:
@@ -27,6 +28,7 @@ def get_plugin_name():
             "expected by the aiida-common-workflows project"
         ) from exc
 
+
 PLUGIN_NAME = get_plugin_name()
 
 
@@ -41,13 +43,10 @@ def get_conf_nice(configuration_string):
     return "".join(ret_pieces)
 
 
-def birch_murnaghan(V,E0,V0,B0,B01):
-    r = (V0/V)**(2./3.)
-    return (E0 +
-            9./16. * B0 * V0 * (
-            (r-1.)**3 * B01 + 
-            (r-1.)**2 * (6. - 4.* r)))
-   
+def birch_murnaghan(V, E0, V0, B0, B01):
+    r = (V0 / V) ** (2.0 / 3.0)
+    return E0 + 9.0 / 16.0 * B0 * V0 * ((r - 1.0) ** 3 * B01 + (r - 1.0) ** 2 * (6.0 - 4.0 * r))
+
 
 if __name__ == "__main__":
     try:
@@ -56,12 +55,14 @@ if __name__ == "__main__":
         compare_with = None
 
     try:
-        with open(f'results-{PLUGIN_NAME}.json') as fhandle:
+        with open(f"results-{PLUGIN_NAME}.json") as fhandle:
             reference_plugin_data = json.load(fhandle)
     except OSError:
-        print(f"No data found for your plugin '{PLUGIN_NAME}'. Did you run `./get_results.py` first?")
+        print(
+            f"No data found for your plugin '{PLUGIN_NAME}'. Did you run `./get_results.py` first?"
+        )
         sys.exit(1)
-    
+
     if compare_with is None:
         print(f"Plotting data for plugin '{PLUGIN_NAME}' only.")
         print("If you want to compare, pass another parameter with the plugin to compare with.")
@@ -69,31 +70,33 @@ if __name__ == "__main__":
     else:
         print(f"Plotting data for plugin '{PLUGIN_NAME}' compared with '{compare_with}'.")
         try:
-             with open(f'results-{compare_with}.json') as fhandle:
+            with open(f"results-{compare_with}.json") as fhandle:
                 compare_plugin_data = json.load(fhandle)
         except OSError:
-            print(f"No data found for the reference plugin '{compare_with}': you need the file results-{compare_with}.json.")
+            print(
+                f"No data found for the reference plugin '{compare_with}': you need the file results-{compare_with}.json."
+            )
             sys.exit(1)
 
     if compare_with is None:
-        PLOT_FOLDER = f'plots-{PLUGIN_NAME}'
+        PLOT_FOLDER = f"plots-{PLUGIN_NAME}"
     else:
-        PLOT_FOLDER = f'plots-{PLUGIN_NAME}-vs-{compare_with}'
+        PLOT_FOLDER = f"plots-{PLUGIN_NAME}-vs-{compare_with}"
     os.makedirs(PLOT_FOLDER, exist_ok=True)
 
-    all_systems = set(reference_plugin_data['eos_data'].keys())
-    all_systems = set(reference_plugin_data['BM_fit_data'].keys())
+    all_systems = set(reference_plugin_data["eos_data"].keys())
+    all_systems = set(reference_plugin_data["BM_fit_data"].keys())
     if compare_with:
-        all_systems.update(compare_plugin_data['BM_fit_data'].keys())
+        all_systems.update(compare_plugin_data["BM_fit_data"].keys())
 
     progress_bar = tqdm.tqdm(sorted(all_systems))
     for element_and_configuration in progress_bar:
         progress_bar.set_description(f"{element_and_configuration:12s}")
         progress_bar.refresh()
 
-        element, configuration = element_and_configuration.split('-')
+        element, configuration = element_and_configuration.split("-")
         try:
-            eos_data = reference_plugin_data['eos_data'][f'{element}-{configuration}']
+            eos_data = reference_plugin_data["eos_data"][f"{element}-{configuration}"]
         except KeyError:
             # If this system does not exist in the reference data, skip it
             continue
@@ -107,7 +110,7 @@ if __name__ == "__main__":
 
         # Get the data for the reference plugin
         try:
-            ref_BM_fit_data = reference_plugin_data['BM_fit_data'][f'{element}-{configuration}']
+            ref_BM_fit_data = reference_plugin_data["BM_fit_data"][f"{element}-{configuration}"]
             if ref_BM_fit_data is None:
                 # No fitting data: data was there but was not fitted.
                 # Raise this exception that is catched one line below, so
@@ -121,22 +124,24 @@ if __name__ == "__main__":
         else:
             reference_eos_fit_energy = birch_murnaghan(
                 V=dense_volumes,
-                E0=ref_BM_fit_data['E0'],
-                V0=ref_BM_fit_data['min_volume'],
-                B0=ref_BM_fit_data['bulk_modulus_ev_ang3'],
-                B01=ref_BM_fit_data['bulk_deriv']
+                E0=ref_BM_fit_data["E0"],
+                V0=ref_BM_fit_data["min_volume"],
+                B0=ref_BM_fit_data["bulk_modulus_ev_ang3"],
+                B01=ref_BM_fit_data["bulk_deriv"],
             )
 
-            # Get the data for the compare_with plugin, if specified (and if the EOS worked for the 
+            # Get the data for the compare_with plugin, if specified (and if the EOS worked for the
             # reference plugin, otherwise we don't know which E0 to use)
             if compare_with is not None:
                 try:
-                    compare_BM_fit_data = compare_plugin_data['BM_fit_data'][f'{element}-{configuration}']
+                    compare_BM_fit_data = compare_plugin_data["BM_fit_data"][
+                        f"{element}-{configuration}"
+                    ]
                     if compare_BM_fit_data is None:
                         # No fitting data in the plugin to compare with.
                         # Raise this exception that is catched one line below, so
                         # it will set `compare_eos_fit_energy` to None.
-                        raise KeyError                    
+                        raise KeyError
                 except KeyError:
                     # Set to None if fit data is missing (if we are here, the EOS points
                     # are there, so it means that the fit failed). I will still plot the
@@ -145,10 +150,12 @@ if __name__ == "__main__":
                 else:
                     compare_eos_fit_energy = birch_murnaghan(
                         V=dense_volumes,
-                        E0=ref_BM_fit_data['E0'], ## IMPORTANT! here we use the E0 of the reference plugin
-                        V0=compare_BM_fit_data['min_volume'],
-                        B0=compare_BM_fit_data['bulk_modulus_ev_ang3'],
-                        B01=compare_BM_fit_data['bulk_deriv']
+                        E0=ref_BM_fit_data[
+                            "E0"
+                        ],  ## IMPORTANT! here we use the E0 of the reference plugin
+                        V0=compare_BM_fit_data["min_volume"],
+                        B0=compare_BM_fit_data["bulk_modulus_ev_ang3"],
+                        B01=compare_BM_fit_data["bulk_deriv"],
                     )
             else:
                 # No compare_with plugin
@@ -157,16 +164,22 @@ if __name__ == "__main__":
         # Plotting
         fig = pl.figure()
 
-        # If we are here, 
-        pl.plot(volumes, energies, 'ob', label=f'{PLUGIN_NAME} EOS data')
-        
+        # If we are here,
+        pl.plot(volumes, energies, "ob", label=f"{PLUGIN_NAME} EOS data")
+
         if reference_eos_fit_energy is not None:
-            pl.plot(dense_volumes, reference_eos_fit_energy, '-b', label=f'{PLUGIN_NAME} fit')
+            pl.plot(dense_volumes, reference_eos_fit_energy, "-b", label=f"{PLUGIN_NAME} fit")
             if compare_eos_fit_energy is not None:
-                pl.plot(dense_volumes, compare_eos_fit_energy, '-r', label=f'{compare_with} fit')
-                pl.fill_between(dense_volumes, reference_eos_fit_energy, compare_eos_fit_energy, alpha=0.5, color='red')
-        
-        pl.legend(loc='upper center')
+                pl.plot(dense_volumes, compare_eos_fit_energy, "-r", label=f"{compare_with} fit")
+                pl.fill_between(
+                    dense_volumes,
+                    reference_eos_fit_energy,
+                    compare_eos_fit_energy,
+                    alpha=0.5,
+                    color="red",
+                )
+
+        pl.legend(loc="upper center")
         pl.xlabel("Cell volume ($\\AA^2$)")
         pl.ylabel("$E_{tot}$ (eV)")
 

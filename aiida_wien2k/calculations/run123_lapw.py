@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
+import io
+
+import numpy as np
 from aiida.common import datastructures
 from aiida.engine import CalcJob
-from aiida.orm import Dict, SinglefileData, StructureData, Code
-import io
-import numpy as np
+from aiida.orm import Code, Dict, SinglefileData, StructureData
 from ase.units import Bohr
 
+
 def cellconst(metT):
-    """ metT=np.dot(cell,cell.T) """
+    """metT=np.dot(cell,cell.T)"""
     aa = np.sqrt(metT[0, 0])
     bb = np.sqrt(metT[1, 1])
     cc = np.sqrt(metT[2, 2])
@@ -15,30 +18,30 @@ def cellconst(metT):
     alpha = np.arccos(metT[1, 2] / (bb * cc)) / np.pi * 180.0
     return np.array([aa, bb, cc, alpha, beta, gamma])
 
-def write_struct(f, atoms2=None, rmt=None, lattice='P', zza=None):
-    """ Adapted from ASE.
-        It writes ASE structure into a WIEN2k struct file as a StringIO
-        file-like object."""
+
+def write_struct(f, atoms2=None, rmt=None, lattice="P", zza=None):
+    """Adapted from ASE.
+    It writes ASE structure into a WIEN2k struct file as a StringIO
+    file-like object."""
     atoms = atoms2.copy()
     atoms.wrap()
-    f.write('ASE generated\n')
+    f.write("ASE generated\n")
     nat = len(atoms)
     if rmt is None:
         rmt = [2.0] * nat
-        f.write(lattice +
-                '   LATTICE,NONEQUIV.ATOMS:%3i\nMODE OF CALC=RELA\n' % nat)
+        f.write(lattice + "   LATTICE,NONEQUIV.ATOMS:%3i\nMODE OF CALC=RELA\n" % nat)
     cell = atoms.get_cell()
     metT = np.dot(cell, np.transpose(cell))
     cell2 = cellconst(metT)
     cell2[0:3] = cell2[0:3] / Bohr
-    f.write(('%10.6f' * 6) % tuple(cell2) + '\n')
+    f.write(("%10.6f" * 6) % tuple(cell2) + "\n")
     if zza is None:
         zza = atoms.get_atomic_numbers()
     for ii in range(nat):
-        f.write('ATOM %3i: ' % (ii + 1))
+        f.write("ATOM %3i: " % (ii + 1))
         pos = atoms.get_scaled_positions()[ii]
-        f.write('X=%10.8f Y=%10.8f Z=%10.8f\n' % tuple(pos))
-        f.write('          MULT= 1          ISPLIT= 1\n')
+        f.write("X=%10.8f Y=%10.8f Z=%10.8f\n" % tuple(pos))
+        f.write("          MULT= 1          ISPLIT= 1\n")
         zz = zza[ii]
         if zz > 71:
             ro = 0.000005
@@ -48,13 +51,16 @@ def write_struct(f, atoms2=None, rmt=None, lattice='P', zza=None):
             ro = 0.00005
         else:
             ro = 0.0001
-        f.write('%-10s NPT=%5i  R0=%9.8f RMT=%10.4f   Z:%10.5f\n' %
-                (atoms.get_chemical_symbols()[ii], 781, ro, rmt[ii], zz))
-        f.write('LOCAL ROT MATRIX:    %9.7f %9.7f %9.7f\n' % (1.0, 0.0, 0.0))
-        f.write('                     %9.7f %9.7f %9.7f\n' % (0.0, 1.0, 0.0))
-        f.write('                     %9.7f %9.7f %9.7f\n' % (0.0, 0.0, 1.0))
-    f.write('   0\n')
-    return f # file-like object
+        f.write(
+            "%-10s NPT=%5i  R0=%9.8f RMT=%10.4f   Z:%10.5f\n"
+            % (atoms.get_chemical_symbols()[ii], 781, ro, rmt[ii], zz)
+        )
+        f.write("LOCAL ROT MATRIX:    %9.7f %9.7f %9.7f\n" % (1.0, 0.0, 0.0))
+        f.write("                     %9.7f %9.7f %9.7f\n" % (0.0, 1.0, 0.0))
+        f.write("                     %9.7f %9.7f %9.7f\n" % (0.0, 0.0, 1.0))
+    f.write("   0\n")
+    return f  # file-like object
+
 
 def _cli_options(parameters):
     """Return command line options for parameters dictionary.
@@ -63,35 +69,37 @@ def _cli_options(parameters):
     """
     options = []
     for key, value in parameters.items():
-     # Could validate: is key a known command-line option?
-     if isinstance(value, bool) and value:
-        options.append(f'{key}')
-     elif isinstance(value, str):
-        # Could validate: is value a valid regular expression?
-        options.append(f'{key}')
-        options.append(value)
+        # Could validate: is key a known command-line option?
+        if isinstance(value, bool) and value:
+            options.append(f"{key}")
+        elif isinstance(value, str):
+            # Could validate: is value a valid regular expression?
+            options.append(f"{key}")
+            options.append(value)
 
     return options
 
+
 def aiida_struct2wien2k(aiida_structure):
     """prepare structure file for WIEN2k"""
-    ase_structure = aiida_structure.get_ase() # AiiDA -> ASE struct
+    ase_structure = aiida_structure.get_ase()  # AiiDA -> ASE struct
     # create a file like object for the WIEN2k struct file to avoid writing it to disk
-    wien2k_structfile_flo = io.StringIO() 
+    wien2k_structfile_flo = io.StringIO()
     # ASE -> WIEN2k, write WIEN2k struct
     wien2k_structfile_flo = write_struct(f=wien2k_structfile_flo, atoms2=ase_structure)
     # get proper AiiDA type for a single file (otherwise you cannot return)
     # Here we use bytes file-like object as an input to avoid creating an intermediate file
     # (It happened that the other process can overide such file)
-    wien2k_structfile = SinglefileData(\
-                file=io.BytesIO(bytes(wien2k_structfile_flo.getvalue(),'utf-8')),\
-                filename='case.struct')
+    wien2k_structfile = SinglefileData(
+        file=io.BytesIO(bytes(wien2k_structfile_flo.getvalue(), "utf-8")), filename="case.struct"
+    )
 
-    return wien2k_structfile # orm.SinglefileData type
+    return wien2k_structfile  # orm.SinglefileData type
+
 
 class Wien2kRun123Lapw(CalcJob):
     """AiiDA calculation plugin to run WIEN2k calculation using run123_lapw."""
-    
+
     @classmethod
     def define(cls, spec):
         """Define inputs and outputs of the calculation."""
@@ -156,8 +164,7 @@ class Wien2kRun123Lapw(CalcJob):
                 message='WARN: There is a warning in the last SCF iteration prec2.')
         spec.exit_code(339, 'WARNING_OTHER3',
                 message='WARN: There is a warning in the last SCF iteration prec3.')
-        
-    
+
     def prepare_for_submission(self, folder):
         """
         Create input files.
@@ -166,31 +173,48 @@ class Wien2kRun123Lapw(CalcJob):
             the calculation.
         :return: `aiida.common.datastructures.CalcInfo` instance
         """
-        parameters = _cli_options(self.inputs.parameters.get_dict()) # command line args for init_lapw
         codeinfo = datastructures.CodeInfo()
-        codeinfo.cmdline_params = parameters # x exec [parameters]
+        if "parameters" in self.inputs:
+            parameters = _cli_options(
+                self.inputs.parameters.get_dict()
+            )  # command line args for init_lapw
+            codeinfo.cmdline_params = parameters  # x exec [parameters]
+
         codeinfo.code_uuid = self.inputs.code.uuid
-        codeinfo.stdout_name = 'run123_lapw.log'
+        codeinfo.stdout_name = "run123_lapw.log"
 
         # convert AiiDA structure -> WIEN2k
-        if('aiida_structure' in self.inputs):
+        if "aiida_structure" in self.inputs:
             aiida2wien_structfile = aiida_struct2wien2k(self.inputs.aiida_structure)
             aiida2wien_structfile.store()
-        
+
         # Prepare a `CalcInfo` to be returned to the engine
         calcinfo = datastructures.CalcInfo()
         calcinfo.codes_info = [codeinfo]
-        if('wien2k_structure' in self.inputs): # WIEN2k structure is given as input
+        if "wien2k_structure" in self.inputs:  # WIEN2k structure is given as input
             calcinfo.local_copy_list = [
-                (self.inputs.wien2k_structure.uuid, self.inputs.wien2k_structure.filename, 'case/case.struct')
-            ] # copy case.struct to the local folder as new.struct
-        elif('aiida_structure' in self.inputs): # AiiDA structure is given as input
+                (
+                    self.inputs.wien2k_structure.uuid,
+                    self.inputs.wien2k_structure.filename,
+                    "case/case.struct",
+                )
+            ]  # copy case.struct to the local folder as new.struct
+        elif "aiida_structure" in self.inputs:  # AiiDA structure is given as input
             calcinfo.local_copy_list = [
-                (aiida2wien_structfile.uuid, aiida2wien_structfile.filename, 'case/case.struct')
-            ] # copy case.struct to the local folder as new.struct
-        calcinfo.remote_copy_list = [] # none
-        calcinfo.retrieve_list = [('case/*.scf0'), ('case/*.scf1'), ('case/*.scf2'),\
-                ('case/*.scfm'), ('case/*.scfc'), ('case/*.error*'), ('case/*.dayfile'),\
-                ('case/*.klist'), ('case/*.in0'), ('case/case.struct')]
+                (aiida2wien_structfile.uuid, aiida2wien_structfile.filename, "case/case.struct")
+            ]  # copy case.struct to the local folder as new.struct
+        calcinfo.remote_copy_list = []  # none
+        calcinfo.retrieve_list = [
+            ("case/*.scf0"),
+            ("case/*.scf1"),
+            ("case/*.scf2"),
+            ("case/*.scfm"),
+            ("case/*.scfc"),
+            ("case/*.error*"),
+            ("case/*.dayfile"),
+            ("case/*.klist"),
+            ("case/*.in0"),
+            ("case/case.struct"),
+        ]
 
         return calcinfo
