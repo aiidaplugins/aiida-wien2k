@@ -1,0 +1,47 @@
+[build-system]
+requires = ['flit_core >=3.4,<4']
+build-backend = 'flit_core.buildapi'
+
+[project]
+name = 'aiida-wien2k'
+dynamic = ['version']
+description = 'The official AiiDA plugin for WIEN2k'
+authors = [{name = 'The AiiDA team', email = 'developers@aiida.net'}]
+readme = 'README.md'
+license = {file = 'LICENSE'}
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Framework :: AiiDA',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+]
+keywords = ['aiida', 'workflows']
+requires-python = '>=3.7,<3.9'
+dependencies = [
+    'aiida_core[atomic_tools]~=1.6',
+    'fuzzywuzzy~=0.18.0',
+]
+
+[project.optional-dependencies]
+pre-commit = [
+    'pre-commit~=3.3',
+]
+
+[project.entry-points.'aiida.calculations']
+'wien2k-run123_lapw' = 'aiida_wien2k.calculations.run123_lapw:Wien2kRun123Lapw'
+
+[project.entry-points.'aiida.parsers']
+'wien2k-scf123-parser' = 'aiida_wien2k.parsers.scf123:Wien2kScf123Parser'
+
+[project.entry-points.'aiida.workflows']
+'wien2k.scf123_wf' = 'aiida_wien2k.workflows.scf123_workchain:Wien2kScf123WorkChain'
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
