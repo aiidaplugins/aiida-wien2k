@@ -1,0 +1,86 @@
+
+Calculating case in /psi13/scratch/aiida/scratch-aiida-284083/case
+on psi13 with PID 18247
+using WIEN2k_21.1 (Release 12/4/2021) in /area51/WIEN2k_21
+
+
+    start 	(Tue Mar 29 16:40:41 CEST 2022) with lapw0 (100/99 to go)
+
+    cycle 1 	(Tue Mar 29 16:40:41 CEST 2022) 	(100/99 to go)
+
+>   lapw0     	(16:40:42) 4.936u 0.016s 0:05.07 97.4%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:40:47) 57.530u 6.804s 0:32.29 199.2%	0+0k 0+175248io 0pf+0w
+>   lapw2         	(16:41:19) 9.317u 1.296s 0:05.48 193.4%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:41:25) 0.017u 0.021s 0:00.09 33.3%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:41:25) 0.039u 0.019s 0:00.13 30.7%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  0 0.000001 0
+:CHARGE convergence:  0 0.000001 0
+ec cc and fc_conv 0 0 1
+
+    cycle 2 	(Tue Mar 29 16:41:26 CEST 2022) 	(99/98 to go)
+
+>   lapw0     	(16:41:26) 4.700u 0.039s 0:04.90 96.5%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:41:31) 58.317u 6.463s 0:32.49 199.3%	0+0k 0+175248io 0pf+0w
+>   lapw2         	(16:42:03) 9.510u 1.196s 0:05.61 190.7%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:42:09) 0.017u 0.026s 0:00.09 33.3%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:42:09) 0.034u 0.025s 0:00.16 31.2%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  0 0.000001 0
+:CHARGE convergence:  0 0.000001 0
+ec cc and fc_conv 0 0 1
+
+    cycle 3 	(Tue Mar 29 16:42:10 CEST 2022) 	(98/97 to go)
+
+>   lapw0     	(16:42:10) 4.664u 0.044s 0:04.77 98.5%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:42:15) 58.371u 6.957s 0:32.76 199.3%	0+0k 0+175248io 0pf+0w
+>   lapw2         	(16:42:48) 9.424u 1.152s 0:05.47 193.2%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:42:53) 0.022u 0.019s 0:00.10 30.0%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:42:54) 0.033u 0.025s 0:00.16 31.2%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000150000000
+:CHARGE convergence:  0 0.000001 .0001041
+ec cc and fc_conv 1 0 1
+
+    cycle 4 	(Tue Mar 29 16:42:54 CEST 2022) 	(97/96 to go)
+
+>   lapw0     	(16:42:54) 4.630u 0.036s 0:04.73 98.5%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:42:59) 58.021u 6.843s 0:33.08 196.0%	0+0k 0+175232io 0pf+0w
+>   lapw2         	(16:43:32) 9.405u 1.204s 0:05.48 193.4%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:43:38) 0.016u 0.016s 0:00.09 22.2%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:43:38) 0.049u 0.018s 0:00.16 31.2%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000150000000
+:CHARGE convergence:  0 0.000001 .0000265
+ec cc and fc_conv 1 0 1
+
+    cycle 5 	(Tue Mar 29 16:43:39 CEST 2022) 	(96/95 to go)
+
+>   lapw0     	(16:43:39) 4.588u 0.051s 0:04.71 98.3%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:43:44) 58.303u 6.639s 0:32.75 198.2%	0+0k 0+175232io 0pf+0w
+>   lapw2         	(16:44:17) 9.416u 1.168s 0:05.48 192.8%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:44:22) 0.020u 0.015s 0:00.10 30.0%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:44:23) 0.049u 0.019s 0:00.19 26.3%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000050000000
+:CHARGE convergence:  0 0.000001 .0000035
+ec cc and fc_conv 1 0 1
+
+    cycle 6 	(Tue Mar 29 16:44:23 CEST 2022) 	(95/94 to go)
+
+>   lapw0     	(16:44:23) 4.644u 0.051s 0:04.78 98.1%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:44:28) 57.852u 6.963s 0:32.53 199.2%	0+0k 0+175248io 0pf+0w
+>   lapw2         	(16:45:01) 9.511u 1.248s 0:05.56 193.3%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:45:06) 0.022u 0.026s 0:00.12 33.3%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:45:07) 0.037u 0.026s 0:00.18 27.7%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000050000000
+:CHARGE convergence:  0 0.000001 .0000051
+ec cc and fc_conv 1 0 1
+
+    cycle 7 	(Tue Mar 29 16:45:07 CEST 2022) 	(94/93 to go)
+
+>   lapw0     	(16:45:07) 4.633u 0.056s 0:04.77 98.1%	0+0k 0+424io 0pf+0w
+>   lapw1       	(16:45:12) 58.302u 7.283s 0:32.91 199.2%	0+0k 0+175240io 0pf+0w
+>   lapw2         	(16:45:45) 9.710u 1.420s 0:05.75 193.5%	0+0k 0+3552io 0pf+0w
+>   lcore    	(16:45:51) 0.025u 0.014s 0:00.14 21.4%	0+0k 0+216io 0pf+0w
+>   mixer 	(16:45:52) 0.044u 0.022s 0:00.27 22.2%	0+0k 0+664io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000050000000
+:CHARGE convergence:  1 0.000001 -.0000009
+ec cc and fc_conv 1 1 1
+
+>   stop

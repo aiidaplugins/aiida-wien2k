@@ -1,0 +1,41 @@
+
+
+       TEMP.-SMEARING WITH    0.00450 Ry
+          -S / Kb           =  -0.17419416
+          -(T*S)            =  -0.00078387
+          Chem Pot          =   0.09247177
+         Bandranges (emin - emax) and occupancy:
+:BAN00001:   1   -2.044082   -2.042866  2.00000000
+:BAN00002:   2   -0.880280   -0.869861  2.00000000
+:BAN00003:   3   -0.878917   -0.868958  2.00000000
+:BAN00004:   4   -0.877660   -0.868097  2.00000000
+:BAN00005:   5   -0.050550    0.225047  0.99990884
+:BAN00006:   6    0.116055    0.269113  0.00009116
+:BAN00007:   7    0.225047    0.323268  0.00000000
+:BAN00008:   8    0.248998    0.524655  0.00000000
+:BAN00009:   9    0.355973    0.524655  0.00000000
+:BAN00010:  10    0.381373    0.544592  0.00000000
+        Energy to separate low and high energystates:   -0.10055
+
+
+:NOE  : NUMBER OF ELECTRONS          =    9.000
+
+:FER  : F E R M I - ENERGY(FERMI-SM.)=   0.0924717656
+:GMA  : POTENTIAL AND CHARGE CUT-OFF  40.00 Ry**.5
+
+:POS001: ATOM    1 X,Y,Z = 0.00000 0.00000 0.00000  MULT= 1  ZZ= 37.000  Rb1
+
+       LMMAX  5
+       LM=   0 0  4 0  4 4  6 0  6 4
+
+:CHA001: TOTAL VALENCE CHARGE INSIDE SPHERE   1 =   6.9517    (RMT=  2.3500 )
+:PCS001: PARTIAL CHARGES SPHERE =  1 S,P,D,F,      D-EG,D-T2G
+:QTL001: 1.9115 5.0357 0.0046 0.0000 0.0000 0.0000 0.0000 0.0024 0.0022 0.0000 0.0000 0.0000
+        Q-s-low E-s-low   Q-p-low E-p-low   Q-d-low E-d-low   Q-f-low E-f-low
+:EPL001:  1.8786 -2.0434    5.0179 -0.8740    0.0000 10.0000    0.0000 10.0000
+        Q-s-hi  E-s-hi    Q-p-hi  E-p-hi    Q-d-hi  E-d-hi    Q-f-hi  E-f-hi
+:EPH001:  0.0327  0.0357    0.0179  0.0507    0.0045  0.0672    0.0000 10.0000
+
+:CHA  : TOTAL VALENCE CHARGE INSIDE UNIT CELL =       9.000000
+
+:SUM  : SUM OF EIGENVALUES =          -9.292119745

@@ -1,0 +1,117 @@
+:CINT001 Core Integral Atom   1   45.99747091
+
+       DENSITY AT NUCLEUS
+        JATOM        VALENCE       SEMI-CORE          CORE           TOTAL
+:RTO001:   1      494.986525        0.000000   537553.928358   538048.914883
+
+       CHARGES OF NEW CHARGE DENSITY
+:NTO   : INTERSTITIAL CHARGE =     3.457388
+:NPC   : INTERSTITIAL CHARGE =     9.913784
+:NTO001: CHARGE SPHERE  1    =    53.540083
+
+:NEC01: NUCLEAR AND ELECTRONIC CHARGE     57.00000    56.99747
+
+       CHARGES OF OLD CHARGE DENSITY
+:OTO   : INTERSTITIAL CHARGE =     3.459917
+:OPC   : INTERSTITIAL CHARGE =     9.921036
+:OTO001: CHARGE SPHERE  1    =    53.540083
+
+:NEC02: NUCLEAR AND ELECTRONIC CHARGE     57.00000    57.00000
+
+       CONVERGENCE TEST
+:DTO001: DIFFERENCE IN SPHERE  1 =  0.0000001
+
+:DIS  :  CHARGE DISTANCE       ( 0.0000001 for atom    1 spin 1)      0.0000001
+
+******************************************************
+* MULTISECANT MIXING VER9 RELEASE 10.8.3             *
+* Standard Mode with step bound                      *
+* Multisecant MSR1 Algorithm                         *
+* Regularization       2.000E-04                     *
+* Minimum Greed        1.000E-03                     *
+* Max Number of Memory Steps    8                    *
+******************************************************
+
+
+:FULLRMS/Atom   0.0000001922
+:PLANE:  PW /ATOM     5.98926 DISTAN   1.47E-07 %  2.46E-06
+:CHARG:  CLM/ATOM   916.04649 DISTAN   1.24E-07 %  1.35E-08
+
+Step History
+        Dmix         Dmixt        Red     Pred      Step      Lambda    MagAbs    Beta
+  1   2.0315E-01   3.5000E-02  9.69E-01  1.00E+00  3.00E+00  1.00E+00  2.40E-05  1.00E+00
+  2   2.0315E-01   2.5000E-02  9.69E-01  1.00E+00  3.00E+00  1.00E+00  2.40E-05  1.00E+00
+  3   2.0315E-01   2.0315E-01  3.30E-01  4.75E-01  3.00E+00  1.00E+00  1.99E-03  1.00E+00
+  4   3.3859E-01   3.3859E-01  3.80E-01  9.67E-01  2.64E+00  1.18E+00  5.79E-04  1.00E+00
+  5   5.6432E-01   5.6432E-01  2.51E-01  5.58E-01  3.71E+00  1.09E+00  3.09E-04  1.00E+00
+  6   9.4053E-01   9.4053E-01  3.70E-01  3.44E-01  8.46E+00  1.06E+00  1.77E-04  1.00E+00
+  7   7.4609E-01   7.4609E-01 -1.00E+00  6.11E-02  1.40E+01  1.04E+00  1.09E-04  1.00E+00
+:   Number of Memory Steps    6 Skipping    0
+
+:PREDicted Charge, CTotal, PW Trust   2.27E-06   2.27E-06   1.04E-06
+:PREDicted DMix, Beta, BLim           1.89E+01   9.97E-01   9.97E+00
+
+Eigenvalues, unscaled except for SY+YY with Slambda=   1.06697 Ylambda=   1.00000
+   #     SY Real       SY Imag         SS            YY        SY+YY Real     SY+YY Imag
+   1   1.64522E+00   0.00000E+00   1.76056E+00   1.66855E+00   3.41024E+00   0.00000E+00
+   2   8.74189E-01   0.00000E+00   6.81712E-01   1.27939E+00   2.19664E+00   0.00000E+00
+   3   1.28304E-01   0.00000E+00   6.44928E-02   2.19500E-01   3.85674E-01   0.00000E+00
+   4   8.54628E-11   0.00000E+00   2.23019E-03   3.18382E-03   6.02800E-03   0.00000E+00
+   5   5.94844E-04   0.00000E+00   4.53864E-04   7.83768E-04   1.41617E-03   0.00000E+00
+   6   2.74385E-03   0.00000E+00   1.64829E-11   4.43154E-10   5.33140E-10   0.00000E+00
+
+:  Singular value  3.435E+00 Weight  1.000E+00 Projection -6.890E-08
+:  Singular value  2.185E+00 Weight  1.000E+00 Projection  1.417E-07
+:  Singular value  3.849E-01 Weight  1.000E+00 Projection  3.996E-08
+:  Singular value  6.027E-03 Weight  9.872E-01 Projection -5.066E-07
+:  Singular value  1.416E-03 Weight  8.095E-01 Projection -3.115E-07
+:  Singular value  5.331E-10 Weight  6.022E-13 Projection -2.885E-16
+:RANK :  ACTIVE   4.80/6  =  79.94 % ; YY RANK   4.52/6  =  75.35 %
+:DLIM :  Beta Active  9.975E-01
+:TRUST: Step 1.00E+02 Charge 1.98E-03 (e) CTO  1.19E-02 (e) PW  2.81E-02 (e)
+:DIRM :  MEMORY  6/8  RED  0.02 PRED  0.06 NEXT  0.24 BETA  1.00
+:DIRP :  |MSR1|= 1.240E-07 |PRATT|= 1.471E-07 ANGLE=   5.4 DEGREES
+:DIRQ :  |MSR1|= 7.960E-08 |PRATT|= 1.238E-07 ANGLE=  29.4 DEGREES
+:DIRT :  |MSR1|= 1.474E-07 |PRATT|= 1.922E-07 ANGLE=  19.3 DEGREES
+:MIX  :   MSR1   REGULARIZATION:  6.87E-04 GREED: 1.00000  Newton 1.00  0.7665
+
+       CHARGES OF MIXED CHARGE DENSITY
+:CTO   : INTERSTITIAL CHARGE =     3.459917
+:CPC   : INTERSTITIAL CHARGE =     9.921036
+:CTO001: CHARGE SPHERE  1    =    53.540083
+
+:NEC03: NUCLEAR AND ELECTRONIC CHARGE     57.00000    57.00000
+
+PW CHANGE     H    K    L      Current       Change    Residue
+:PTO001:      0    0    0  5.69835894E-02 -1.873E-10 -9.524E-11
+:PTO002:     -1    0    0  1.63810793E-01 -2.453E-09 -3.169E-09
+:PTO003:     -1   -1    0  1.94367518E-01 -3.284E-09 -4.251E-09
+:PTO004:     -1   -1   -1  7.69167955E-02 -3.415E-09 -3.812E-09
+:PTO005:     -2    0    0  3.51793873E-02 -9.089E-10 -1.196E-09
+:PTO006:     -2   -1    0  7.65344467E-02 -3.894E-09 -4.613E-09
+:PTO007:     -2   -1   -1  3.73436213E-02 -4.205E-09 -4.586E-09
+:PTO008:     -2   -2    0  6.81395831E-04 -7.242E-10 -7.931E-10
+:PTO009:     -3    0    0 -8.23509758E-04 -4.426E-10 -4.568E-10
+:PTO010:     -2   -2   -1 -7.06356521E-03 -1.239E-09 -1.265E-09
+:PTO011:     -3   -1    0 -8.73211591E-03 -1.329E-09 -1.311E-09
+:PTO012:     -3   -1   -1 -1.13265206E-02 -8.698E-10 -8.121E-10
+
+:ENE  : *WARNING** TOTAL ENERGY IN Ry =       -16995.28934266
+
+
+ ************************************************************
+          TOTAL STRESS TENSOR, EQ. (6.187)
+ ************************************************************
+
+
+ In Ry/Bohr^3
+
+:STRESS_RY001:        49.6289032860        0.0000000000        0.0000000000
+:STRESS_RY002:         0.0000000000       49.6289032860        0.0000000000
+:STRESS_RY003:         0.0000000000        0.0000000000       49.6289032860
+
+ In GPa, 10 Kbar = 1 Gpa
+
+:STRESS_GPa001:    730066.7959856017        0.0000000000        0.0000000000
+:STRESS_GPa002:         0.0000000000   730066.7959856017        0.0000000000
+:STRESS_GPa003:         0.0000000000        0.0000000000   730066.7959856017
