@@ -1,0 +1,64 @@
+
+Calculating case in /psi12/scratch/aiida/scratch-aiida-223163/case
+on psi12 with PID 26040
+using WIEN2k_21.1 (Release 12/4/2021) in /area51/WIEN2k_21
+
+
+    start 	(Wed Mar  9 23:21:04 CET 2022) with lapw0 (100/99 to go)
+
+    cycle 1 	(Wed Mar  9 23:21:04 CET 2022) 	(100/99 to go)
+
+>   lapw0     	(23:21:04) 11.558u 0.143s 0:11.88 98.4%	0+0k 0+416io 0pf+0w
+>   lapw1       	(23:21:16) 31.846u 6.707s 0:38.69 99.6%	0+0k 0+141288io 0pf+0w
+>   lapw2         	(23:21:55) 8.395u 1.735s 0:10.26 98.6%	0+0k 0+3712io 0pf+0w
+>   lcore    	(23:22:05) 0.010u 0.015s 0:00.10 20.0%	0+0k 0+216io 0pf+0w
+>   mixer 	(23:22:05) 0.012u 0.017s 0:00.14 14.2%	0+0k 0+656io 0pf+0w
+:ENERGY convergence:  0 0.000001 0
+:CHARGE convergence:  0 0.000001 0
+ec cc and fc_conv 0 0 1
+
+    cycle 2 	(Wed Mar  9 23:22:05 CET 2022) 	(99/98 to go)
+
+>   lapw0     	(23:22:05) 11.157u 0.131s 0:11.46 98.4%	0+0k 0+416io 0pf+0w
+>   lapw1       	(23:22:17) 31.357u 6.348s 0:37.84 99.6%	0+0k 0+141296io 0pf+0w
+>   lapw2         	(23:22:55) 8.628u 1.584s 0:10.35 98.5%	0+0k 0+3712io 0pf+0w
+>   lcore    	(23:23:05) 0.023u 0.003s 0:00.23 8.6%	0+0k 0+216io 0pf+0w
+>   mixer 	(23:23:06) 0.025u 0.004s 0:00.21 9.5%	0+0k 0+648io 0pf+0w
+:ENERGY convergence:  0 0.000001 0
+:CHARGE convergence:  0 0.000001 0
+ec cc and fc_conv 0 0 1
+
+    cycle 3 	(Wed Mar  9 23:23:06 CET 2022) 	(98/97 to go)
+
+>   lapw0     	(23:23:06) 10.901u 0.196s 0:11.24 98.6%	0+0k 0+416io 0pf+0w
+>   lapw1       	(23:23:17) 31.944u 6.208s 0:38.34 99.4%	0+0k 0+141320io 0pf+0w
+>   lapw2         	(23:23:56) 8.518u 1.673s 0:10.37 98.1%	0+0k 0+3712io 0pf+0w
+>   lcore    	(23:24:06) 0.012u 0.012s 0:00.23 8.6%	0+0k 0+216io 0pf+0w
+>   mixer 	(23:24:07) 0.020u 0.016s 0:00.25 12.0%	0+0k 0+648io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000150000000
+:CHARGE convergence:  0 0.000001 .0000100
+ec cc and fc_conv 1 0 1
+
+    cycle 4 	(Wed Mar  9 23:24:07 CET 2022) 	(97/96 to go)
+
+>   lapw0     	(23:24:07) 11.994u 0.068s 0:12.22 98.6%	0+0k 0+416io 0pf+0w
+>   lapw1       	(23:24:19) 31.573u 6.304s 0:38.06 99.5%	0+0k 0+141304io 0pf+0w
+>   lapw2         	(23:24:58) 8.517u 1.605s 0:10.46 96.6%	0+0k 0+3712io 0pf+0w
+>   lcore    	(23:25:08) 0.024u 0.008s 0:00.20 10.0%	0+0k 0+216io 0pf+0w
+>   mixer 	(23:25:08) 0.019u 0.014s 0:00.29 6.8%	0+0k 0+648io 0pf+0w
+:ENERGY convergence:  1 0.000001 .0000000050000000
+:CHARGE convergence:  0 0.000001 .0000021
+ec cc and fc_conv 1 0 1
+
+    cycle 5 	(Wed Mar  9 23:25:09 CET 2022) 	(96/95 to go)
+
+>   lapw0     	(23:25:09) 11.815u 0.079s 0:12.02 98.8%	0+0k 0+416io 0pf+0w
+>   lapw1       	(23:25:21) 31.583u 5.919s 0:37.63 99.6%	0+0k 0+141304io 0pf+0w
+>   lapw2         	(23:25:59) 8.283u 1.595s 0:10.11 97.6%	0+0k 0+3712io 0pf+0w
+>   lcore    	(23:26:09) 0.008u 0.016s 0:00.26 3.8%	0+0k 0+216io 0pf+0w
+>   mixer 	(23:26:09) 0.029u 0.004s 0:00.30 6.6%	0+0k 0+648io 0pf+0w
+:ENERGY convergence:  1 0.000001 0
+:CHARGE convergence:  1 0.000001 -.0000003
+ec cc and fc_conv 1 1 1
+
+>   stop

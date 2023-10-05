@@ -1,0 +1,34 @@
+:LMAX-WF:   10   Non-Spherical LMAX:   8
+
+          ATOMIC SPHERE DEPENDENT PARAMETERS FOR ATOM  La1
+:e__0001: OVERALL ENERGY PARAMETER IS    0.5425
+          OVERALL BASIS SET ON ATOM IS LAPW
+:E0_0001: E( 0)=    0.5425
+             APW+lo
+:E0_0001: E( 0)=   -1.6804   E(BOTTOM)=   -2.368   E(TOP)=   -0.992  4  5   180
+             LOCAL ORBITAL
+:E1_0001: E( 1)=    0.9425
+             APW+lo
+:E1_0001: E( 1)=   -0.3218   E(BOTTOM)=   -1.320   E(TOP)=    0.677  3  4   204
+             LOCAL ORBITAL
+:E2_0001: E( 2)=    0.5425   E(BOTTOM)=    0.328   E(TOP)= -200.000  2 -1    87
+             APW+lo
+:E2_0001: E( 2)=    0.5425
+             LOCAL ORBITAL(SECDER)
+:E3_0001: E( 3)=    0.6121   E(BOTTOM)=    0.612   E(TOP)= -200.000  0 -1    75
+             APW+lo
+:E3_0001: E( 3)=    0.6121
+             LOCAL ORBITAL(SECDER)
+
+       K=  0.000000  0.000000  0.000000            1
+:RKM  : MATRIX SIZE   469LOs:  32  RKM=10.97  WEIGHT= 1.00  PGR:
+       EIGENVALUES ARE:
+:EIG00001:      -1.6870825   -0.4044680   -0.4044680   -0.4044680    0.5365231
+:EIG00006:       0.6543538    0.6543538    0.8854446    0.8854446    0.8854446
+:EIG00011:       0.9029286    0.9029286    0.9029286    0.9226068    1.2516773
+:EIG00016:       1.2516773    1.2516773    1.6506910    1.6506910    1.6506910
+:EIG00021:       1.8945451    1.9410050    1.9410050    2.1237605    2.1237605
+:EIG00026:       2.1237605
+       ********************************************************
+
+:KPT   :      NUMBER OF K-POINTS:   969

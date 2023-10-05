@@ -1,0 +1,52 @@
+
+
+       TEMP.-SMEARING WITH    0.00450 Ry
+          -S / Kb           =  -0.42636657
+          -(T*S)            =  -0.00191865
+          Chem Pot          =   0.74250067
+         Bandranges (emin - emax) and occupancy:
+:BAN00001:   1   -1.687083   -1.625913  2.00000000
+:BAN00002:   2   -0.564925   -0.404468  2.00000000
+:BAN00003:   3   -0.538977   -0.387535  2.00000000
+:BAN00004:   4   -0.515805   -0.371688  2.00000000
+:BAN00005:   5    0.536523    0.744460  1.99514593
+:BAN00006:   6    0.654354    0.827298  0.79647734
+:BAN00007:   7    0.654354    0.861339  0.20837672
+:BAN00008:   8    0.800416    0.885445  0.00000001
+:BAN00009:   9    0.846633    0.896882  0.00000000
+:BAN00010:  10    0.869847    0.901805  0.00000000
+:BAN00011:  11    0.889449    0.913766  0.00000000
+:BAN00012:  12    0.902929    0.935089  0.00000000
+        Energy to separate low and high energystates:    0.48652
+
+
+:NOE  : NUMBER OF ELECTRONS          =   11.000
+
+:FER  : F E R M I - ENERGY(FERMI-SM.)=   0.7425006744
+:GMA  : POTENTIAL AND CHARGE CUT-OFF  25.00 Ry**.5
+
+:POS001: ATOM    1 X,Y,Z = 0.00000 0.00000 0.00000  MULT= 1  ZZ= 57.000  La1
+
+       LMMAX  5
+       LM=   0 0  4 0  4 4  6 0  6 4
+
+:CHA001: TOTAL VALENCE CHARGE INSIDE SPHERE   1 =   7.5426    (RMT=  2.3500 )
+:PCS001: PARTIAL CHARGES SPHERE =  1 S,P,D,F,      D-EG,D-T2G
+:QTL001: 1.9008 4.8724 0.6565 0.1122 0.0000 0.0000 0.0000 0.2758 0.3824 0.0000 0.0000 0.0000
+        Q-s-low E-s-low   Q-p-low E-p-low   Q-d-low E-d-low   Q-f-low E-f-low
+:EPL001:  1.8424 -1.6525    4.8053 -0.4647    0.0060 -0.4902    0.0016 -0.5121
+        Q-s-hi  E-s-hi    Q-p-hi  E-p-hi    Q-d-hi  E-d-hi    Q-f-hi  E-f-hi
+:EPH001:  0.0584  0.6629    0.0671  0.6784    0.6505  0.6807    0.1106  0.6967
+
+:CHA  : TOTAL VALENCE CHARGE INSIDE UNIT CELL =      11.000000
+
+:SUM  : SUM OF EIGENVALUES =          -4.099713396
+
+
+
+   QTL-B VALUE .EQ.    2.17111   in Band of energy    0.84994   ATOM=    1   L=  3
+    Most likely no ghostbands, but adjust Energy-parameters for this ATOM and L
+
+
+:WARN : QTL-B value eq.   2.17 in Band of energy   0.84994  ATOM=    1  L=  3
+:WARN : You should change the E-parameter for this atom and L-value in case.in1 (or try the -in1new switch)

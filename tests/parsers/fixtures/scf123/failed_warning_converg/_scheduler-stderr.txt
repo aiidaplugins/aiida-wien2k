@@ -1,0 +1,341 @@
+NN ENDS
+NN ENDS
+LSTART ENDS
+LSTART ENDS
+KGEN ENDS
+KGEN ENDS
+NN ENDS
+LSTART ENDS
+KGEN ENDS
+KGEN ENDS
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[1]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+[3]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+[4]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+KGEN ENDS
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+[4]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+ LAPW1 END
+[4]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
+ LAPW0 END
+[1]    Done                          mpirun -np 8 -machinefile .machine0 /area51/WIEN2k_21/lapw0_mpi lapw0.def >> .time00
+ LAPW1 END
+ LAPW1 END
+[2]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[1]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+ LAPW1 END
+ LAPW1 END
+[4]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+[3]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_$loop.def ;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout1_$loop; if ( -f .stdout1_$loop ) bashtime2csh.pl_lapw .stdout1_$loop > .temp1_$loop; grep \% .temp1_$loop >> .time1_$loop; grep -v \% .temp1_$loop | perl -e "print stderr <STDIN>" )
+LAPW2 - FERMI; weights written
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+ LAPW2 END
+[4]    Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[3]  - Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[2]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+[1]  + Done                          ( ( $remote $machine[$p] "cd $PWD;$set_OMP_NUM_THREADS;$t $taskset0 $exe ${def}_${loop}.def $loop;fixerror_lapw ${def}_$loop"; rm -f .lock_$lockfile[$p] ) >& .stdout2_$loop; if ( -f .stdout2_$loop ) bashtime2csh.pl_lapw .stdout2_$loop > .temp2_$loop; grep \% .temp2_$loop >> .time2_$loop; grep -v \% .temp2_$loop | perl -e "print stderr <STDIN>" )
+ SUMPARA END
+ CORE  END
+ MIXER END
