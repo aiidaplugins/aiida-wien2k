@@ -48,5 +48,4 @@
     Most likely no ghostbands, but adjust Energy-parameters for this ATOM and L
 
 
-:WARN : QTL-B value eq.   2.17 in Band of energy   0.84994  ATOM=    1  L=  3
-:WARN : You should change the E-parameter for this atom and L-value in case.in1 (or try the -in1new switch)
+:WARN : Some other warning that I just made up
