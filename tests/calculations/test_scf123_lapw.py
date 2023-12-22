@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Tests for the :mod:`aiida_wien2k.calculations.run123_lapw` module."""
-# pylint: disable=redefined-outer-name
 from __future__ import annotations
 
 import io
@@ -31,15 +30,13 @@ def generate_inputs(aiida_local_code_factory, generate_structure):
 
     def factory(**kwargs):
         parameters = {}
-        recursive_merge(parameters, kwargs.pop("parameters", {}))
+        recursive_merge(parameters, kwargs.pop('parameters', {}))
 
         inputs = {
-            "code": aiida_local_code_factory("wien2k-run123_lapw", "/bin/true"),
-            "aiida_structure": generate_structure(),
-            "parameters": Dict(dict=parameters),
-            "metadata": {
-                "options": {"resources": {"num_machines": 1, "num_mpiprocs_per_machine": 1}}
-            },
+            'code': aiida_local_code_factory('wien2k-run123_lapw', '/bin/true'),
+            'aiida_structure': generate_structure(),
+            'parameters': Dict(dict=parameters),
+            'metadata': {'options': {'resources': {'num_machines': 1, 'num_mpiprocs_per_machine': 1}}},
         }
         inputs.update(**kwargs)
         return inputs
@@ -55,55 +52,55 @@ def test_default_structure(generate_calc_job, generate_inputs):
     assert calc_info.remote_copy_list == []
     assert sorted(calc_info.retrieve_list) == sorted(
         [
-            ("case/*.scf0"),
-            ("case/*.scf1"),
-            ("case/*.scf2"),
-            ("case/*.scfm"),
-            ("case/*.scfc"),
-            ("case/*.error*"),
-            ("case/*.dayfile"),
-            ("case/*.klist"),
-            ("case/*.in0"),
-            ("case/case.struct"),
+            ('case/*.scf0'),
+            ('case/*.scf1'),
+            ('case/*.scf2'),
+            ('case/*.scfm'),
+            ('case/*.scfc'),
+            ('case/*.error*'),
+            ('case/*.dayfile'),
+            ('case/*.klist'),
+            ('case/*.in0'),
+            ('case/case.struct'),
         ]
     )
 
     assert len(calc_info.local_copy_list) == 1
-    assert calc_info.local_copy_list[0][-1] == "case/case.struct"
+    assert calc_info.local_copy_list[0][-1] == 'case/case.struct'
 
 
 def test_default_singlefile(generate_calc_job, generate_inputs):
     """Test the plugin for default inputs with structure as ``SinglefileData``."""
-    structure = SinglefileData(io.BytesIO(b"content"), filename="structure.wien2k").store()
+    structure = SinglefileData(io.BytesIO(b'content'), filename='structure.wien2k').store()
     inputs = generate_inputs()
-    inputs.pop("aiida_structure")
-    inputs["wien2k_structure"] = structure
+    inputs.pop('aiida_structure')
+    inputs['wien2k_structure'] = structure
     _, calc_info = generate_calc_job(Wien2kRun123Lapw, inputs=inputs)
 
     assert calc_info.remote_copy_list == []
     assert sorted(calc_info.retrieve_list) == sorted(
         [
-            ("case/*.scf0"),
-            ("case/*.scf1"),
-            ("case/*.scf2"),
-            ("case/*.scfm"),
-            ("case/*.scfc"),
-            ("case/*.error*"),
-            ("case/*.dayfile"),
-            ("case/*.klist"),
-            ("case/*.in0"),
-            ("case/case.struct"),
+            ('case/*.scf0'),
+            ('case/*.scf1'),
+            ('case/*.scf2'),
+            ('case/*.scfm'),
+            ('case/*.scfc'),
+            ('case/*.error*'),
+            ('case/*.dayfile'),
+            ('case/*.klist'),
+            ('case/*.in0'),
+            ('case/case.struct'),
         ]
     )
 
     assert len(calc_info.local_copy_list) == 1
-    assert calc_info.local_copy_list[0] == (structure.uuid, "structure.wien2k", "case/case.struct")
+    assert calc_info.local_copy_list[0] == (structure.uuid, 'structure.wien2k', 'case/case.struct')
 
 
 def test_parameters(generate_calc_job, generate_inputs):
     """Test the ``parameters`` input."""
-    parameters = {"-i": "100", "-p": True}
+    parameters = {'-i': '100', '-p': True}
     inputs = generate_inputs(parameters=parameters)
     _, calc_info = generate_calc_job(Wien2kRun123Lapw, inputs=inputs)
 
-    assert calc_info.codes_info[0].cmdline_params == ["-i", "100", "-p"]
+    assert calc_info.codes_info[0].cmdline_params == ['-i', '100', '-p']

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=redefined-outer-name
 """Module with test fixtures."""
 from __future__ import annotations
 
@@ -15,7 +14,7 @@ from aiida.orm import CalcJobNode, FolderData, StructureData, TrajectoryData
 from aiida.plugins import ParserFactory
 from ase.build import bulk
 
-pytest_plugins = ["aiida.manage.tests.pytest_fixtures"]  # pylint: disable=invalid-name
+pytest_plugins = ['aiida.manage.tests.pytest_fixtures']
 
 
 @pytest.fixture
@@ -51,12 +50,12 @@ def generate_calc_job(tmp_path):
 def generate_calc_job_node(filepath_tests, aiida_localhost, tmp_path):
     """Create and return a :class:`aiida.orm.CalcJobNode` instance."""
 
-    def flatten_inputs(inputs, prefix=""):
+    def flatten_inputs(inputs, prefix=''):
         """Flatten inputs recursively like :meth:`aiida.engine.processes.process::Process._flatten_inputs`."""
         flat_inputs = []
         for key, value in inputs.items():
             if isinstance(value, collections.abc.Mapping):
-                flat_inputs.extend(flatten_inputs(value, prefix=prefix + key + "__"))
+                flat_inputs.extend(flatten_inputs(value, prefix=prefix + key + '__'))
             else:
                 flat_inputs.append((prefix + key, value))
         return flat_inputs
@@ -65,28 +64,24 @@ def generate_calc_job_node(filepath_tests, aiida_localhost, tmp_path):
         entry_point: str,
         directory: str,
         test_name: str,
-        inputs: dict = None,
+        inputs: dict | None = None,
         retrieve_temporary_list: list[str] | None = None,
     ):
         """Create and return a :class:`aiida.orm.CalcJobNode` instance."""
-        node = CalcJobNode(
-            computer=aiida_localhost, process_type=f"aiida.calculations:{entry_point}"
-        )
+        node = CalcJobNode(computer=aiida_localhost, process_type=f'aiida.calculations:{entry_point}')
 
         if inputs:
             for link_label, input_node in flatten_inputs(inputs):
                 input_node.store()
-                node.base.links.add_incoming(
-                    input_node, link_type=LinkType.INPUT_CALC, link_label=link_label
-                )
+                node.base.links.add_incoming(input_node, link_type=LinkType.INPUT_CALC, link_label=link_label)
 
         node.store()
 
-        filepath_retrieved = filepath_tests / "parsers" / "fixtures" / directory / test_name
+        filepath_retrieved = filepath_tests / 'parsers' / 'fixtures' / directory / test_name
 
         retrieved = FolderData()
         retrieved.put_object_from_tree(filepath_retrieved)
-        retrieved.base.links.add_incoming(node, link_type=LinkType.CREATE, link_label="retrieved")
+        retrieved.base.links.add_incoming(node, link_type=LinkType.CREATE, link_label='retrieved')
         retrieved.store()
 
         if retrieve_temporary_list:
@@ -102,7 +97,7 @@ def generate_calc_job_node(filepath_tests, aiida_localhost, tmp_path):
     return factory
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope='session')
 def generate_parser():
     """Fixture to load a parser class for testing parsers."""
 
@@ -121,7 +116,7 @@ def generate_parser():
 def generate_structure():
     """Return factory to generate a ``StructureData`` instance."""
 
-    def factory(formula: str = "Si") -> StructureData:
+    def factory(formula: str = 'Si') -> StructureData:
         """Generate a ``StructureData`` instance."""
         atoms = bulk(formula)
         return StructureData(ase=atoms)
@@ -133,7 +128,7 @@ def generate_structure():
 def generate_trajectory(generate_structure):
     """Return factory to generate a ``TrajectoryData`` instance."""
 
-    def factory(formula: str = "Si") -> TrajectoryData:
+    def factory(formula: str = 'Si') -> TrajectoryData:
         """Generate a ``TrajectoryData`` instance."""
         return TrajectoryData(structurelist=[generate_structure(formula=formula)])
 
