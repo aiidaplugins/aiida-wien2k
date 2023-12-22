@@ -6,7 +6,6 @@ import typing as t
 
 import pytest
 from aiida.orm import Dict, SinglefileData
-
 from aiida_wien2k.calculations.run123_lapw import Wien2kRun123Lapw
 
 
