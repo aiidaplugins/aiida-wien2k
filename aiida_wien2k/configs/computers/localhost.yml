@@ -1,12 +1,11 @@
----
-label: "localhost"
-hostname: "localhost"
+label: localhost
+hostname: localhost
 transport: local
-scheduler: "slurm"
-work_dir: "/eos/rubel/aiida_workdir"
-shebang: "#!/bin/bash"
-mpirun_command: "mpirun -np {tot_num_mpiprocs}"
-mpiprocs_per_machine: "1"
-prepend_text: " "
-append_text: " "
-description: "localhost"
+scheduler: slurm
+work_dir: /eos/rubel/aiida_workdir
+shebang: '#!/bin/bash'
+mpirun_command: mpirun -np {tot_num_mpiprocs}
+mpiprocs_per_machine: '1'
+prepend_text: ' '
+append_text: ' '
+description: localhost

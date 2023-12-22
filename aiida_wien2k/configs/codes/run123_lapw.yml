@@ -1,16 +1,8 @@
----
-label: "wien2k-run123_lapw"
-description: "wien2k run123_lapw"
-input_plugin: "wien2k-run123_lapw"
+label: wien2k-run123_lapw
+description: wien2k run123_lapw
+input_plugin: wien2k-run123_lapw
 on_computer: true
-remote_abs_path: "/area51/WIEN2k_21/run123_lapw"
-computer: "localhost"
-prepend_text: '
-export EDITOR="vim";
-[[ -z "${SLURM_JOB_NAME}" ]] && export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${RANDOM}/case" || export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${SLURM_JOB_NAME}/case";
-mkdir -p ${WORKDIR};
-cd case && cp -p * ${WORKDIR};
-AIIDADIR=${PWD};
-ln -s ${WORKDIR} case;
-cd ${WORKDIR}'
-append_text: " cp -p *.struct *.scf0 *.scf1 *.scf2 *.scfc *.scfm *.error* *.dayfile *.klist *3k.in0 ${AIIDADIR}"
+remote_abs_path: /area51/WIEN2k_21/run123_lapw
+computer: localhost
+prepend_text: ' export EDITOR="vim"; [[ -z "${SLURM_JOB_NAME}" ]] && export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${RANDOM}/case" || export WORKDIR="/${HOSTNAME}/scratch/aiida/scratch-${SLURM_JOB_NAME}/case"; mkdir -p ${WORKDIR}; cd case && cp -p * ${WORKDIR}; AIIDADIR=${PWD}; ln -s ${WORKDIR} case; cd ${WORKDIR}'
+append_text: ' cp -p *.struct *.scf0 *.scf1 *.scf2 *.scfc *.scfm *.error* *.dayfile *.klist *3k.in0 ${AIIDADIR}'

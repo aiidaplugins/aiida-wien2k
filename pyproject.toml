@@ -1,37 +1,30 @@
 [build-system]
-requires = ['flit_core >=3.4,<4']
 build-backend = 'flit_core.buildapi'
+requires = ['flit_core >=3.4,<4']
 
 [project]
-name = 'aiida-wien2k'
-dynamic = ['description', 'version']
 authors = [{name = 'The AiiDA team', email = 'developers@aiida.net'}]
-readme = 'README.md'
-license = {file = 'LICENSE'}
 classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Framework :: AiiDA',
-    'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
+  'Development Status :: 5 - Production/Stable',
+  'Framework :: AiiDA',
+  'License :: OSI Approved :: MIT License',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12'
 ]
-keywords = ['aiida', 'workflows']
-requires-python = '>=3.8'
 dependencies = [
-    'aiida_core[atomic_tools]~=2.0',
-    'fuzzywuzzy~=0.18.0',
+  'aiida_core[atomic_tools]~=2.0',
+  'fuzzywuzzy~=0.18.0'
 ]
-
-[project.optional-dependencies]
-dev = [
-    'pgtest~=1.3',
-    'pre-commit~=2.2',
-    'pytest-regressions~=2.0',
-]
+dynamic = ['description', 'version']
+keywords = ['aiida', 'workflows']
+license = {file = 'LICENSE'}
+name = 'aiida-wien2k'
+readme = 'README.md'
+requires-python = '>=3.8'
 
 [project.entry-points.'aiida.calculations']
 'wien2k-run123_lapw' = 'aiida_wien2k.calculations.run123_lapw:Wien2kRun123Lapw'
@@ -42,32 +35,39 @@ dev = [
 [project.entry-points.'aiida.workflows']
 'wien2k.scf123_wf' = 'aiida_wien2k.workflows.scf123_workchain:Wien2kScf123WorkChain'
 
+[project.optional-dependencies]
+dev = [
+  'pgtest~=1.3',
+  'pre-commit~=2.2',
+  'pytest-regressions~=2.0'
+]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  'ignore:Creating AiiDA configuration folder.*:UserWarning',
+  'ignore:Object of type .* not in session, .* operation along .* will not proceed:sqlalchemy.exc.SAWarning'
+]
+
 [tool.ruff]
 ignore = [
   'PLR0911',  # Too many return statements
   'PLR0912',  # Too many branches
   'PLR0915',  # Too many statements
-  'PLR2004',  # Magic value used in comparison
+  'PLR2004'  # Magic value used in comparison
 ]
 line-length = 120
 select = [
-  'E',    # pydocstyle
-  'W',    # pydocstyle
-  'F',    # pyflakes
-  'I',    # isort
-  'N',    # pep8-naming
+  'E',  # pydocstyle
+  'W',  # pydocstyle
+  'F',  # pyflakes
+  'I',  # isort
+  'N',  # pep8-naming
   'PLC',  # pylint-convention
   'PLE',  # pylint-error
   'PLR',  # pylint-refactor
   'PLW',  # pylint-warning
-  'RUF'   # ruff
+  'RUF'  # ruff
 ]
 
 [tool.ruff.format]
 quote-style = 'single'
-
-[tool.pytest.ini_options]
-filterwarnings = [
-  'ignore:Creating AiiDA configuration folder.*:UserWarning',
-  'ignore:Object of type .* not in session, .* operation along .* will not proceed:sqlalchemy.exc.SAWarning',
-]
