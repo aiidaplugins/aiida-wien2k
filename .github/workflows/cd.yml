@@ -19,7 +19,7 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.7'
+        python-version: '3.8'
 
     - name: Validate the tag version against the package version
       run: python .github/workflows/validate_release_tag.py $GITHUB_REF
@@ -35,7 +35,7 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.7'
+        python-version: '3.8'
         cache: pip
         cache-dependency-path: pyproject.toml
 
@@ -52,7 +52,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.7', '3.8']
+        python-version: ['3.8']
 
     services:
       rabbitmq:
@@ -92,7 +92,7 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.7'
+        python-version: '3.8'
 
     - name: Install flit
       run: pip install flit~=3.4
