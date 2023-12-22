@@ -1,0 +1,16 @@
+scf_grep:
+  EfermiRyd: 0.3347787693
+  EtotRyd: -14238.10360884
+  Iter:
+  - 15
+  Rmt:
+  - 2.35
+  VolBohr3: 233.10302
+  Warning_last: []
+  atom_labels:
+  - I
+  fftmesh3k: 64 64 64
+  kmesh3k: 37  37  37
+  mTSRyd: '-0.00166648'
+  num_core_el:
+  - 36

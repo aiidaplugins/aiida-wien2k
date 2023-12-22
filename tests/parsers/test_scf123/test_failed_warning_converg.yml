@@ -1,0 +1,17 @@
+scf_grep:
+  EfermiRyd: 0.0924717656
+  EtotRyd: -5962.95870588
+  Iter:
+  - 15
+  Rmt:
+  - 2.35
+  VolBohr3: 628.90691
+  Warning_last:
+  - 'Warning: SCF not converged'
+  atom_labels:
+  - Rb
+  fftmesh3k: 120 120 120
+  kmesh3k: 24  24  24
+  mTSRyd: '-0.00078387'
+  num_core_el:
+  - 28

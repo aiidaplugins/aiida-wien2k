@@ -59,6 +59,6 @@ ec cc and fc_conv 1 0 1
 >   mixer 	(23:26:09) 0.029u 0.004s 0:00.30 6.6%	0+0k 0+648io 0pf+0w
 :ENERGY convergence:  1 0.000001 0
 :CHARGE convergence:  1 0.000001 -.0000003
-ec cc and fc_conv 1 1 1
+ec cc fc and str_conv 1 1 1 1
 
 >   stop
