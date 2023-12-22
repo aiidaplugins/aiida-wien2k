@@ -4,8 +4,7 @@ build-backend = 'flit_core.buildapi'
 
 [project]
 name = 'aiida-wien2k'
-dynamic = ['version']
-description = 'The official AiiDA plugin for WIEN2k'
+dynamic = ['description', 'version']
 authors = [{name = 'The AiiDA team', email = 'developers@aiida.net'}]
 readme = 'README.md'
 license = {file = 'LICENSE'}
