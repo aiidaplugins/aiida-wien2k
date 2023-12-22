@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module with test fixtures."""
 from __future__ import annotations
 

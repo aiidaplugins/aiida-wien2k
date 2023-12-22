@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for the :mod:`aiida_wien2k.calculations.run123_lapw` module."""
 from __future__ import annotations
 

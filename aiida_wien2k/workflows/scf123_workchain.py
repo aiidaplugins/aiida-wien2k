@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from aiida.engine import ToContext, WorkChain
 from aiida.orm import AbstractCode, Dict, StructureData
 from aiida.plugins.factories import CalculationFactory

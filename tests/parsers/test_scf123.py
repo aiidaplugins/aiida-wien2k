@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for the :mod:`aiida_wien2k.parsers.scf123` module."""
 from aiida_wien2k.calculations.run123_lapw import Wien2kRun123Lapw
 
