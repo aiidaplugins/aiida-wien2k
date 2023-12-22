@@ -42,6 +42,14 @@ dev = [
   'pytest-regressions~=2.0'
 ]
 
+[tool.flit.sdist]
+exclude = [
+  '.github/',
+  'tests/',
+  '.gitignore',
+  '.pre-commit-config.yaml'
+]
+
 [tool.pytest.ini_options]
 filterwarnings = [
   'ignore:Creating AiiDA configuration folder.*:UserWarning',
