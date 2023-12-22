@@ -4,7 +4,7 @@ import io
 import numpy as np
 from aiida.common import datastructures
 from aiida.engine import CalcJob
-from aiida.orm import Code, Dict, SinglefileData, StructureData
+from aiida.orm import AbstractCode, Dict, SinglefileData, StructureData
 from ase.units import Bohr
 
 
@@ -107,7 +107,7 @@ class Wien2kRun123Lapw(CalcJob):
         super(Wien2kRun123Lapw, cls).define(spec)
 
         # inputs/outputs
-        spec.input('code', valid_type=Code, help='WIEN2k run123_lapw')
+        spec.input('code', valid_type=AbstractCode, help='WIEN2k run123_lapw')
         spec.input('parameters', valid_type=Dict, required=False, help='Dictionary of input arguments (if any)')
         spec.input('wien2k_structure', valid_type=SinglefileData, required=False, help='WIEN2k input structure file case.struct')
         spec.input('aiida_structure', valid_type=StructureData, required=False, help='AiiDA input structure')

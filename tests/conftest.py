@@ -76,7 +76,9 @@ def generate_calc_job_node(filepath_tests, aiida_localhost, tmp_path):
         if inputs:
             for link_label, input_node in flatten_inputs(inputs):
                 input_node.store()
-                node.add_incoming(input_node, link_type=LinkType.INPUT_CALC, link_label=link_label)
+                node.base.links.add_incoming(
+                    input_node, link_type=LinkType.INPUT_CALC, link_label=link_label
+                )
 
         node.store()
 
@@ -84,7 +86,7 @@ def generate_calc_job_node(filepath_tests, aiida_localhost, tmp_path):
 
         retrieved = FolderData()
         retrieved.put_object_from_tree(filepath_retrieved)
-        retrieved.add_incoming(node, link_type=LinkType.CREATE, link_label="retrieved")
+        retrieved.base.links.add_incoming(node, link_type=LinkType.CREATE, link_label="retrieved")
         retrieved.store()
 
         if retrieve_temporary_list:

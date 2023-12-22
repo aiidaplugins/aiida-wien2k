@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from aiida.engine import ToContext, WorkChain
-from aiida.orm import Code, Dict, Int, StructureData
+from aiida.orm import AbstractCode, Dict, Int, StructureData
 from aiida.plugins.factories import CalculationFactory
 
 Wien2kRun123Lapw = CalculationFactory("wien2k-run123_lapw")  # plugin entry point
@@ -15,7 +15,7 @@ class Wien2kScf123WorkChain(WorkChain):
         super().define(spec)
         # input parameters
         spec.input("aiida_structure", valid_type=StructureData, required=True)
-        spec.input("code", valid_type=Code, required=True)  # run123_lapw
+        spec.input("code", valid_type=AbstractCode, required=True)  # run123_lapw
         spec.input("inpdict", valid_type=Dict, required=True)  # run123_lapw [param]
         spec.input(
             "options", valid_type=Dict, required=True
